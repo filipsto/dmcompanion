@@ -1,0 +1,3324 @@
+{
+  "diagramType": "DMC Visualizer",
+  "connectionName": "HR_23_26",
+  "connectionType": "oracledb",
+  "schema": "HR",
+  "metadata": {
+    "fontSizes": {
+      "titleFontSizePx": 13,
+      "bodyFontSizePx": 12
+    },
+    "includeIndexes": true,
+    "showOwnerInHeader": false,
+    "connectionOwner": "HR",
+    "connectionType": "oracledb",
+    "connectionName": "HR_23_26",
+    "diagramScope": {
+      "provider": "oracle",
+      "connectionName": "HR_23_26"
+    },
+    "schema": "HR",
+    "version": 2
+  },
+  "workspace": {
+    "activeTabId": "graph-hr-all-more-labels-details",
+    "tabs": [
+      {
+        "id": "tables",
+        "name": "Tables",
+        "layout": {
+          "items": [
+            {
+              "type": "TABLE",
+              "name": "COUNTRIES",
+              "schema": "HR",
+              "instanceId": "HR.COUNTRIES#0",
+              "bounds": {
+                "x": 1386,
+                "y": 318.33333333333337,
+                "width": 220,
+                "height": 136
+              }
+            },
+            {
+              "type": "TABLE",
+              "name": "DEPARTMENTS",
+              "schema": "HR",
+              "instanceId": "HR.DEPARTMENTS#0",
+              "bounds": {
+                "x": 746,
+                "y": 305.33333333333337,
+                "width": 220,
+                "height": 162
+              }
+            },
+            {
+              "type": "TABLE",
+              "name": "EMPLOYEES",
+              "schema": "HR",
+              "instanceId": "HR.EMPLOYEES#0",
+              "bounds": {
+                "x": 360,
+                "y": 179.33333333333334,
+                "width": 270,
+                "height": 330
+              }
+            },
+            {
+              "type": "TABLE",
+              "name": "JOB_HISTORY",
+              "schema": "HR",
+              "instanceId": "HR.JOB_HISTORY#0",
+              "bounds": {
+                "x": 40,
+                "y": 42.33333333333334,
+                "width": 220,
+                "height": 196
+              }
+            },
+            {
+              "type": "TABLE",
+              "name": "JOBS",
+              "schema": "HR",
+              "instanceId": "HR.JOBS#0",
+              "bounds": {
+                "x": 746,
+                "y": 40,
+                "width": 220,
+                "height": 154
+              }
+            },
+            {
+              "type": "TABLE",
+              "name": "LOCATIONS",
+              "schema": "HR",
+              "instanceId": "HR.LOCATIONS#0",
+              "bounds": {
+                "x": 1066,
+                "y": 279.33333333333337,
+                "width": 220,
+                "height": 214
+              }
+            },
+            {
+              "type": "TABLE",
+              "name": "REGIONS",
+              "schema": "HR",
+              "instanceId": "HR.REGIONS#0",
+              "bounds": {
+                "x": 1706,
+                "y": 327.33333333333337,
+                "width": 220,
+                "height": 118
+              }
+            },
+            {
+              "type": "RELATION",
+              "name": "COUNTR_REG_FK",
+              "sourceID": "HR.COUNTRIES",
+              "targetID": "HR.REGIONS",
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 1606,
+                "y": 386.33333333333337
+              },
+              "targetPort": {
+                "x": 1706,
+                "y": 386.33333333333337
+              },
+              "vertices": []
+            },
+            {
+              "type": "RELATION",
+              "name": "DEPT_LOC_FK",
+              "sourceID": "HR.DEPARTMENTS",
+              "targetID": "HR.LOCATIONS",
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 966,
+                "y": 386.33333333333337
+              },
+              "targetPort": {
+                "x": 1066,
+                "y": 386.33333333333337
+              },
+              "vertices": []
+            },
+            {
+              "type": "RELATION",
+              "name": "DEPT_MGR_FK",
+              "sourceID": "HR.DEPARTMENTS",
+              "targetID": "HR.EMPLOYEES",
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 746,
+                "y": 426.83333333333337
+              },
+              "targetPort": {
+                "x": 630,
+                "y": 426.83333333333337
+              },
+              "vertices": []
+            },
+            {
+              "type": "RELATION",
+              "name": "EMP_DEPT_FK",
+              "sourceID": "HR.EMPLOYEES",
+              "targetID": "HR.DEPARTMENTS",
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 630,
+                "y": 344.33333333333337
+              },
+              "targetPort": {
+                "x": 746,
+                "y": 386.33333333333337
+              },
+              "vertices": [
+                {
+                  "x": 670,
+                  "y": 344.33333333333337
+                },
+                {
+                  "x": 670,
+                  "y": 386.33333333333337
+                }
+              ]
+            },
+            {
+              "type": "RELATION",
+              "name": "EMP_JOB_FK",
+              "sourceID": "HR.EMPLOYEES",
+              "targetID": "HR.JOBS",
+              "style": "solid",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 630,
+                "y": 261.83333333333337
+              },
+              "targetPort": {
+                "x": 746,
+                "y": 142.66666666666669
+              },
+              "vertices": [
+                {
+                  "x": 706,
+                  "y": 261.83333333333337
+                },
+                {
+                  "x": 706,
+                  "y": 142.66666666666669
+                }
+              ]
+            },
+            {
+              "type": "RELATION",
+              "name": "EMP_MANAGER_FK",
+              "sourceID": "HR.EMPLOYEES",
+              "targetID": "HR.EMPLOYEES",
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 450,
+                "y": 179.33333333333334
+              },
+              "targetPort": {
+                "x": 540,
+                "y": 179.33333333333334
+              },
+              "vertices": [
+                {
+                  "x": 450,
+                  "y": 151.33333333333334
+                },
+                {
+                  "x": 540,
+                  "y": 151.33333333333334
+                }
+              ]
+            },
+            {
+              "type": "RELATION",
+              "name": "JHIST_DEPT_FK",
+              "sourceID": "HR.JOB_HISTORY",
+              "targetID": "HR.DEPARTMENTS",
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 260,
+                "y": 140.33333333333334
+              },
+              "targetPort": {
+                "x": 746,
+                "y": 345.83333333333337
+              },
+              "vertices": [
+                {
+                  "x": 688,
+                  "y": 140.33333333333334
+                },
+                {
+                  "x": 688,
+                  "y": 345.83333333333337
+                }
+              ]
+            },
+            {
+              "type": "RELATION",
+              "name": "JHIST_EMP_FK",
+              "sourceID": "HR.JOB_HISTORY",
+              "targetID": "HR.EMPLOYEES",
+              "style": "solid",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 260,
+                "y": 189.33333333333334
+              },
+              "targetPort": {
+                "x": 360,
+                "y": 344.33333333333337
+              },
+              "vertices": [
+                {
+                  "x": 300,
+                  "y": 189.33333333333334
+                },
+                {
+                  "x": 300,
+                  "y": 344.33333333333337
+                }
+              ]
+            },
+            {
+              "type": "RELATION",
+              "name": "JHIST_JOB_FK",
+              "sourceID": "HR.JOB_HISTORY",
+              "targetID": "HR.JOBS",
+              "style": "solid",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 260,
+                "y": 91.33333333333334
+              },
+              "targetPort": {
+                "x": 746,
+                "y": 91.33333333333334
+              },
+              "vertices": []
+            },
+            {
+              "type": "RELATION",
+              "name": "LOC_C_ID_FK",
+              "sourceID": "HR.LOCATIONS",
+              "targetID": "HR.COUNTRIES",
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 1286,
+                "y": 386.33333333333337
+              },
+              "targetPort": {
+                "x": 1386,
+                "y": 386.33333333333337
+              },
+              "vertices": []
+            }
+          ]
+        },
+        "options": {
+          "showOwnerInHeader": false,
+          "connectionOwner": "HR",
+          "titleFontSizePx": 13,
+          "bodyFontSizePx": 12,
+          "graphMaxVisibleNodeProperties": 12,
+          "graphMaxVisibleEdgeProperties": 3
+        }
+      },
+      {
+        "id": "graph-hr-all-more-labels-compact",
+        "name": "HR_ALL_MORE_LABELS Compact",
+        "graphId": "oracle-pg:HR:HR_ALL_MORE_LABELS",
+        "layout": {
+          "items": [
+            {
+              "type": "ENTITY",
+              "name": "CITY_LOCATION +",
+              "schema": "HR",
+              "id": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:LOCATIONS",
+              "bounds": {
+                "x": 339,
+                "y": 533,
+                "width": 133,
+                "height": 90
+              }
+            },
+            {
+              "type": "ENTITY",
+              "name": "COMMISSIONED_EMP +",
+              "schema": "HR",
+              "id": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:EMPLOYEES",
+              "bounds": {
+                "x": 358,
+                "y": 237,
+                "width": 172,
+                "height": 90
+              }
+            },
+            {
+              "type": "ENTITY",
+              "name": "COUNTRY",
+              "schema": "HR",
+              "id": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:COUNTRIES",
+              "bounds": {
+                "x": 656,
+                "y": 533,
+                "width": 92,
+                "height": 90
+              }
+            },
+            {
+              "type": "ENTITY",
+              "name": "DEPARTMENT",
+              "schema": "HR",
+              "id": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:DEPARTMENTS",
+              "bounds": {
+                "x": 780,
+                "y": 237,
+                "width": 110,
+                "height": 90
+              }
+            },
+            {
+              "type": "ENTITY",
+              "name": "JOB",
+              "schema": "HR",
+              "id": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:JOBS",
+              "bounds": {
+                "x": 780,
+                "y": 40,
+                "width": 98,
+                "height": 90
+              }
+            },
+            {
+              "type": "ENTITY",
+              "name": "JOB_HISTORY",
+              "schema": "HR",
+              "id": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:JOB_HISTORY",
+              "bounds": {
+                "x": 40,
+                "y": 48.08333333333333,
+                "width": 108,
+                "height": 90
+              }
+            },
+            {
+              "type": "ENTITY",
+              "name": "REGION",
+              "schema": "HR",
+              "id": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:REGIONS",
+              "bounds": {
+                "x": 924,
+                "y": 533,
+                "width": 73,
+                "height": 90
+              }
+            },
+            {
+              "type": "RELATION",
+              "name": "COUNTRY_LOCATED_IN",
+              "graphEndpointPairKey": "GRAPH_OBJ|oracle-pg:HR:HR_ALL_MORE_LABELS:EDGE:COUNTRY_LOCATED_IN|oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:COUNTRIES|oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:REGIONS",
+              "sourceID": "HR.COUNTRY",
+              "targetID": "HR.REGION",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceObjectId": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:COUNTRIES",
+              "targetObjectId": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:REGIONS",
+              "sourceLabelBounds": {
+                "x": -40,
+                "y": 3,
+                "distance": 0.23076923076923078,
+                "absoluteX": 748.6153564453125,
+                "absoluteY": 566,
+                "width": 80,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": 0,
+                "y": 13,
+                "distance": 0.23076923076923078,
+                "width": 80,
+                "height": 20
+              },
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 748,
+                "y": 563
+              },
+              "targetPort": {
+                "x": 924,
+                "y": 562.9998
+              },
+              "vertices": []
+            },
+            {
+              "type": "RELATION",
+              "name": "DEPARTMENT_LOCATED_IN",
+              "graphEndpointPairKey": "GRAPH_OBJ|oracle-pg:HR:HR_ALL_MORE_LABELS:EDGE:DEPARTMENT_LOCATED_IN|oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:DEPARTMENTS|oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:LOCATIONS",
+              "sourceID": "HR.DEPARTMENT",
+              "targetID": "HR.CITY_LOCATION +",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceObjectId": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:DEPARTMENTS",
+              "targetObjectId": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:LOCATIONS",
+              "sourceLabelBounds": {
+                "x": 0,
+                "y": 3,
+                "distance": 0.3010240678816757,
+                "absoluteX": 730.5384521484375,
+                "absoluteY": 423,
+                "width": 80,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": 0,
+                "y": 13,
+                "distance": 0.23076923076923078,
+                "width": 80,
+                "height": 20
+              },
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 832,
+                "y": 327
+              },
+              "targetPort": {
+                "x": 392,
+                "y": 533
+              },
+              "vertices": [
+                {
+                  "x": 832,
+                  "y": 420
+                },
+                {
+                  "x": 392,
+                  "y": 420
+                }
+              ]
+            },
+            {
+              "type": "RELATION",
+              "name": "FOR_DEPARTMENT",
+              "graphEndpointPairKey": "GRAPH_OBJ|oracle-pg:HR:HR_ALL_MORE_LABELS:EDGE:FOR_DEPARTMENT|oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:JOB_HISTORY|oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:DEPARTMENTS",
+              "sourceID": "HR.JOB_HISTORY",
+              "targetID": "HR.DEPARTMENT",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceObjectId": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:JOB_HISTORY",
+              "targetObjectId": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:DEPARTMENTS",
+              "sourceLabelBounds": {
+                "x": -54,
+                "y": 3,
+                "distance": 0.0702928870292887,
+                "absoluteX": 150,
+                "absoluteY": 99.58036804199219,
+                "width": 108,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": 0,
+                "y": 13,
+                "distance": 0.0702928870292887,
+                "width": 108,
+                "height": 20
+              },
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 148,
+                "y": 96.58333333333333
+              },
+              "targetPort": {
+                "x": 780,
+                "y": 261.25
+              },
+              "vertices": [
+                {
+                  "x": 656,
+                  "y": 96.58333333333333
+                },
+                {
+                  "x": 656,
+                  "y": 261.25
+                }
+              ]
+            },
+            {
+              "type": "RELATION",
+              "name": "FOR_EMPLOYEE",
+              "graphEndpointPairKey": "GRAPH_OBJ|oracle-pg:HR:HR_ALL_MORE_LABELS:EDGE:FOR_EMPLOYEE|oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:JOB_HISTORY|oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:EMPLOYEES",
+              "sourceID": "HR.JOB_HISTORY",
+              "targetID": "HR.COMMISSIONED_EMP +",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceObjectId": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:JOB_HISTORY",
+              "targetObjectId": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:EMPLOYEES",
+              "sourceLabelBounds": {
+                "x": -47,
+                "y": 3,
+                "distance": 0.1307829181494662,
+                "absoluteX": 150,
+                "absoluteY": 123.83108520507812,
+                "width": 94,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": 0,
+                "y": 13,
+                "distance": 0.1307829181494662,
+                "width": 94,
+                "height": 20
+              },
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 148,
+                "y": 120.83333333333333
+              },
+              "targetPort": {
+                "x": 358,
+                "y": 285.5
+              },
+              "vertices": [
+                {
+                  "x": 298,
+                  "y": 120.83333333333333
+                },
+                {
+                  "x": 298,
+                  "y": 285.5
+                }
+              ]
+            },
+            {
+              "type": "RELATION",
+              "name": "FOR_JOB",
+              "graphEndpointPairKey": "GRAPH_OBJ|oracle-pg:HR:HR_ALL_MORE_LABELS:EDGE:FOR_JOB|oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:JOB_HISTORY|oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:JOBS",
+              "sourceID": "HR.JOB_HISTORY",
+              "targetID": "HR.JOB",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceObjectId": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:JOB_HISTORY",
+              "targetObjectId": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:JOBS",
+              "sourceLabelBounds": {
+                "x": -30,
+                "y": 3,
+                "distance": 0.049841772151898736,
+                "absoluteX": 149.5,
+                "absoluteY": 75.33000183105469,
+                "width": 59,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": 0,
+                "y": 13,
+                "distance": 0.049841772151898736,
+                "width": 59,
+                "height": 20
+              },
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 148,
+                "y": 72.33333333333333
+              },
+              "targetPort": {
+                "x": 780,
+                "y": 72.33333333333333
+              },
+              "vertices": []
+            },
+            {
+              "type": "RELATION",
+              "name": "LOCATION_LOCATED_IN",
+              "graphEndpointPairKey": "GRAPH_OBJ|oracle-pg:HR:HR_ALL_MORE_LABELS:EDGE:LOCATION_LOCATED_IN|oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:LOCATIONS|oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:COUNTRIES",
+              "sourceID": "HR.CITY_LOCATION +",
+              "targetID": "HR.COUNTRY",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceObjectId": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:LOCATIONS",
+              "targetObjectId": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:COUNTRIES",
+              "sourceLabelBounds": {
+                "x": -40,
+                "y": 3,
+                "distance": 0.23076923076923078,
+                "absoluteX": 474.4615478515625,
+                "absoluteY": 565,
+                "width": 80,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": 0,
+                "y": 13,
+                "distance": 0.23076923076923078,
+                "width": 80,
+                "height": 20
+              },
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 472,
+                "y": 561.99989
+              },
+              "targetPort": {
+                "x": 656,
+                "y": 562.00032
+              },
+              "vertices": []
+            },
+            {
+              "type": "RELATION",
+              "name": "MANAGED_BY",
+              "graphEndpointPairKey": "GRAPH_OBJ|oracle-pg:HR:HR_ALL_MORE_LABELS:EDGE:MANAGED_BY|oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:DEPARTMENTS|oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:EMPLOYEES",
+              "sourceID": "HR.DEPARTMENT",
+              "targetID": "HR.COMMISSIONED_EMP +",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceObjectId": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:DEPARTMENTS",
+              "targetObjectId": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:EMPLOYEES",
+              "sourceLabelBounds": {
+                "x": -40,
+                "y": 3,
+                "distance": 0.168,
+                "absoluteX": 698,
+                "absoluteY": 312.75,
+                "width": 80,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": 0,
+                "y": 13,
+                "distance": 0.168,
+                "width": 80,
+                "height": 20
+              },
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 780,
+                "y": 309.75
+              },
+              "targetPort": {
+                "x": 530,
+                "y": 309.75
+              },
+              "vertices": []
+            },
+            {
+              "type": "RELATION",
+              "name": "WORKS_AS",
+              "graphEndpointPairKey": "GRAPH_OBJ|oracle-pg:HR:HR_ALL_MORE_LABELS:EDGE:WORKS_AS|oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:EMPLOYEES|oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:JOBS",
+              "sourceID": "HR.COMMISSIONED_EMP +",
+              "targetID": "HR.JOB",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceObjectId": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:EMPLOYEES",
+              "targetObjectId": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:JOBS",
+              "sourceLabelBounds": {
+                "x": -33,
+                "y": 3,
+                "distance": 0.0860832137733142,
+                "absoluteX": 532,
+                "absoluteY": 264.25,
+                "width": 66,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": 0,
+                "y": 13,
+                "distance": 0.0860832137733142,
+                "width": 66,
+                "height": 20
+              },
+              "visualStyle": {
+                "stroke": "#38FFD7",
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 530,
+                "y": 261.25
+              },
+              "targetPort": {
+                "x": 780,
+                "y": 104.66666666666666
+              },
+              "vertices": [
+                {
+                  "x": 638,
+                  "y": 261.25
+                },
+                {
+                  "x": 638,
+                  "y": 104.66666666666666
+                }
+              ]
+            },
+            {
+              "type": "RELATION",
+              "name": "WORKS_AT",
+              "graphEndpointPairKey": "GRAPH_OBJ|oracle-pg:HR:HR_ALL_MORE_LABELS:EDGE:WORKS_AT|oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:EMPLOYEES|oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:DEPARTMENTS",
+              "sourceID": "HR.COMMISSIONED_EMP +",
+              "targetID": "HR.DEPARTMENT",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceObjectId": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:EMPLOYEES",
+              "targetObjectId": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:DEPARTMENTS",
+              "sourceLabelBounds": {
+                "x": -33,
+                "y": 3,
+                "distance": 0.14,
+                "absoluteX": 532,
+                "absoluteY": 288.5,
+                "width": 66,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": 0,
+                "y": 13,
+                "distance": 0.14,
+                "width": 66,
+                "height": 20
+              },
+              "visualStyle": {
+                "stroke": "#C038FF",
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 530,
+                "y": 285.5
+              },
+              "targetPort": {
+                "x": 780,
+                "y": 285.5
+              },
+              "vertices": []
+            },
+            {
+              "type": "RELATION",
+              "name": "WORKS_FOR",
+              "graphEndpointPairKey": "GRAPH_OBJ|oracle-pg:HR:HR_ALL_MORE_LABELS:EDGE:WORKS_FOR|oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:EMPLOYEES|oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:EMPLOYEES",
+              "sourceID": "HR.COMMISSIONED_EMP +",
+              "targetID": "HR.COMMISSIONED_EMP +",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceObjectId": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:EMPLOYEES",
+              "targetObjectId": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:EMPLOYEES",
+              "sourceLabelBounds": {
+                "x": -36,
+                "y": -22,
+                "distance": 0.5,
+                "absoluteX": 408,
+                "absoluteY": 187,
+                "width": 73,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": 0,
+                "y": -12,
+                "distance": 0.5,
+                "width": 73,
+                "height": 20
+              },
+              "visualStyle": {
+                "stroke": "#FF3856",
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 415.3333333333333,
+                "y": 237
+              },
+              "targetPort": {
+                "x": 472.6666666666667,
+                "y": 237
+              },
+              "vertices": [
+                {
+                  "x": 415.3333333333333,
+                  "y": 209
+                },
+                {
+                  "x": 472.6666666666667,
+                  "y": 209
+                }
+              ]
+            }
+          ]
+        },
+        "options": {
+          "showOwnerInHeader": false,
+          "connectionOwner": "HR",
+          "titleFontSizePx": 13,
+          "bodyFontSizePx": 12,
+          "diagramColorsEnabled": true,
+          "colors": {
+            "table": "#FFFFB4",
+            "nodeTable": "#A4E1FF",
+            "edgeTable": "#1260BA",
+            "mview": "#229b12",
+            "view": "#89d185",
+            "dualityView": "#89d185",
+            "graphNode": "#A4E1FF",
+            "graphEdge": "#3794FF",
+            "fkLink": "#509bf1",
+            "ifkLink": "#e06c75"
+          },
+          "showColumns": false,
+          "showDataType": false,
+          "showComments": true,
+          "showConstraints": false,
+          "showIndexes": false,
+          "showRelationshipAttributes": false,
+          "showRelationshipEndpointLabels": true,
+          "showGraphImplicitColumns": false,
+          "graphPresentation": true
+        }
+      },
+      {
+        "id": "graph-hr-all-more-labels-details",
+        "name": "HR_ALL_MORE_LABELS Details",
+        "graphId": "oracle-pg:HR:HR_ALL_MORE_LABELS",
+        "layout": {
+          "items": [
+            {
+              "type": "ENTITY",
+              "name": "CITY_LOCATION +",
+              "schema": "HR",
+              "id": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:LOCATIONS",
+              "bounds": {
+                "x": 436,
+                "y": 574,
+                "width": 220,
+                "height": 126
+              }
+            },
+            {
+              "type": "ENTITY",
+              "name": "COMMISSIONED_EMP +",
+              "schema": "HR",
+              "id": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:EMPLOYEES",
+              "bounds": {
+                "x": 470,
+                "y": 238.5,
+                "width": 250,
+                "height": 169
+              }
+            },
+            {
+              "type": "ENTITY",
+              "name": "COUNTRY",
+              "schema": "HR",
+              "id": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:COUNTRIES",
+              "bounds": {
+                "x": 838,
+                "y": 592,
+                "width": 220,
+                "height": 90
+              }
+            },
+            {
+              "type": "ENTITY",
+              "name": "DEPARTMENT",
+              "schema": "HR",
+              "id": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:DEPARTMENTS",
+              "bounds": {
+                "x": 1317,
+                "y": 278,
+                "width": 220,
+                "height": 90
+              }
+            },
+            {
+              "type": "ENTITY",
+              "name": "JOB",
+              "schema": "HR",
+              "id": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:JOBS",
+              "bounds": {
+                "x": 888,
+                "y": 51,
+                "width": 220,
+                "height": 97
+              }
+            },
+            {
+              "type": "ENTITY",
+              "name": "JOB_HISTORY",
+              "schema": "HR",
+              "id": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:JOB_HISTORY",
+              "bounds": {
+                "x": 40,
+                "y": 255.5,
+                "width": 220,
+                "height": 90
+              }
+            },
+            {
+              "type": "ENTITY",
+              "name": "REGION",
+              "schema": "HR",
+              "id": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:REGIONS",
+              "bounds": {
+                "x": 1240,
+                "y": 592,
+                "width": 220,
+                "height": 90
+              }
+            },
+            {
+              "type": "RELATION",
+              "name": "COUNTRY_LOCATED_IN",
+              "sourceID": "HR.COUNTRY",
+              "targetID": "HR.REGION",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceObjectId": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:COUNTRIES",
+              "targetObjectId": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:REGIONS",
+              "sourceLabelBounds": {
+                "x": -40,
+                "y": 3,
+                "distance": 0.23076923076923078,
+                "absoluteX": 1060,
+                "absoluteY": 640,
+                "width": 80,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": 0,
+                "y": 13,
+                "distance": 0.23076923076923078,
+                "width": 80,
+                "height": 20
+              },
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 1058,
+                "y": 637
+              },
+              "targetPort": {
+                "x": 1240,
+                "y": 637
+              },
+              "vertices": []
+            },
+            {
+              "type": "RELATION",
+              "name": "DEPARTMENT_LOCATED_IN",
+              "sourceID": "HR.DEPARTMENT",
+              "targetID": "HR.CITY_LOCATION +",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceObjectId": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:DEPARTMENTS",
+              "targetObjectId": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:LOCATIONS",
+              "sourceLabelBounds": {
+                "x": -40,
+                "y": 3,
+                "distance": 0.23076923076923078,
+                "absoluteX": 1243.2423095703125,
+                "absoluteY": 473,
+                "width": 80,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": 0,
+                "y": 13,
+                "distance": 0.23076923076923078,
+                "width": 80,
+                "height": 20
+              },
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 1436,
+                "y": 368
+              },
+              "targetPort": {
+                "x": 538.0493774414062,
+                "y": 574
+              },
+              "vertices": [
+                {
+                  "x": 1436,
+                  "y": 470
+                },
+                {
+                  "x": 538.05,
+                  "y": 470
+                }
+              ]
+            },
+            {
+              "type": "RELATION",
+              "name": "FOR_DEPARTMENT",
+              "sourceID": "HR.JOB_HISTORY",
+              "targetID": "HR.DEPARTMENT",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceObjectId": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:JOB_HISTORY",
+              "targetObjectId": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:DEPARTMENTS",
+              "sourceLabelBounds": {
+                "x": -54,
+                "y": 3,
+                "distance": 0.03600128576020572,
+                "absoluteX": 262,
+                "absoluteY": 281,
+                "width": 108,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": 0,
+                "y": 13,
+                "distance": 0.03600128576020572,
+                "width": 108,
+                "height": 20
+              },
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 260,
+                "y": 278
+              },
+              "targetPort": {
+                "x": 1317,
+                "y": 300.5
+              },
+              "vertices": [
+                {
+                  "x": 410,
+                  "y": 278
+                },
+                {
+                  "x": 410,
+                  "y": 40
+                },
+                {
+                  "x": 1175,
+                  "y": 40
+                },
+                {
+                  "x": 1175,
+                  "y": 300.5
+                }
+              ]
+            },
+            {
+              "type": "RELATION",
+              "name": "FOR_EMPLOYEE",
+              "sourceID": "HR.JOB_HISTORY",
+              "targetID": "HR.COMMISSIONED_EMP +",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceObjectId": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:JOB_HISTORY",
+              "targetObjectId": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:EMPLOYEES",
+              "sourceLabelBounds": {
+                "x": -47,
+                "y": 3,
+                "distance": 0.23333333333333334,
+                "absoluteX": 262,
+                "absoluteY": 326,
+                "width": 94,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": 0,
+                "y": 13,
+                "distance": 0.23333333333333334,
+                "width": 94,
+                "height": 20
+              },
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 260,
+                "y": 323
+              },
+              "targetPort": {
+                "x": 470,
+                "y": 323
+              },
+              "vertices": []
+            },
+            {
+              "type": "RELATION",
+              "name": "FOR_JOB",
+              "sourceID": "HR.JOB_HISTORY",
+              "targetID": "HR.JOB",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceObjectId": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:JOB_HISTORY",
+              "targetObjectId": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:JOBS",
+              "sourceLabelBounds": {
+                "x": -30,
+                "y": 3,
+                "distance": 0.037270755275093666,
+                "absoluteX": 261.5,
+                "absoluteY": 303.5,
+                "width": 59,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": 0,
+                "y": 13,
+                "distance": 0.037270755275093666,
+                "width": 59,
+                "height": 20
+              },
+              "visualStyle": {
+                "stroke": "#38FF6A",
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 260,
+                "y": 300.5
+              },
+              "targetPort": {
+                "x": 888,
+                "y": 83.33
+              },
+              "vertices": [
+                {
+                  "x": 428,
+                  "y": 300.5
+                },
+                {
+                  "x": 428,
+                  "y": 83.33333333333333
+                }
+              ]
+            },
+            {
+              "type": "RELATION",
+              "name": "LOCATION_LOCATED_IN",
+              "sourceID": "HR.CITY_LOCATION +",
+              "targetID": "HR.COUNTRY",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceObjectId": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:LOCATIONS",
+              "targetObjectId": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:COUNTRIES",
+              "sourceLabelBounds": {
+                "x": -40,
+                "y": 3,
+                "distance": 0.23076923076923078,
+                "absoluteX": 658,
+                "absoluteY": 640,
+                "width": 80,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": 0,
+                "y": 13,
+                "distance": 0.23076923076923078,
+                "width": 80,
+                "height": 20
+              },
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 656,
+                "y": 637
+              },
+              "targetPort": {
+                "x": 838,
+                "y": 637
+              },
+              "vertices": []
+            },
+            {
+              "type": "RELATION",
+              "name": "MANAGED_BY",
+              "sourceID": "HR.DEPARTMENT",
+              "targetID": "HR.COMMISSIONED_EMP +",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceObjectId": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:DEPARTMENTS",
+              "targetObjectId": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:EMPLOYEES",
+              "sourceLabelBounds": {
+                "x": -40,
+                "y": 3,
+                "distance": 0.06809890555330361,
+                "absoluteX": 1235,
+                "absoluteY": 348.5,
+                "width": 80,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": 0,
+                "y": 13,
+                "distance": 0.06809890555330361,
+                "width": 80,
+                "height": 20
+              },
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 1317,
+                "y": 345.5
+              },
+              "targetPort": {
+                "x": 720,
+                "y": 365.25
+              },
+              "vertices": [
+                {
+                  "x": 1175,
+                  "y": 345.5
+                },
+                {
+                  "x": 1175,
+                  "y": 365.25
+                }
+              ]
+            },
+            {
+              "type": "RELATION",
+              "name": "WORKS_AS",
+              "sourceID": "HR.COMMISSIONED_EMP +",
+              "targetID": "HR.JOB",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceObjectId": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:EMPLOYEES",
+              "targetObjectId": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:JOBS",
+              "sourceLabelBounds": {
+                "x": -33,
+                "y": 3,
+                "distance": 0.10507880910683011,
+                "absoluteX": 722,
+                "absoluteY": 283.75,
+                "width": 66,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": 0,
+                "y": 13,
+                "distance": 0.10507880910683011,
+                "width": 66,
+                "height": 20
+              },
+              "visualStyle": {
+                "stroke": "#38FFD7",
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 720,
+                "y": 280.75
+              },
+              "targetPort": {
+                "x": 888,
+                "y": 115.67
+              },
+              "vertices": [
+                {
+                  "x": 828,
+                  "y": 280.75
+                },
+                {
+                  "x": 828,
+                  "y": 115.66666666666666
+                }
+              ]
+            },
+            {
+              "type": "RELATION",
+              "graphPropertyPresentation": {
+                "propertyOrder": [
+                  "EMPLOYEE_ID",
+                  "FIRST_NAME",
+                  "LAST_NAME",
+                  "EMAIL",
+                  "PHONE_NUMBER",
+                  "HIRE_DATE",
+                  "JOB_ID",
+                  "SALARY",
+                  "COMMISSION_PCT",
+                  "MANAGER_ID",
+                  "DEPARTMENT_ID"
+                ],
+                "hiddenProperties": [
+                  "EMPLOYEE_ID",
+                  "JOB_ID",
+                  "MANAGER_ID",
+                  "DEPARTMENT_ID"
+                ]
+              },
+              "name": "WORKS_AT",
+              "graphEndpointPairKey": "GRAPH_OBJ|oracle-pg:HR:HR_ALL_MORE_LABELS:EDGE:WORKS_AT|oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:EMPLOYEES|oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:DEPARTMENTS",
+              "sourceID": "HR.COMMISSIONED_EMP +",
+              "targetID": "HR.DEPARTMENT",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceObjectId": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:EMPLOYEES",
+              "targetObjectId": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:DEPARTMENTS",
+              "sourceLabelBounds": {
+                "x": -33,
+                "y": 3,
+                "distance": 0.05862646566164154,
+                "absoluteX": 722,
+                "absoluteY": 326,
+                "width": 66,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": -153,
+                "y": -145,
+                "distance": 0.4882747068676717,
+                "absoluteX": 858.5,
+                "absoluteY": 178,
+                "width": 218,
+                "height": 131
+              },
+              "visualStyle": {
+                "stroke": "#C038FF",
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 720,
+                "y": 323
+              },
+              "targetPort": {
+                "x": 1317,
+                "y": 323
+              },
+              "vertices": []
+            },
+            {
+              "type": "RELATION",
+              "name": "WORKS_FOR",
+              "sourceID": "HR.COMMISSIONED_EMP +",
+              "targetID": "HR.COMMISSIONED_EMP +",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceObjectId": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:EMPLOYEES",
+              "targetObjectId": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:EMPLOYEES",
+              "sourceLabelBounds": {
+                "x": 0,
+                "y": -22,
+                "distance": 0.24162679425837308,
+                "absoluteX": 559,
+                "absoluteY": 188.5,
+                "width": 73,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": 0,
+                "y": -12,
+                "distance": 0.5,
+                "width": 73,
+                "height": 20
+              },
+              "visualStyle": {
+                "stroke": "#FF3856",
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 553.3333333333334,
+                "y": 238.5
+              },
+              "targetPort": {
+                "x": 636.6666666666666,
+                "y": 238.5
+              },
+              "vertices": [
+                {
+                  "x": 553.3333333333334,
+                  "y": 210.5
+                },
+                {
+                  "x": 636.6666666666666,
+                  "y": 210.5
+                }
+              ]
+            }
+          ]
+        },
+        "options": {
+          "showOwnerInHeader": false,
+          "connectionOwner": "HR",
+          "titleFontSizePx": 13,
+          "bodyFontSizePx": 12,
+          "diagramColorsEnabled": true,
+          "colors": {
+            "table": "#ffffb4",
+            "nodeTable": "#a4e1ff",
+            "edgeTable": "#1260ba",
+            "mview": "#229b12",
+            "view": "#89d185",
+            "dualityView": "#89d185",
+            "graphNode": "#a4e1ff",
+            "graphEdge": "#3794ff",
+            "entity": "#a4e1ff",
+            "logicalView": "#89d185",
+            "relationshipAttributes": "#ccffcc",
+            "fkLink": "#509bf1",
+            "ifkLink": "#e06c75"
+          },
+          "linkConnectorMode": "straight",
+          "showColumns": true,
+          "showDataType": true,
+          "showComments": true,
+          "showKeyColumnsOnly": false,
+          "showConstraints": false,
+          "showIndexes": false,
+          "showRelationshipAttributes": true,
+          "showRelationshipEndpointLabels": true,
+          "showGraphImplicitColumns": false,
+          "graphPresentation": true
+        }
+      }
+    ],
+    "sharedModel": {
+      "schema": "HR",
+      "diagramScope": {
+        "provider": "oracle",
+        "connectionName": "HR_23_26"
+      },
+      "tables": [
+        {
+          "name": "HR.COUNTRIES",
+          "identity": {
+            "schema": "HR",
+            "objectName": "COUNTRIES"
+          },
+          "comment": [
+            "country table. References with locations table."
+          ],
+          "objectType": "TABLE",
+          "columns": [
+            {
+              "name": "COUNTRY_ID",
+              "type": "CHAR(2)",
+              "comment": [
+                "Primary key of countries table."
+              ],
+              "mandatory": true,
+              "isPrimaryKey": true
+            },
+            {
+              "name": "COUNTRY_NAME",
+              "type": "VARCHAR2(60)",
+              "comment": [
+                "Country name"
+              ]
+            },
+            {
+              "name": "REGION_ID",
+              "type": "NUMBER",
+              "comment": [
+                "Region ID for the country. Foreign key to region_id column in the departments table."
+              ],
+              "isForeignKey": true
+            }
+          ],
+          "primaryKey": {
+            "name": "COUNTRY_C_ID_PK",
+            "columns": [
+              "COUNTRY_ID"
+            ]
+          },
+          "uniqueConstraints": [],
+          "foreignKeys": [
+            {
+              "name": "COUNTR_REG_FK",
+              "columns": [
+                "REGION_ID"
+              ],
+              "referencedTable": "REGIONS",
+              "referencedColumns": [
+                "REGION_ID"
+              ],
+              "deleteRule": "cascade"
+            }
+          ],
+          "indexes": [
+            {
+              "name": "COUNTRY_C_ID_PK",
+              "type": "UNIQUE IOT - TOP",
+              "columns": [
+                "COUNTRY_ID ASC"
+              ]
+            }
+          ],
+          "oraclePropertyGraphRole": "BOTH",
+          "logicalSchema": "HR",
+          "logicalName": "COUNTRIES",
+          "logicalQualifiedName": "HR.COUNTRIES",
+          "displayName": "HR.COUNTRIES"
+        },
+        {
+          "name": "HR.DEPARTMENTS",
+          "identity": {
+            "schema": "HR",
+            "objectName": "DEPARTMENTS"
+          },
+          "comment": [
+            "Departments table that shows details of departments where employees",
+            "work. references with locations, employees, and job_history tables."
+          ],
+          "objectType": "TABLE",
+          "columns": [
+            {
+              "name": "DEPARTMENT_ID",
+              "type": "NUMBER(4)",
+              "comment": [
+                "Primary key column of departments table."
+              ],
+              "mandatory": true,
+              "isPrimaryKey": true
+            },
+            {
+              "name": "DEPARTMENT_NAME",
+              "type": "VARCHAR2(30)",
+              "comment": [
+                "A not null column that shows name of a department. Administration,",
+                "Marketing, Purchasing, Human Resources, Shipping, IT, Executive, Public",
+                "Relations, Sales, Finance, and Accounting."
+              ],
+              "mandatory": true
+            },
+            {
+              "name": "MANAGER_ID",
+              "type": "NUMBER(6)",
+              "comment": [
+                "Manager_id of a department. Foreign key to employee_id column of employees table. The manager_id column of the employee table references this column."
+              ],
+              "isForeignKey": true
+            },
+            {
+              "name": "LOCATION_ID",
+              "type": "NUMBER(4)",
+              "comment": [
+                "Location id where a department is located. Foreign key to location_id column of locations table."
+              ],
+              "isForeignKey": true
+            }
+          ],
+          "primaryKey": {
+            "name": "DEPT_ID_PK",
+            "columns": [
+              "DEPARTMENT_ID"
+            ]
+          },
+          "uniqueConstraints": [],
+          "foreignKeys": [
+            {
+              "name": "DEPT_LOC_FK",
+              "columns": [
+                "LOCATION_ID"
+              ],
+              "referencedTable": "LOCATIONS",
+              "referencedColumns": [
+                "LOCATION_ID"
+              ],
+              "deleteRule": "noAction"
+            },
+            {
+              "name": "DEPT_MGR_FK",
+              "columns": [
+                "MANAGER_ID"
+              ],
+              "referencedTable": "EMPLOYEES",
+              "referencedColumns": [
+                "EMPLOYEE_ID"
+              ],
+              "deleteRule": "noAction"
+            }
+          ],
+          "indexes": [
+            {
+              "name": "DEPT_ID_PK",
+              "type": "UNIQUE",
+              "columns": [
+                "DEPARTMENT_ID ASC"
+              ]
+            },
+            {
+              "name": "DEPT_LOCATION_IX",
+              "type": "NONUNIQUE",
+              "columns": [
+                "LOCATION_ID ASC"
+              ]
+            }
+          ],
+          "oraclePropertyGraphRole": "BOTH",
+          "logicalSchema": "HR",
+          "logicalName": "DEPARTMENTS",
+          "logicalQualifiedName": "HR.DEPARTMENTS",
+          "displayName": "HR.DEPARTMENTS"
+        },
+        {
+          "name": "HR.EMPLOYEES",
+          "identity": {
+            "schema": "HR",
+            "objectName": "EMPLOYEES"
+          },
+          "comment": [
+            "employees table. References with departments,",
+            "jobs, job_history tables. Contains a self reference."
+          ],
+          "objectType": "TABLE",
+          "columns": [
+            {
+              "name": "EMPLOYEE_ID",
+              "type": "NUMBER(6)",
+              "comment": [
+                "Primary key of employees table."
+              ],
+              "mandatory": true,
+              "isPrimaryKey": true
+            },
+            {
+              "name": "FIRST_NAME",
+              "type": "VARCHAR2(20)",
+              "comment": [
+                "First name of the employee. A not null column."
+              ]
+            },
+            {
+              "name": "LAST_NAME",
+              "type": "VARCHAR2(25)",
+              "comment": [
+                "Last name of the employee. A not null column."
+              ],
+              "mandatory": true
+            },
+            {
+              "name": "EMAIL",
+              "type": "VARCHAR2(25)",
+              "comment": [
+                "Email id of the employee"
+              ],
+              "mandatory": true,
+              "isUnique": true
+            },
+            {
+              "name": "PHONE_NUMBER",
+              "type": "VARCHAR2(20)",
+              "comment": [
+                "Phone number of the employee; includes country code and area code"
+              ]
+            },
+            {
+              "name": "HIRE_DATE",
+              "type": "DATE",
+              "comment": [
+                "Date when the employee started on this job. A not null column."
+              ],
+              "mandatory": true
+            },
+            {
+              "name": "JOB_ID",
+              "type": "VARCHAR2(10)",
+              "comment": [
+                "Current job of the employee; foreign key to job_id column of the",
+                "jobs table. A not null column."
+              ],
+              "mandatory": true,
+              "isForeignKey": true
+            },
+            {
+              "name": "SALARY",
+              "type": "NUMBER(8,2)",
+              "comment": [
+                "Monthly salary of the employee. Must be greater",
+                "than zero (enforced by constraint emp_salary_min)"
+              ]
+            },
+            {
+              "name": "COMMISSION_PCT",
+              "type": "NUMBER(2,2)",
+              "comment": [
+                "Commission percentage of the employee; Only employees in sales",
+                "department eligible for commission percentage"
+              ]
+            },
+            {
+              "name": "MANAGER_ID",
+              "type": "NUMBER(6)",
+              "comment": [
+                "Manager id of the employee; has same domain as manager_id in",
+                "departments table. Foreign key to employee_id column of employees table.",
+                "(useful for reflexive joins and CONNECT BY query)"
+              ],
+              "isForeignKey": true
+            },
+            {
+              "name": "DEPARTMENT_ID",
+              "type": "NUMBER(4)",
+              "comment": [
+                "Department id where employee works; foreign key to department_id",
+                "column of the departments table"
+              ],
+              "isForeignKey": true
+            }
+          ],
+          "primaryKey": {
+            "name": "EMP_EMP_ID_PK",
+            "columns": [
+              "EMPLOYEE_ID"
+            ]
+          },
+          "uniqueConstraints": [
+            {
+              "name": "EMP_EMAIL_UK",
+              "columns": [
+                "EMAIL"
+              ]
+            }
+          ],
+          "foreignKeys": [
+            {
+              "name": "EMP_DEPT_FK",
+              "columns": [
+                "DEPARTMENT_ID"
+              ],
+              "referencedTable": "DEPARTMENTS",
+              "referencedColumns": [
+                "DEPARTMENT_ID"
+              ],
+              "deleteRule": "noAction"
+            },
+            {
+              "name": "EMP_JOB_FK",
+              "columns": [
+                "JOB_ID"
+              ],
+              "referencedTable": "JOBS",
+              "referencedColumns": [
+                "JOB_ID"
+              ],
+              "deleteRule": "noAction",
+              "mandatory": true
+            },
+            {
+              "name": "EMP_MANAGER_FK",
+              "columns": [
+                "MANAGER_ID"
+              ],
+              "referencedTable": "EMPLOYEES",
+              "referencedColumns": [
+                "EMPLOYEE_ID"
+              ],
+              "deleteRule": "noAction"
+            }
+          ],
+          "indexes": [
+            {
+              "name": "EMP_DEPARTMENT_IX",
+              "type": "NONUNIQUE",
+              "columns": [
+                "DEPARTMENT_ID ASC"
+              ]
+            },
+            {
+              "name": "EMP_EMAIL_UK",
+              "type": "UNIQUE",
+              "columns": [
+                "EMAIL ASC"
+              ]
+            },
+            {
+              "name": "EMP_EMP_ID_PK",
+              "type": "UNIQUE",
+              "columns": [
+                "EMPLOYEE_ID ASC"
+              ]
+            },
+            {
+              "name": "EMP_JOB_IX",
+              "type": "NONUNIQUE",
+              "columns": [
+                "JOB_ID ASC"
+              ]
+            },
+            {
+              "name": "EMP_MANAGER_IX",
+              "type": "NONUNIQUE",
+              "columns": [
+                "MANAGER_ID ASC"
+              ]
+            },
+            {
+              "name": "EMP_NAME_IX",
+              "type": "NONUNIQUE",
+              "columns": [
+                "LAST_NAME ASC",
+                "FIRST_NAME ASC"
+              ]
+            }
+          ],
+          "oraclePropertyGraphRole": "BOTH",
+          "logicalSchema": "HR",
+          "logicalName": "EMPLOYEES",
+          "logicalQualifiedName": "HR.EMPLOYEES",
+          "displayName": "HR.EMPLOYEES"
+        },
+        {
+          "name": "HR.JOB_HISTORY",
+          "identity": {
+            "schema": "HR",
+            "objectName": "JOB_HISTORY"
+          },
+          "comment": [
+            "Table that stores job history of the employees. If an employee",
+            "changes departments within the job or changes jobs within the department,",
+            "new rows get inserted into this table with old job information of the",
+            "employee. Contains a complex primary key: employee_id+start_date.",
+            "References with jobs, employees, and departments tables."
+          ],
+          "objectType": "TABLE",
+          "columns": [
+            {
+              "name": "EMPLOYEE_ID",
+              "type": "NUMBER(6)",
+              "comment": [
+                "A not null column in the complex primary key employee_id+start_date.",
+                "Foreign key to employee_id column of the employee table"
+              ],
+              "mandatory": true,
+              "isPrimaryKey": true,
+              "isForeignKey": true
+            },
+            {
+              "name": "START_DATE",
+              "type": "DATE",
+              "comment": [
+                "A not null column in the complex primary key employee_id+start_date.",
+                "Must be less than the end_date of the job_history table. (enforced by",
+                "constraint jhist_date_interval)"
+              ],
+              "mandatory": true,
+              "isPrimaryKey": true
+            },
+            {
+              "name": "END_DATE",
+              "type": "DATE",
+              "comment": [
+                "Last day of the employee in this job role. A not null column. Must be",
+                "greater than the start_date of the job_history table.",
+                "(enforced by constraint jhist_date_interval)"
+              ],
+              "mandatory": true
+            },
+            {
+              "name": "JOB_ID",
+              "type": "VARCHAR2(10)",
+              "comment": [
+                "Job role in which the employee worked in the past; foreign key to",
+                "job_id column in the jobs table. A not null column."
+              ],
+              "mandatory": true,
+              "isForeignKey": true
+            },
+            {
+              "name": "DEPARTMENT_ID",
+              "type": "NUMBER(4)",
+              "comment": [
+                "Department id in which the employee worked in the past; foreign key to department_id column in the departments table"
+              ],
+              "isForeignKey": true
+            }
+          ],
+          "primaryKey": {
+            "name": "JHIST_EMP_ID_ST_DATE_PK",
+            "columns": [
+              "EMPLOYEE_ID",
+              "START_DATE"
+            ]
+          },
+          "uniqueConstraints": [],
+          "foreignKeys": [
+            {
+              "name": "JHIST_DEPT_FK",
+              "columns": [
+                "DEPARTMENT_ID"
+              ],
+              "referencedTable": "DEPARTMENTS",
+              "referencedColumns": [
+                "DEPARTMENT_ID"
+              ],
+              "deleteRule": "noAction"
+            },
+            {
+              "name": "JHIST_EMP_FK",
+              "columns": [
+                "EMPLOYEE_ID"
+              ],
+              "referencedTable": "EMPLOYEES",
+              "referencedColumns": [
+                "EMPLOYEE_ID"
+              ],
+              "deleteRule": "noAction",
+              "mandatory": true
+            },
+            {
+              "name": "JHIST_JOB_FK",
+              "columns": [
+                "JOB_ID"
+              ],
+              "referencedTable": "JOBS",
+              "referencedColumns": [
+                "JOB_ID"
+              ],
+              "deleteRule": "noAction",
+              "mandatory": true
+            }
+          ],
+          "indexes": [
+            {
+              "name": "JHIST_DEPARTMENT_IX",
+              "type": "NONUNIQUE",
+              "columns": [
+                "DEPARTMENT_ID ASC"
+              ]
+            },
+            {
+              "name": "JHIST_EMP_ID_ST_DATE_PK",
+              "type": "UNIQUE",
+              "columns": [
+                "EMPLOYEE_ID ASC",
+                "START_DATE ASC"
+              ]
+            },
+            {
+              "name": "JHIST_EMPLOYEE_IX",
+              "type": "NONUNIQUE",
+              "columns": [
+                "EMPLOYEE_ID ASC"
+              ]
+            },
+            {
+              "name": "JHIST_JOB_IX",
+              "type": "NONUNIQUE",
+              "columns": [
+                "JOB_ID ASC"
+              ]
+            }
+          ],
+          "oraclePropertyGraphRole": "BOTH",
+          "logicalSchema": "HR",
+          "logicalName": "JOB_HISTORY",
+          "logicalQualifiedName": "HR.JOB_HISTORY",
+          "displayName": "HR.JOB_HISTORY"
+        },
+        {
+          "name": "HR.JOBS",
+          "identity": {
+            "schema": "HR",
+            "objectName": "JOBS"
+          },
+          "comment": [
+            "jobs table with job titles and salary ranges.",
+            "References with employees and job_history table."
+          ],
+          "objectType": "TABLE",
+          "columns": [
+            {
+              "name": "JOB_ID",
+              "type": "VARCHAR2(10)",
+              "comment": [
+                "Primary key of jobs table."
+              ],
+              "mandatory": true,
+              "isPrimaryKey": true
+            },
+            {
+              "name": "JOB_TITLE",
+              "type": "VARCHAR2(35)",
+              "comment": [
+                "A not null column that shows job title, e.g. AD_VP, FI_ACCOUNTANT"
+              ],
+              "mandatory": true
+            },
+            {
+              "name": "MIN_SALARY",
+              "type": "NUMBER(6)",
+              "comment": [
+                "Minimum salary for a job title."
+              ]
+            },
+            {
+              "name": "MAX_SALARY",
+              "type": "NUMBER(6)",
+              "comment": [
+                "Maximum salary for a job title"
+              ]
+            }
+          ],
+          "primaryKey": {
+            "name": "JOB_ID_PK",
+            "columns": [
+              "JOB_ID"
+            ]
+          },
+          "uniqueConstraints": [],
+          "indexes": [
+            {
+              "name": "JOB_ID_PK",
+              "type": "UNIQUE",
+              "columns": [
+                "JOB_ID ASC"
+              ]
+            }
+          ],
+          "oraclePropertyGraphRole": "VERTEX",
+          "logicalSchema": "HR",
+          "logicalName": "JOBS",
+          "logicalQualifiedName": "HR.JOBS",
+          "displayName": "HR.JOBS"
+        },
+        {
+          "name": "HR.LOCATIONS",
+          "identity": {
+            "schema": "HR",
+            "objectName": "LOCATIONS"
+          },
+          "comment": [
+            "Locations table that contains specific address of a specific office,",
+            "warehouse, and/or production site of a company. Does not store addresses /",
+            "locations of customers. references with the departments and countries tables."
+          ],
+          "objectType": "TABLE",
+          "columns": [
+            {
+              "name": "LOCATION_ID",
+              "type": "NUMBER(4)",
+              "comment": [
+                "Primary key of locations table"
+              ],
+              "mandatory": true,
+              "isPrimaryKey": true
+            },
+            {
+              "name": "STREET_ADDRESS",
+              "type": "VARCHAR2(40)",
+              "comment": [
+                "Street address of an office, warehouse, or production site of a company.",
+                "Contains building number and street name"
+              ]
+            },
+            {
+              "name": "POSTAL_CODE",
+              "type": "VARCHAR2(12)",
+              "comment": [
+                "Postal code of the location of an office, warehouse, or production site",
+                "of a company."
+              ]
+            },
+            {
+              "name": "CITY",
+              "type": "VARCHAR2(30)",
+              "comment": [
+                "A not null column that shows city where an office, warehouse, or",
+                "production site of a company is located."
+              ],
+              "mandatory": true
+            },
+            {
+              "name": "STATE_PROVINCE",
+              "type": "VARCHAR2(25)",
+              "comment": [
+                "State or Province where an office, warehouse, or production site of a",
+                "company is located."
+              ]
+            },
+            {
+              "name": "COUNTRY_ID",
+              "type": "CHAR(2)",
+              "comment": [
+                "Country where an office, warehouse, or production site of a company is",
+                "located. Foreign key to country_id column of the countries table."
+              ],
+              "isForeignKey": true
+            }
+          ],
+          "primaryKey": {
+            "name": "LOC_ID_PK",
+            "columns": [
+              "LOCATION_ID"
+            ]
+          },
+          "uniqueConstraints": [],
+          "foreignKeys": [
+            {
+              "name": "LOC_C_ID_FK",
+              "columns": [
+                "COUNTRY_ID"
+              ],
+              "referencedTable": "COUNTRIES",
+              "referencedColumns": [
+                "COUNTRY_ID"
+              ],
+              "deleteRule": "noAction"
+            }
+          ],
+          "indexes": [
+            {
+              "name": "LOC_CITY_IX",
+              "type": "NONUNIQUE",
+              "columns": [
+                "CITY ASC"
+              ]
+            },
+            {
+              "name": "LOC_COUNTRY_IX",
+              "type": "NONUNIQUE",
+              "columns": [
+                "COUNTRY_ID ASC"
+              ]
+            },
+            {
+              "name": "LOC_ID_PK",
+              "type": "UNIQUE",
+              "columns": [
+                "LOCATION_ID ASC"
+              ]
+            },
+            {
+              "name": "LOC_STATE_PROVINCE_IX",
+              "type": "NONUNIQUE",
+              "columns": [
+                "STATE_PROVINCE ASC"
+              ]
+            }
+          ],
+          "oraclePropertyGraphRole": "BOTH",
+          "logicalSchema": "HR",
+          "logicalName": "LOCATIONS",
+          "logicalQualifiedName": "HR.LOCATIONS",
+          "displayName": "HR.LOCATIONS"
+        },
+        {
+          "name": "HR.REGIONS",
+          "identity": {
+            "schema": "HR",
+            "objectName": "REGIONS"
+          },
+          "comment": [
+            "Regions table that contains region numbers and names. references with the Countries table."
+          ],
+          "objectType": "TABLE",
+          "columns": [
+            {
+              "name": "REGION_ID",
+              "type": "NUMBER",
+              "comment": [
+                "Primary key of regions table."
+              ],
+              "mandatory": true,
+              "isPrimaryKey": true
+            },
+            {
+              "name": "REGION_NAME",
+              "type": "VARCHAR2(25)",
+              "comment": [
+                "Names of regions. Locations are in the countries of these regions."
+              ]
+            }
+          ],
+          "primaryKey": {
+            "name": "REG_ID_PK",
+            "columns": [
+              "REGION_ID"
+            ]
+          },
+          "uniqueConstraints": [],
+          "indexes": [
+            {
+              "name": "REG_ID_PK",
+              "type": "UNIQUE",
+              "columns": [
+                "REGION_ID ASC"
+              ]
+            }
+          ],
+          "oraclePropertyGraphRole": "VERTEX",
+          "logicalSchema": "HR",
+          "logicalName": "REGIONS",
+          "logicalQualifiedName": "HR.REGIONS",
+          "displayName": "HR.REGIONS"
+        },
+        {
+          "id": "oracle-pg:HR:HR_ALL_MORE_LABELS:EDGE:COUNTRY_LOCATED_IN",
+          "name": "LOCATED_IN",
+          "logicalName": "COUNTRY_LOCATED_IN",
+          "logicalSchema": "HR",
+          "logicalQualifiedName": "HR.COUNTRY_LOCATED_IN",
+          "displayName": "LOCATED_IN",
+          "objectType": "GRAPH_EDGE",
+          "columns": [
+            {
+              "name": "COUNTRY_ID",
+              "type": "CHAR(2)",
+              "isPrimaryKey": true,
+              "isGraphImplicit": true,
+              "mandatory": true
+            }
+          ],
+          "uniqueConstraints": [],
+          "comment": [
+            "country table. References with locations table."
+          ],
+          "graphTooltipText": "\nBacking object: HR.COUNTRIES",
+          "primaryKey": {
+            "name": "COUNTRY_LOCATED_IN_KEY",
+            "columns": [
+              "COUNTRY_ID"
+            ]
+          },
+          "graphEndpoints": [
+            {
+              "fromTable": "HR.COUNTRY",
+              "toTable": "HR.REGION",
+              "constraintName": "COUNTRY_LOCATED_IN",
+              "pairKey": "HR.HR_ALL_MORE_LABELS|COUNTRY_LOCATED_IN|HR.COUNTRY|HR.REGION"
+            }
+          ]
+        },
+        {
+          "id": "oracle-pg:HR:HR_ALL_MORE_LABELS:EDGE:DEPARTMENT_LOCATED_IN",
+          "name": "LOCATED_IN",
+          "logicalName": "DEPARTMENT_LOCATED_IN",
+          "logicalSchema": "HR",
+          "logicalQualifiedName": "HR.DEPARTMENT_LOCATED_IN",
+          "displayName": "LOCATED_IN",
+          "objectType": "GRAPH_EDGE",
+          "columns": [
+            {
+              "name": "DEPARTMENT_ID",
+              "type": "NUMBER(4)",
+              "isPrimaryKey": true,
+              "isGraphImplicit": true,
+              "mandatory": true
+            }
+          ],
+          "uniqueConstraints": [],
+          "comment": [
+            "Departments table that shows details of departments where employees",
+            "work. references with locations, employees, and job_history tables."
+          ],
+          "graphTooltipText": "\nBacking object: HR.DEPARTMENTS",
+          "primaryKey": {
+            "name": "DEPARTMENT_LOCATED_IN_KEY",
+            "columns": [
+              "DEPARTMENT_ID"
+            ]
+          },
+          "graphEndpoints": [
+            {
+              "fromTable": "HR.DEPARTMENT",
+              "toTable": "HR.CITY_LOCATION +",
+              "constraintName": "DEPARTMENT_LOCATED_IN",
+              "pairKey": "HR.HR_ALL_MORE_LABELS|DEPARTMENT_LOCATED_IN|HR.DEPARTMENT|HR.CITY_LOCATION +"
+            }
+          ]
+        },
+        {
+          "id": "oracle-pg:HR:HR_ALL_MORE_LABELS:EDGE:FOR_DEPARTMENT",
+          "name": "FOR_DEPARTMENT",
+          "logicalName": "FOR_DEPARTMENT",
+          "logicalSchema": "HR",
+          "logicalQualifiedName": "HR.FOR_DEPARTMENT",
+          "displayName": "FOR_DEPARTMENT",
+          "objectType": "GRAPH_EDGE",
+          "columns": [
+            {
+              "name": "START_DATE",
+              "type": "DATE",
+              "isPrimaryKey": true,
+              "isGraphImplicit": true,
+              "mandatory": true
+            },
+            {
+              "name": "EMPLOYEE_ID",
+              "type": "NUMBER(6)",
+              "isPrimaryKey": true,
+              "isGraphImplicit": true,
+              "mandatory": true
+            }
+          ],
+          "uniqueConstraints": [],
+          "comment": [
+            "Table that stores job history of the employees. If an employee",
+            "changes departments within the job or changes jobs within the department,",
+            "new rows get inserted into this table with old job information of the",
+            "employee. Contains a complex primary key: employee_id+start_date.",
+            "References with jobs, employees, and departments tables."
+          ],
+          "graphTooltipText": "\nBacking object: HR.JOB_HISTORY",
+          "primaryKey": {
+            "name": "FOR_DEPARTMENT_KEY",
+            "columns": [
+              "EMPLOYEE_ID",
+              "START_DATE"
+            ]
+          },
+          "graphEndpoints": [
+            {
+              "fromTable": "HR.JOB_HISTORY",
+              "toTable": "HR.DEPARTMENT",
+              "constraintName": "FOR_DEPARTMENT",
+              "pairKey": "HR.HR_ALL_MORE_LABELS|FOR_DEPARTMENT|HR.JOB_HISTORY|HR.DEPARTMENT"
+            }
+          ]
+        },
+        {
+          "id": "oracle-pg:HR:HR_ALL_MORE_LABELS:EDGE:FOR_EMPLOYEE",
+          "name": "FOR_EMPLOYEE",
+          "logicalName": "FOR_EMPLOYEE",
+          "logicalSchema": "HR",
+          "logicalQualifiedName": "HR.FOR_EMPLOYEE",
+          "displayName": "FOR_EMPLOYEE",
+          "objectType": "GRAPH_EDGE",
+          "columns": [
+            {
+              "name": "START_DATE",
+              "type": "DATE",
+              "isPrimaryKey": true,
+              "isGraphImplicit": true,
+              "mandatory": true
+            },
+            {
+              "name": "EMPLOYEE_ID",
+              "type": "NUMBER(6)",
+              "isPrimaryKey": true,
+              "isGraphImplicit": true,
+              "mandatory": true
+            }
+          ],
+          "uniqueConstraints": [],
+          "comment": [
+            "Table that stores job history of the employees. If an employee",
+            "changes departments within the job or changes jobs within the department,",
+            "new rows get inserted into this table with old job information of the",
+            "employee. Contains a complex primary key: employee_id+start_date.",
+            "References with jobs, employees, and departments tables."
+          ],
+          "graphTooltipText": "\nBacking object: HR.JOB_HISTORY",
+          "primaryKey": {
+            "name": "FOR_EMPLOYEE_KEY",
+            "columns": [
+              "EMPLOYEE_ID",
+              "START_DATE"
+            ]
+          },
+          "graphEndpoints": [
+            {
+              "fromTable": "HR.JOB_HISTORY",
+              "toTable": "HR.COMMISSIONED_EMP +",
+              "constraintName": "FOR_EMPLOYEE",
+              "pairKey": "HR.HR_ALL_MORE_LABELS|FOR_EMPLOYEE|HR.JOB_HISTORY|HR.COMMISSIONED_EMP +"
+            }
+          ]
+        },
+        {
+          "id": "oracle-pg:HR:HR_ALL_MORE_LABELS:EDGE:FOR_JOB",
+          "name": "FOR_JOB",
+          "logicalName": "FOR_JOB",
+          "logicalSchema": "HR",
+          "logicalQualifiedName": "HR.FOR_JOB",
+          "displayName": "FOR_JOB",
+          "objectType": "GRAPH_EDGE",
+          "columns": [
+            {
+              "name": "START_DATE",
+              "type": "DATE",
+              "isPrimaryKey": true,
+              "isGraphImplicit": true,
+              "mandatory": true
+            },
+            {
+              "name": "EMPLOYEE_ID",
+              "type": "NUMBER(6)",
+              "isPrimaryKey": true,
+              "isGraphImplicit": true,
+              "mandatory": true
+            }
+          ],
+          "uniqueConstraints": [],
+          "comment": [
+            "Table that stores job history of the employees. If an employee",
+            "changes departments within the job or changes jobs within the department,",
+            "new rows get inserted into this table with old job information of the",
+            "employee. Contains a complex primary key: employee_id+start_date.",
+            "References with jobs, employees, and departments tables."
+          ],
+          "graphTooltipText": "\nBacking object: HR.JOB_HISTORY",
+          "primaryKey": {
+            "name": "FOR_JOB_KEY",
+            "columns": [
+              "EMPLOYEE_ID",
+              "START_DATE"
+            ]
+          },
+          "graphEndpoints": [
+            {
+              "fromTable": "HR.JOB_HISTORY",
+              "toTable": "HR.JOB",
+              "constraintName": "FOR_JOB",
+              "pairKey": "HR.HR_ALL_MORE_LABELS|FOR_JOB|HR.JOB_HISTORY|HR.JOB"
+            }
+          ]
+        },
+        {
+          "id": "oracle-pg:HR:HR_ALL_MORE_LABELS:EDGE:LOCATION_LOCATED_IN",
+          "name": "LOCATED_IN",
+          "logicalName": "LOCATION_LOCATED_IN",
+          "logicalSchema": "HR",
+          "logicalQualifiedName": "HR.LOCATION_LOCATED_IN",
+          "displayName": "LOCATED_IN",
+          "objectType": "GRAPH_EDGE",
+          "columns": [
+            {
+              "name": "LOCATION_ID",
+              "type": "NUMBER(4)",
+              "isPrimaryKey": true,
+              "isGraphImplicit": true,
+              "mandatory": true
+            }
+          ],
+          "uniqueConstraints": [],
+          "comment": [
+            "Locations table that contains specific address of a specific office,",
+            "warehouse, and/or production site of a company. Does not store addresses /",
+            "locations of customers. references with the departments and countries tables."
+          ],
+          "graphTooltipText": "\nBacking object: HR.LOCATIONS",
+          "primaryKey": {
+            "name": "LOCATION_LOCATED_IN_KEY",
+            "columns": [
+              "LOCATION_ID"
+            ]
+          },
+          "graphEndpoints": [
+            {
+              "fromTable": "HR.CITY_LOCATION +",
+              "toTable": "HR.COUNTRY",
+              "constraintName": "LOCATION_LOCATED_IN",
+              "pairKey": "HR.HR_ALL_MORE_LABELS|LOCATION_LOCATED_IN|HR.CITY_LOCATION +|HR.COUNTRY"
+            }
+          ]
+        },
+        {
+          "id": "oracle-pg:HR:HR_ALL_MORE_LABELS:EDGE:MANAGED_BY",
+          "name": "MANAGED_BY",
+          "logicalName": "MANAGED_BY",
+          "logicalSchema": "HR",
+          "logicalQualifiedName": "HR.MANAGED_BY",
+          "displayName": "MANAGED_BY",
+          "objectType": "GRAPH_EDGE",
+          "columns": [
+            {
+              "name": "DEPARTMENT_ID",
+              "type": "NUMBER(4)",
+              "isPrimaryKey": true,
+              "isGraphImplicit": true,
+              "mandatory": true
+            }
+          ],
+          "uniqueConstraints": [],
+          "comment": [
+            "Departments table that shows details of departments where employees",
+            "work. references with locations, employees, and job_history tables."
+          ],
+          "graphTooltipText": "\nBacking object: HR.DEPARTMENTS",
+          "primaryKey": {
+            "name": "MANAGED_BY_KEY",
+            "columns": [
+              "DEPARTMENT_ID"
+            ]
+          },
+          "graphEndpoints": [
+            {
+              "fromTable": "HR.DEPARTMENT",
+              "toTable": "HR.COMMISSIONED_EMP +",
+              "constraintName": "MANAGED_BY",
+              "pairKey": "HR.HR_ALL_MORE_LABELS|MANAGED_BY|HR.DEPARTMENT|HR.COMMISSIONED_EMP +"
+            }
+          ]
+        },
+        {
+          "id": "oracle-pg:HR:HR_ALL_MORE_LABELS:EDGE:WORKS_AS",
+          "name": "WORKS_AS",
+          "logicalName": "WORKS_AS",
+          "logicalSchema": "HR",
+          "logicalQualifiedName": "HR.WORKS_AS",
+          "displayName": "WORKS_AS",
+          "objectType": "GRAPH_EDGE",
+          "columns": [
+            {
+              "name": "EMPLOYEE_ID",
+              "type": "NUMBER(6)",
+              "isPrimaryKey": true,
+              "isGraphImplicit": true,
+              "mandatory": true
+            }
+          ],
+          "uniqueConstraints": [],
+          "comment": [
+            "employees table. References with departments,",
+            "jobs, job_history tables. Contains a self reference."
+          ],
+          "graphTooltipText": "\nBacking object: HR.EMPLOYEES",
+          "primaryKey": {
+            "name": "WORKS_AS_KEY",
+            "columns": [
+              "EMPLOYEE_ID"
+            ]
+          },
+          "graphEndpoints": [
+            {
+              "fromTable": "HR.COMMISSIONED_EMP +",
+              "toTable": "HR.JOB",
+              "constraintName": "WORKS_AS",
+              "pairKey": "HR.HR_ALL_MORE_LABELS|WORKS_AS|HR.COMMISSIONED_EMP +|HR.JOB"
+            }
+          ]
+        },
+        {
+          "id": "oracle-pg:HR:HR_ALL_MORE_LABELS:EDGE:WORKS_AT",
+          "name": "WORKS_AT",
+          "logicalName": "WORKS_AT",
+          "logicalSchema": "HR",
+          "logicalQualifiedName": "HR.WORKS_AT",
+          "displayName": "WORKS_AT",
+          "objectType": "GRAPH_EDGE",
+          "columns": [
+            {
+              "name": "EMPLOYEE_ID",
+              "type": "NUMBER(6)",
+              "mandatory": true,
+              "isPrimaryKey": true
+            },
+            {
+              "name": "FIRST_NAME",
+              "type": "VARCHAR2(20)"
+            },
+            {
+              "name": "LAST_NAME",
+              "type": "VARCHAR2(25)",
+              "mandatory": true
+            },
+            {
+              "name": "EMAIL",
+              "type": "VARCHAR2(25)",
+              "mandatory": true
+            },
+            {
+              "name": "PHONE_NUMBER",
+              "type": "VARCHAR2(20)"
+            },
+            {
+              "name": "HIRE_DATE",
+              "type": "DATE",
+              "mandatory": true
+            },
+            {
+              "name": "JOB_ID",
+              "type": "VARCHAR2(10)",
+              "mandatory": true
+            },
+            {
+              "name": "SALARY",
+              "type": "NUMBER(8,2)"
+            },
+            {
+              "name": "COMMISSION_PCT",
+              "type": "NUMBER(2,2)"
+            },
+            {
+              "name": "MANAGER_ID",
+              "type": "NUMBER(6)"
+            },
+            {
+              "name": "DEPARTMENT_ID",
+              "type": "NUMBER(4)"
+            }
+          ],
+          "uniqueConstraints": [],
+          "comment": [
+            "employees table. References with departments,",
+            "jobs, job_history tables. Contains a self reference."
+          ],
+          "graphTooltipText": "WORK_DEPARTMENT\n  EMPLOYEE_ID     NUMBER(6)\n  FIRST_NAME      VARCHAR2(20)\n  LAST_NAME       VARCHAR2(25)\n  EMAIL           VARCHAR2(25)\n  PHONE_NUMBER    VARCHAR2(20)\n  HIRE_DATE       DATE\n  JOB_ID          VARCHAR2(10)\n  SALARY          NUMBER(8,2)\n  COMMISSION_PCT  NUMBER(2,2)\n  MANAGER_ID      NUMBER(6)\n  DEPARTMENT_ID   NUMBER(4)\n\nBacking object: HR.EMPLOYEES",
+          "primaryKey": {
+            "name": "WORKS_AT_KEY",
+            "columns": [
+              "EMPLOYEE_ID"
+            ]
+          },
+          "graphEndpoints": [
+            {
+              "fromTable": "HR.COMMISSIONED_EMP +",
+              "toTable": "HR.DEPARTMENT",
+              "constraintName": "WORKS_AT",
+              "pairKey": "HR.HR_ALL_MORE_LABELS|WORKS_AT|HR.COMMISSIONED_EMP +|HR.DEPARTMENT"
+            }
+          ]
+        },
+        {
+          "id": "oracle-pg:HR:HR_ALL_MORE_LABELS:EDGE:WORKS_FOR",
+          "name": "WORKS_FOR",
+          "logicalName": "WORKS_FOR",
+          "logicalSchema": "HR",
+          "logicalQualifiedName": "HR.WORKS_FOR",
+          "displayName": "WORKS_FOR",
+          "objectType": "GRAPH_EDGE",
+          "columns": [
+            {
+              "name": "EMPLOYEE_ID",
+              "type": "NUMBER(6)",
+              "isPrimaryKey": true,
+              "isGraphImplicit": true,
+              "mandatory": true
+            }
+          ],
+          "uniqueConstraints": [],
+          "comment": [
+            "employees table. References with departments,",
+            "jobs, job_history tables. Contains a self reference."
+          ],
+          "graphTooltipText": "\nBacking object: HR.EMPLOYEES",
+          "primaryKey": {
+            "name": "WORKS_FOR_KEY",
+            "columns": [
+              "EMPLOYEE_ID"
+            ]
+          },
+          "graphEndpoints": [
+            {
+              "fromTable": "HR.COMMISSIONED_EMP +",
+              "toTable": "HR.COMMISSIONED_EMP +",
+              "constraintName": "WORKS_FOR",
+              "pairKey": "HR.HR_ALL_MORE_LABELS|WORKS_FOR|HR.COMMISSIONED_EMP +|HR.COMMISSIONED_EMP +"
+            }
+          ]
+        },
+        {
+          "id": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:COUNTRIES",
+          "name": "COUNTRY",
+          "logicalName": "COUNTRIES",
+          "logicalSchema": "HR",
+          "logicalQualifiedName": "HR.COUNTRIES",
+          "displayName": "COUNTRY",
+          "objectType": "GRAPH_NODE",
+          "graphTitleChoices": [
+            "COUNTRY"
+          ],
+          "graphTitleSource": "COUNTRY",
+          "columns": [
+            {
+              "name": "COUNTRY_ID",
+              "type": "CHAR(2)",
+              "mandatory": true,
+              "isPrimaryKey": true
+            },
+            {
+              "name": "COUNTRY_NAME",
+              "type": "VARCHAR2(60)"
+            }
+          ],
+          "uniqueConstraints": [],
+          "comment": [
+            "country table. References with locations table."
+          ],
+          "graphTooltipText": "COUNTRY\n  COUNTRY_ID    CHAR(2)\n  COUNTRY_NAME  VARCHAR2(60)\n\nBacking object: HR.COUNTRIES",
+          "primaryKey": {
+            "name": "COUNTRIES_KEY",
+            "columns": [
+              "COUNTRY_ID"
+            ]
+          }
+        },
+        {
+          "id": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:DEPARTMENTS",
+          "name": "DEPARTMENT",
+          "logicalName": "DEPARTMENTS",
+          "logicalSchema": "HR",
+          "logicalQualifiedName": "HR.DEPARTMENTS",
+          "displayName": "DEPARTMENT",
+          "objectType": "GRAPH_NODE",
+          "graphTitleChoices": [
+            "DEPARTMENT"
+          ],
+          "graphTitleSource": "DEPARTMENT",
+          "columns": [
+            {
+              "name": "DEPARTMENT_ID",
+              "type": "NUMBER(4)",
+              "mandatory": true,
+              "isPrimaryKey": true
+            },
+            {
+              "name": "DEPARTMENT_NAME",
+              "type": "VARCHAR2(30)",
+              "mandatory": true
+            }
+          ],
+          "uniqueConstraints": [],
+          "comment": [
+            "Departments table that shows details of departments where employees",
+            "work. references with locations, employees, and job_history tables."
+          ],
+          "graphTooltipText": "DEPARTMENT\n  DEPARTMENT_ID    NUMBER(4)\n  DEPARTMENT_NAME  VARCHAR2(30)\n\nBacking object: HR.DEPARTMENTS",
+          "primaryKey": {
+            "name": "DEPARTMENTS_KEY",
+            "columns": [
+              "DEPARTMENT_ID"
+            ]
+          }
+        },
+        {
+          "id": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:EMPLOYEES",
+          "name": "COMMISSIONED_EMP +",
+          "logicalName": "EMPLOYEES",
+          "logicalSchema": "HR",
+          "logicalQualifiedName": "HR.EMPLOYEES",
+          "displayName": "COMMISSIONED_EMP +",
+          "objectType": "GRAPH_NODE",
+          "graphTitleChoices": [
+            "COMMISSIONED_EMP",
+            "EMPLOYEE"
+          ],
+          "graphTitleSource": "COMMISSIONED_EMP",
+          "columns": [
+            {
+              "name": "EMPLOYEE_ID",
+              "type": "NUMBER(6)",
+              "mandatory": true,
+              "isPrimaryKey": true
+            },
+            {
+              "name": "SALARY",
+              "type": "NUMBER(8,2)"
+            },
+            {
+              "name": "COMMISSION_PCT",
+              "type": "NUMBER(2,2)"
+            },
+            {
+              "name": "FIRST_NAME",
+              "type": "VARCHAR2(20)"
+            },
+            {
+              "name": "BONUS",
+              "type": "NUMBER"
+            },
+            {
+              "name": "LAST_NAME",
+              "type": "VARCHAR2(25)",
+              "mandatory": true
+            },
+            {
+              "name": "EMAIL",
+              "type": "VARCHAR2(25)",
+              "mandatory": true
+            },
+            {
+              "name": "PHONE_NUMBER",
+              "type": "VARCHAR2(20)"
+            },
+            {
+              "name": "HIRE_DATE",
+              "type": "DATE",
+              "mandatory": true
+            }
+          ],
+          "uniqueConstraints": [],
+          "comment": [
+            "employees table. References with departments,",
+            "jobs, job_history tables. Contains a self reference."
+          ],
+          "graphTooltipText": "COMMISSIONED_EMP\n  SALARY          NUMBER(8,2)\n  COMMISSION_PCT  NUMBER(2,2)\n  BONUS  \"COMMISSION_PCT\"*\"SALARY\"\n\nEMPLOYEE\n  EMPLOYEE_ID     NUMBER(6)\n  FIRST_NAME      VARCHAR2(20)\n  LAST_NAME       VARCHAR2(25)\n  EMAIL           VARCHAR2(25)\n  PHONE_NUMBER    VARCHAR2(20)\n  HIRE_DATE       DATE\n  SALARY          NUMBER(8,2)\n  COMMISSION_PCT  NUMBER(2,2)\n\nBacking object: HR.EMPLOYEES",
+          "primaryKey": {
+            "name": "EMPLOYEES_KEY",
+            "columns": [
+              "EMPLOYEE_ID"
+            ]
+          }
+        },
+        {
+          "id": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:JOBS",
+          "name": "JOB",
+          "logicalName": "JOBS",
+          "logicalSchema": "HR",
+          "logicalQualifiedName": "HR.JOBS",
+          "displayName": "JOB",
+          "objectType": "GRAPH_NODE",
+          "graphTitleChoices": [
+            "JOB"
+          ],
+          "graphTitleSource": "JOB",
+          "columns": [
+            {
+              "name": "JOB_ID",
+              "type": "VARCHAR2(10)",
+              "mandatory": true,
+              "isPrimaryKey": true
+            },
+            {
+              "name": "JOB_TITLE",
+              "type": "VARCHAR2(35)",
+              "mandatory": true
+            },
+            {
+              "name": "MIN_SALARY",
+              "type": "NUMBER(6)"
+            },
+            {
+              "name": "MAX_SALARY",
+              "type": "NUMBER(6)"
+            }
+          ],
+          "uniqueConstraints": [],
+          "comment": [
+            "jobs table with job titles and salary ranges.",
+            "References with employees and job_history table."
+          ],
+          "graphTooltipText": "JOB\n  JOB_ID      VARCHAR2(10)\n  JOB_TITLE   VARCHAR2(35)\n  MIN_SALARY  NUMBER(6)\n  MAX_SALARY  NUMBER(6)\n\nBacking object: HR.JOBS",
+          "primaryKey": {
+            "name": "JOBS_KEY",
+            "columns": [
+              "JOB_ID"
+            ]
+          }
+        },
+        {
+          "id": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:JOB_HISTORY",
+          "name": "JOB_HISTORY",
+          "logicalName": "JOB_HISTORY",
+          "logicalSchema": "HR",
+          "logicalQualifiedName": "HR.JOB_HISTORY",
+          "displayName": "JOB_HISTORY",
+          "objectType": "GRAPH_NODE",
+          "graphTitleChoices": [
+            "JOB_HISTORY"
+          ],
+          "graphTitleSource": "JOB_HISTORY",
+          "columns": [
+            {
+              "name": "EMPLOYEE_ID",
+              "type": "NUMBER(6)",
+              "isPrimaryKey": true,
+              "isGraphImplicit": true,
+              "mandatory": true
+            },
+            {
+              "name": "START_DATE",
+              "type": "DATE",
+              "mandatory": true,
+              "isPrimaryKey": true
+            },
+            {
+              "name": "END_DATE",
+              "type": "DATE",
+              "mandatory": true
+            }
+          ],
+          "uniqueConstraints": [],
+          "comment": [
+            "Table that stores job history of the employees. If an employee",
+            "changes departments within the job or changes jobs within the department,",
+            "new rows get inserted into this table with old job information of the",
+            "employee. Contains a complex primary key: employee_id+start_date.",
+            "References with jobs, employees, and departments tables."
+          ],
+          "graphTooltipText": "JOB_HISTORY\n  START_DATE  DATE\n  END_DATE    DATE\n\nBacking object: HR.JOB_HISTORY",
+          "primaryKey": {
+            "name": "JOB_HISTORY_KEY",
+            "columns": [
+              "EMPLOYEE_ID",
+              "START_DATE"
+            ]
+          }
+        },
+        {
+          "id": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:LOCATIONS",
+          "name": "CITY_LOCATION +",
+          "logicalName": "LOCATIONS",
+          "logicalSchema": "HR",
+          "logicalQualifiedName": "HR.LOCATIONS",
+          "displayName": "CITY_LOCATION +",
+          "objectType": "GRAPH_NODE",
+          "graphTitleChoices": [
+            "CITY_LOCATION",
+            "LOCATION"
+          ],
+          "graphTitleSource": "CITY_LOCATION",
+          "columns": [
+            {
+              "name": "LOCATION_ID",
+              "type": "NUMBER(4)",
+              "mandatory": true,
+              "isPrimaryKey": true
+            },
+            {
+              "name": "STREET_ADDRESS",
+              "type": "VARCHAR2(40)"
+            },
+            {
+              "name": "POSTAL_CODE",
+              "type": "VARCHAR2(12)"
+            },
+            {
+              "name": "CITY",
+              "type": "VARCHAR2(30)",
+              "mandatory": true
+            },
+            {
+              "name": "STATE_PROVINCE",
+              "type": "VARCHAR2(25)"
+            },
+            {
+              "name": "COUNTRY_ID",
+              "type": "CHAR(2)"
+            }
+          ],
+          "uniqueConstraints": [],
+          "comment": [
+            "Locations table that contains specific address of a specific office,",
+            "warehouse, and/or production site of a company. Does not store addresses /",
+            "locations of customers. references with the departments and countries tables."
+          ],
+          "graphTooltipText": "CITY_LOCATION\n  LOCATION_ID     NUMBER(4)\n  STREET_ADDRESS  VARCHAR2(40)\n  POSTAL_CODE     VARCHAR2(12)\n  CITY            VARCHAR2(30)\n  STATE_PROVINCE  VARCHAR2(25)\n  COUNTRY_ID      CHAR(2)\n\nLOCATION\n  LOCATION_ID     NUMBER(4)\n  STREET_ADDRESS  VARCHAR2(40)\n  POSTAL_CODE     VARCHAR2(12)\n  CITY            VARCHAR2(30)\n  STATE_PROVINCE  VARCHAR2(25)\n\nBacking object: HR.LOCATIONS",
+          "primaryKey": {
+            "name": "LOCATIONS_KEY",
+            "columns": [
+              "LOCATION_ID"
+            ]
+          }
+        },
+        {
+          "id": "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:REGIONS",
+          "name": "REGION",
+          "logicalName": "REGIONS",
+          "logicalSchema": "HR",
+          "logicalQualifiedName": "HR.REGIONS",
+          "displayName": "REGION",
+          "objectType": "GRAPH_NODE",
+          "graphTitleChoices": [
+            "REGION"
+          ],
+          "graphTitleSource": "REGION",
+          "columns": [
+            {
+              "name": "REGION_ID",
+              "type": "NUMBER",
+              "mandatory": true,
+              "isPrimaryKey": true
+            },
+            {
+              "name": "REGION_NAME",
+              "type": "VARCHAR2(25)"
+            }
+          ],
+          "uniqueConstraints": [],
+          "comment": [
+            "Regions table that contains region numbers and names. references with the Countries table."
+          ],
+          "graphTooltipText": "REGION\n  REGION_ID    NUMBER\n  REGION_NAME  VARCHAR2(25)\n\nBacking object: HR.REGIONS",
+          "primaryKey": {
+            "name": "REGIONS_KEY",
+            "columns": [
+              "REGION_ID"
+            ]
+          }
+        }
+      ],
+      "links": [
+        {
+          "fromTable": "HR.COUNTRIES",
+          "toTable": "HR.REGIONS",
+          "constraintName": "COUNTR_REG_FK",
+          "deleteRule": "cascade",
+          "isTargetOnDiagram": true,
+          "mappings": [
+            {
+              "fromColumn": "REGION_ID",
+              "toColumn": "REGION_ID"
+            }
+          ],
+          "logicalFromTable": "HR.COUNTRIES",
+          "logicalToTable": "HR.REGIONS",
+          "sourceInstanceId": "HR.COUNTRIES#0",
+          "targetInstanceId": "HR.REGIONS#0",
+          "visualStyle": {
+            "strokeDasharray": "8 4"
+          }
+        },
+        {
+          "fromTable": "HR.DEPARTMENTS",
+          "toTable": "HR.LOCATIONS",
+          "constraintName": "DEPT_LOC_FK",
+          "deleteRule": "noAction",
+          "isTargetOnDiagram": true,
+          "mappings": [
+            {
+              "fromColumn": "LOCATION_ID",
+              "toColumn": "LOCATION_ID"
+            }
+          ],
+          "logicalFromTable": "HR.DEPARTMENTS",
+          "logicalToTable": "HR.LOCATIONS",
+          "sourceInstanceId": "HR.DEPARTMENTS#0",
+          "targetInstanceId": "HR.LOCATIONS#0",
+          "visualStyle": {
+            "strokeDasharray": "8 4"
+          }
+        },
+        {
+          "fromTable": "HR.DEPARTMENTS",
+          "toTable": "HR.EMPLOYEES",
+          "constraintName": "DEPT_MGR_FK",
+          "deleteRule": "noAction",
+          "isTargetOnDiagram": true,
+          "mappings": [
+            {
+              "fromColumn": "MANAGER_ID",
+              "toColumn": "EMPLOYEE_ID"
+            }
+          ],
+          "logicalFromTable": "HR.DEPARTMENTS",
+          "logicalToTable": "HR.EMPLOYEES",
+          "sourceInstanceId": "HR.DEPARTMENTS#0",
+          "targetInstanceId": "HR.EMPLOYEES#0",
+          "visualStyle": {
+            "strokeDasharray": "8 4"
+          }
+        },
+        {
+          "fromTable": "HR.EMPLOYEES",
+          "toTable": "HR.DEPARTMENTS",
+          "constraintName": "EMP_DEPT_FK",
+          "deleteRule": "noAction",
+          "isTargetOnDiagram": true,
+          "mappings": [
+            {
+              "fromColumn": "DEPARTMENT_ID",
+              "toColumn": "DEPARTMENT_ID"
+            }
+          ],
+          "logicalFromTable": "HR.EMPLOYEES",
+          "logicalToTable": "HR.DEPARTMENTS",
+          "sourceInstanceId": "HR.EMPLOYEES#0",
+          "targetInstanceId": "HR.DEPARTMENTS#0",
+          "visualStyle": {
+            "strokeDasharray": "8 4"
+          }
+        },
+        {
+          "fromTable": "HR.EMPLOYEES",
+          "toTable": "HR.JOBS",
+          "constraintName": "EMP_JOB_FK",
+          "deleteRule": "noAction",
+          "isTargetOnDiagram": true,
+          "mappings": [
+            {
+              "fromColumn": "JOB_ID",
+              "toColumn": "JOB_ID"
+            }
+          ],
+          "mandatory": true,
+          "logicalFromTable": "HR.EMPLOYEES",
+          "logicalToTable": "HR.JOBS",
+          "sourceInstanceId": "HR.EMPLOYEES#0",
+          "targetInstanceId": "HR.JOBS#0"
+        },
+        {
+          "fromTable": "HR.EMPLOYEES",
+          "toTable": "HR.EMPLOYEES",
+          "constraintName": "EMP_MANAGER_FK",
+          "deleteRule": "noAction",
+          "isTargetOnDiagram": true,
+          "mappings": [
+            {
+              "fromColumn": "MANAGER_ID",
+              "toColumn": "EMPLOYEE_ID"
+            }
+          ],
+          "logicalFromTable": "HR.EMPLOYEES",
+          "logicalToTable": "HR.EMPLOYEES",
+          "sourceInstanceId": "HR.EMPLOYEES#0",
+          "targetInstanceId": "HR.EMPLOYEES#0",
+          "visualStyle": {
+            "strokeDasharray": "8 4"
+          }
+        },
+        {
+          "fromTable": "HR.JOB_HISTORY",
+          "toTable": "HR.DEPARTMENTS",
+          "constraintName": "JHIST_DEPT_FK",
+          "deleteRule": "noAction",
+          "isTargetOnDiagram": true,
+          "mappings": [
+            {
+              "fromColumn": "DEPARTMENT_ID",
+              "toColumn": "DEPARTMENT_ID"
+            }
+          ],
+          "logicalFromTable": "HR.JOB_HISTORY",
+          "logicalToTable": "HR.DEPARTMENTS",
+          "sourceInstanceId": "HR.JOB_HISTORY#0",
+          "targetInstanceId": "HR.DEPARTMENTS#0",
+          "visualStyle": {
+            "strokeDasharray": "8 4"
+          }
+        },
+        {
+          "fromTable": "HR.JOB_HISTORY",
+          "toTable": "HR.EMPLOYEES",
+          "constraintName": "JHIST_EMP_FK",
+          "deleteRule": "noAction",
+          "isTargetOnDiagram": true,
+          "mappings": [
+            {
+              "fromColumn": "EMPLOYEE_ID",
+              "toColumn": "EMPLOYEE_ID"
+            }
+          ],
+          "mandatory": true,
+          "logicalFromTable": "HR.JOB_HISTORY",
+          "logicalToTable": "HR.EMPLOYEES",
+          "sourceInstanceId": "HR.JOB_HISTORY#0",
+          "targetInstanceId": "HR.EMPLOYEES#0"
+        },
+        {
+          "fromTable": "HR.JOB_HISTORY",
+          "toTable": "HR.JOBS",
+          "constraintName": "JHIST_JOB_FK",
+          "deleteRule": "noAction",
+          "isTargetOnDiagram": true,
+          "mappings": [
+            {
+              "fromColumn": "JOB_ID",
+              "toColumn": "JOB_ID"
+            }
+          ],
+          "mandatory": true,
+          "logicalFromTable": "HR.JOB_HISTORY",
+          "logicalToTable": "HR.JOBS",
+          "sourceInstanceId": "HR.JOB_HISTORY#0",
+          "targetInstanceId": "HR.JOBS#0"
+        },
+        {
+          "fromTable": "HR.LOCATIONS",
+          "toTable": "HR.COUNTRIES",
+          "constraintName": "LOC_C_ID_FK",
+          "deleteRule": "noAction",
+          "isTargetOnDiagram": true,
+          "mappings": [
+            {
+              "fromColumn": "COUNTRY_ID",
+              "toColumn": "COUNTRY_ID"
+            }
+          ],
+          "logicalFromTable": "HR.LOCATIONS",
+          "logicalToTable": "HR.COUNTRIES",
+          "sourceInstanceId": "HR.LOCATIONS#0",
+          "targetInstanceId": "HR.COUNTRIES#0",
+          "visualStyle": {
+            "strokeDasharray": "8 4"
+          }
+        }
+      ],
+      "graphs": [
+        {
+          "graphId": "oracle-pg:HR:HR_ALL_MORE_LABELS",
+          "name": "HR_ALL_MORE_LABELS",
+          "tableRefs": [
+            "oracle-pg:HR:HR_ALL_MORE_LABELS:EDGE:COUNTRY_LOCATED_IN",
+            "oracle-pg:HR:HR_ALL_MORE_LABELS:EDGE:DEPARTMENT_LOCATED_IN",
+            "oracle-pg:HR:HR_ALL_MORE_LABELS:EDGE:FOR_DEPARTMENT",
+            "oracle-pg:HR:HR_ALL_MORE_LABELS:EDGE:FOR_EMPLOYEE",
+            "oracle-pg:HR:HR_ALL_MORE_LABELS:EDGE:FOR_JOB",
+            "oracle-pg:HR:HR_ALL_MORE_LABELS:EDGE:LOCATION_LOCATED_IN",
+            "oracle-pg:HR:HR_ALL_MORE_LABELS:EDGE:MANAGED_BY",
+            "oracle-pg:HR:HR_ALL_MORE_LABELS:EDGE:WORKS_AS",
+            "oracle-pg:HR:HR_ALL_MORE_LABELS:EDGE:WORKS_AT",
+            "oracle-pg:HR:HR_ALL_MORE_LABELS:EDGE:WORKS_FOR",
+            "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:COUNTRIES",
+            "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:DEPARTMENTS",
+            "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:EMPLOYEES",
+            "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:JOBS",
+            "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:JOB_HISTORY",
+            "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:LOCATIONS",
+            "oracle-pg:HR:HR_ALL_MORE_LABELS:VERTEX:REGIONS"
+          ],
+          "source": {
+            "provider": "oracle",
+            "owner": "HR",
+            "graphName": "HR_ALL_MORE_LABELS"
+          }
+        }
+      ]
+    }
+  }
+}

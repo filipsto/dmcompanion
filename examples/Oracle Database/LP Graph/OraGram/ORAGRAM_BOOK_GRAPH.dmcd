@@ -1,0 +1,2680 @@
+{
+  "diagramType": "DMC Visualizer",
+  "connectionName": "HR_23_26_0",
+  "connectionType": "sqlDeveloper",
+  "schema": "OGB",
+  "metadata": {
+    "fontSizes": {
+      "titleFontSizePx": 13,
+      "bodyFontSizePx": 12
+    },
+    "includeIndexes": true,
+    "showOwnerInHeader": false,
+    "connectionOwner": "HR",
+    "connectionType": "sqlDeveloper",
+    "connectionName": "HR_23_26_0",
+    "schema": "OGB",
+    "version": 2
+  },
+  "workspace": {
+    "activeTabId": "graph-oragram-book-graph-details",
+    "tabs": [
+      {
+        "id": "tables",
+        "name": "Tables",
+        "layout": {
+          "items": [
+            {
+              "type": "TABLE",
+              "name": "OGB_COMMENTED_ON",
+              "schema": "OGB",
+              "instanceId": "OGB.OGB_COMMENTED_ON#0",
+              "bounds": {
+                "x": 1640,
+                "y": 58,
+                "width": 220,
+                "height": 136
+              }
+            },
+            {
+              "type": "TABLE",
+              "name": "OGB_COMMENTS",
+              "schema": "OGB",
+              "instanceId": "OGB.OGB_COMMENTS#0",
+              "bounds": {
+                "x": 1698.6666666666667,
+                "y": 364,
+                "width": 220,
+                "height": 118
+              }
+            },
+            {
+              "type": "TABLE",
+              "name": "OGB_CREATES",
+              "schema": "OGB",
+              "instanceId": "OGB.OGB_CREATES#0",
+              "bounds": {
+                "x": 680,
+                "y": 58,
+                "width": 220,
+                "height": 136
+              }
+            },
+            {
+              "type": "TABLE",
+              "name": "OGB_FOLLOWS",
+              "schema": "OGB",
+              "instanceId": "OGB.OGB_FOLLOWS#0",
+              "bounds": {
+                "x": 40,
+                "y": 40,
+                "width": 220,
+                "height": 154
+              }
+            },
+            {
+              "type": "TABLE",
+              "name": "OGB_LIKES",
+              "schema": "OGB",
+              "instanceId": "OGB.OGB_LIKES#0",
+              "bounds": {
+                "x": 1000,
+                "y": 40,
+                "width": 220,
+                "height": 154
+              }
+            },
+            {
+              "type": "TABLE",
+              "name": "OGB_POSTS",
+              "schema": "OGB",
+              "instanceId": "OGB.OGB_POSTS#0",
+              "bounds": {
+                "x": 738.6666666666667,
+                "y": 364,
+                "width": 220,
+                "height": 136
+              }
+            },
+            {
+              "type": "TABLE",
+              "name": "OGB_REPLIES",
+              "schema": "OGB",
+              "instanceId": "OGB.OGB_REPLIES#0",
+              "bounds": {
+                "x": 1960,
+                "y": 40,
+                "width": 220,
+                "height": 154
+              }
+            },
+            {
+              "type": "TABLE",
+              "name": "OGB_USER_MADE_COMMENT",
+              "schema": "OGB",
+              "instanceId": "OGB.OGB_USER_MADE_COMMENT#0",
+              "bounds": {
+                "x": 1320,
+                "y": 40,
+                "width": 220,
+                "height": 154
+              }
+            },
+            {
+              "type": "TABLE",
+              "name": "OGB_USERS",
+              "schema": "OGB",
+              "instanceId": "OGB.OGB_USERS#0",
+              "bounds": {
+                "x": 339.04761904761904,
+                "y": 364,
+                "width": 220,
+                "height": 190
+              }
+            },
+            {
+              "type": "TABLE",
+              "name": "OGB_VIEWS",
+              "schema": "OGB",
+              "instanceId": "OGB.OGB_VIEWS#0",
+              "bounds": {
+                "x": 360,
+                "y": 40,
+                "width": 220,
+                "height": 154
+              }
+            },
+            {
+              "type": "RELATION",
+              "name": "OGB_COMMENT_ID_FK",
+              "sourceID": "OGB.OGB_COMMENTED_ON",
+              "targetID": "OGB.OGB_COMMENTS",
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 1786.6666666666667,
+                "y": 194
+              },
+              "targetPort": {
+                "x": 1786.6666666666667,
+                "y": 364
+              },
+              "vertices": []
+            },
+            {
+              "type": "RELATION",
+              "name": "OGB_COMMENTED_ON_POST_FK",
+              "sourceID": "OGB.OGB_COMMENTED_ON",
+              "targetID": "OGB.OGB_POSTS",
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 1713.3333333333333,
+                "y": 194
+              },
+              "targetPort": {
+                "x": 914.6666666666667,
+                "y": 364
+              },
+              "vertices": [
+                {
+                  "x": 1713.3333333333333,
+                  "y": 306
+                },
+                {
+                  "x": 914.6666666666667,
+                  "y": 306
+                }
+              ]
+            },
+            {
+              "type": "RELATION",
+              "name": "OGB_COMMENTER_FK",
+              "sourceID": "OGB.OGB_USER_MADE_COMMENT",
+              "targetID": "OGB.OGB_USERS",
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 1393.3333333333333,
+                "y": 194
+              },
+              "targetPort": {
+                "x": 527.6190476190476,
+                "y": 364
+              },
+              "vertices": [
+                {
+                  "x": 1393.3333333333333,
+                  "y": 270
+                },
+                {
+                  "x": 527.6190476190476,
+                  "y": 270
+                }
+              ]
+            },
+            {
+              "type": "RELATION",
+              "name": "OGB_CREATED_POST_FK",
+              "sourceID": "OGB.OGB_CREATES",
+              "targetID": "OGB.OGB_POSTS",
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 826.6666666666667,
+                "y": 194
+              },
+              "targetPort": {
+                "x": 826.6666666666667,
+                "y": 364
+              },
+              "vertices": []
+            },
+            {
+              "type": "RELATION",
+              "name": "OGB_CREATOR_FK",
+              "sourceID": "OGB.OGB_CREATES",
+              "targetID": "OGB.OGB_USERS",
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 753.3333333333334,
+                "y": 194
+              },
+              "targetPort": {
+                "x": 464.76190476190476,
+                "y": 364
+              },
+              "vertices": [
+                {
+                  "x": 753.3333333333334,
+                  "y": 234
+                },
+                {
+                  "x": 464.76190476190476,
+                  "y": 234
+                }
+              ]
+            },
+            {
+              "type": "RELATION",
+              "name": "OGB_FOLLOWER_FK",
+              "sourceID": "OGB.OGB_FOLLOWS",
+              "targetID": "OGB.OGB_USERS",
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 113.33333333333334,
+                "y": 194
+              },
+              "targetPort": {
+                "x": 370.4761904761905,
+                "y": 364
+              },
+              "vertices": [
+                {
+                  "x": 113.33333333333334,
+                  "y": 252
+                },
+                {
+                  "x": 370.4761904761905,
+                  "y": 252
+                }
+              ]
+            },
+            {
+              "type": "IFK_REFERENCE",
+              "name": "OGB_FOLLOWS_DESTINATION",
+              "sourceID": "OGB.OGB_FOLLOWS",
+              "targetID": "OGB.OGB_USERS",
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 186.66666666666669,
+                "y": 194
+              },
+              "targetPort": {
+                "x": 401.90476190476187,
+                "y": 364
+              },
+              "vertices": [
+                {
+                  "x": 186.66666666666669,
+                  "y": 234
+                },
+                {
+                  "x": 401.90476190476187,
+                  "y": 234
+                }
+              ]
+            },
+            {
+              "type": "RELATION",
+              "name": "OGB_LIKED_POST_FK",
+              "sourceID": "OGB.OGB_LIKES",
+              "targetID": "OGB.OGB_POSTS",
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 1146.6666666666667,
+                "y": 194
+              },
+              "targetPort": {
+                "x": 870.6666666666667,
+                "y": 364
+              },
+              "vertices": [
+                {
+                  "x": 1146.6666666666667,
+                  "y": 288
+                },
+                {
+                  "x": 870.6666666666667,
+                  "y": 288
+                }
+              ]
+            },
+            {
+              "type": "RELATION",
+              "name": "OGB_LIKING_USER_FK",
+              "sourceID": "OGB.OGB_LIKES",
+              "targetID": "OGB.OGB_USERS",
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 1073.3333333333333,
+                "y": 194
+              },
+              "targetPort": {
+                "x": 496.19047619047615,
+                "y": 364
+              },
+              "vertices": [
+                {
+                  "x": 1073.3333333333333,
+                  "y": 252
+                },
+                {
+                  "x": 496.19047619047615,
+                  "y": 252
+                }
+              ]
+            },
+            {
+              "type": "RELATION",
+              "name": "OGB_REPLY_MADE_FK",
+              "sourceID": "OGB.OGB_REPLIES",
+              "targetID": "OGB.OGB_COMMENTS",
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 2033.3333333333333,
+                "y": 194
+              },
+              "targetPort": {
+                "x": 1830.6666666666667,
+                "y": 364
+              },
+              "vertices": [
+                {
+                  "x": 2033.3333333333333,
+                  "y": 234
+                },
+                {
+                  "x": 1830.6666666666667,
+                  "y": 234
+                }
+              ]
+            },
+            {
+              "type": "RELATION",
+              "name": "OGB_REPLY_TO_FK",
+              "sourceID": "OGB.OGB_REPLIES",
+              "targetID": "OGB.OGB_COMMENTS",
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 2106.6666666666665,
+                "y": 194
+              },
+              "targetPort": {
+                "x": 1874.6666666666667,
+                "y": 364
+              },
+              "vertices": [
+                {
+                  "x": 2106.6666666666665,
+                  "y": 252
+                },
+                {
+                  "x": 1874.6666666666667,
+                  "y": 252
+                }
+              ]
+            },
+            {
+              "type": "IFK_REFERENCE",
+              "name": "OGB_USER_MADE_COMMENT_DESTINATION",
+              "sourceID": "OGB.OGB_USER_MADE_COMMENT",
+              "targetID": "OGB.OGB_COMMENTS",
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 1466.6666666666667,
+                "y": 194
+              },
+              "targetPort": {
+                "x": 1742.6666666666667,
+                "y": 364
+              },
+              "vertices": [
+                {
+                  "x": 1466.6666666666667,
+                  "y": 324
+                },
+                {
+                  "x": 1742.6666666666667,
+                  "y": 324
+                }
+              ]
+            },
+            {
+              "type": "RELATION",
+              "name": "OGB_VIEWED_POST_FK",
+              "sourceID": "OGB.OGB_VIEWS",
+              "targetID": "OGB.OGB_POSTS",
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 506.6666666666667,
+                "y": 194
+              },
+              "targetPort": {
+                "x": 782.6666666666667,
+                "y": 364
+              },
+              "vertices": [
+                {
+                  "x": 506.6666666666667,
+                  "y": 288
+                },
+                {
+                  "x": 782.6666666666667,
+                  "y": 288
+                }
+              ]
+            },
+            {
+              "type": "RELATION",
+              "name": "OGB_VIEWER_FK",
+              "sourceID": "OGB.OGB_VIEWS",
+              "targetID": "OGB.OGB_USERS",
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 433.33333333333337,
+                "y": 194
+              },
+              "targetPort": {
+                "x": 433.3333333333333,
+                "y": 364
+              },
+              "vertices": []
+            }
+          ]
+        },
+        "options": {
+          "showOwnerInHeader": false,
+          "connectionOwner": "HR",
+          "titleFontSizePx": 13,
+          "bodyFontSizePx": 12,
+          "graphMaxVisibleNodeProperties": 12,
+          "graphMaxVisibleEdgeProperties": 3
+        }
+      },
+      {
+        "id": "graph-oragram-book-graph-compact",
+        "name": "ORAGRAM_BOOK_GRAPH Compact",
+        "graphId": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH",
+        "layout": {
+          "items": [
+            {
+              "type": "ENTITY",
+              "name": "COMMENTS",
+              "schema": "OGB",
+              "id": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_COMMENTS",
+              "bounds": {
+                "x": 421,
+                "y": 120.4,
+                "width": 220,
+                "height": 97
+              }
+            },
+            {
+              "type": "ENTITY",
+              "name": "POSTS",
+              "schema": "OGB",
+              "id": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_POSTS",
+              "bounds": {
+                "x": 853,
+                "y": 40,
+                "width": 220,
+                "height": 97
+              }
+            },
+            {
+              "type": "ENTITY",
+              "name": "USERS",
+              "schema": "OGB",
+              "id": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_USERS",
+              "bounds": {
+                "x": 40,
+                "y": 130.10000000000002,
+                "width": 220,
+                "height": 97
+              }
+            },
+            {
+              "type": "RELATION",
+              "name": "OGB_COMMENTED_ON",
+              "graphEndpointPairKey": "GRAPH_OBJ|oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:EDGE:OGB_COMMENTED_ON|oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_COMMENTS|oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_POSTS",
+              "sourceID": "OGB.COMMENTS",
+              "targetID": "OGB.POSTS",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceObjectId": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_COMMENTS",
+              "targetObjectId": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_POSTS",
+              "sourceLabelBounds": {
+                "x": -47,
+                "y": 3,
+                "distance": 0.16219794769943727,
+                "absoluteX": 643,
+                "absoluteY": 171.89999389648438,
+                "width": 94,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": 0,
+                "y": 13,
+                "distance": 0.16219794769943727,
+                "width": 94,
+                "height": 20
+              },
+              "visualStyle": {
+                "stroke": "#DF729D",
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 641,
+                "y": 168.9
+              },
+              "targetPort": {
+                "x": 853,
+                "y": 78.8
+              },
+              "vertices": [
+                {
+                  "x": 777,
+                  "y": 168.9
+                },
+                {
+                  "x": 777,
+                  "y": 78.8
+                }
+              ]
+            },
+            {
+              "type": "RELATION",
+              "name": "OGB_CREATES",
+              "graphEndpointPairKey": "GRAPH_OBJ|oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:EDGE:OGB_CREATES|oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_USERS|oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_POSTS",
+              "sourceID": "OGB.USERS",
+              "targetID": "OGB.POSTS",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceObjectId": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_USERS",
+              "targetObjectId": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_POSTS",
+              "sourceLabelBounds": {
+                "x": -30,
+                "y": 3,
+                "distance": 0.04137659267043215,
+                "absoluteX": 261.5,
+                "absoluteY": 191.3000030517578,
+                "width": 59,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": 0,
+                "y": 13,
+                "distance": 0.04137659267043215,
+                "width": 59,
+                "height": 20
+              },
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 260,
+                "y": 188.3
+              },
+              "targetPort": {
+                "x": 853,
+                "y": 98.19999999999999
+              },
+              "vertices": [
+                {
+                  "x": 379,
+                  "y": 188.3
+                },
+                {
+                  "x": 379,
+                  "y": 227.4
+                },
+                {
+                  "x": 795,
+                  "y": 227.4
+                },
+                {
+                  "x": 795,
+                  "y": 98.19999999999999
+                }
+              ]
+            },
+            {
+              "type": "RELATION",
+              "name": "OGB_FOLLOWS",
+              "graphEndpointPairKey": "GRAPH_OBJ|oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:EDGE:OGB_FOLLOWS|oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_USERS|oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_USERS",
+              "sourceID": "OGB.USERS",
+              "targetID": "OGB.USERS",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceObjectId": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_USERS",
+              "targetObjectId": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_USERS",
+              "sourceLabelBounds": {
+                "x": -29,
+                "y": -22,
+                "distance": 0.4999999999999999,
+                "absoluteX": 121,
+                "absoluteY": 80.0999984741211,
+                "width": 59,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": 0,
+                "y": -12,
+                "distance": 0.4999999999999999,
+                "width": 59,
+                "height": 20
+              },
+              "visualStyle": {
+                "stroke": "#38FF6A",
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 113.33333333333334,
+                "y": 130.10000000000002
+              },
+              "targetPort": {
+                "x": 186.66666666666669,
+                "y": 130.10000000000002
+              },
+              "vertices": [
+                {
+                  "x": 113.33333333333334,
+                  "y": 102.10000000000001
+                },
+                {
+                  "x": 186.66666666666669,
+                  "y": 102.10000000000001
+                }
+              ]
+            },
+            {
+              "type": "RELATION",
+              "name": "OGB_LIKES",
+              "graphEndpointPairKey": "GRAPH_OBJ|oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:EDGE:OGB_LIKES|oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_USERS|oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_POSTS",
+              "sourceID": "OGB.USERS",
+              "targetID": "OGB.POSTS",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceObjectId": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_USERS",
+              "targetObjectId": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_POSTS",
+              "sourceLabelBounds": {
+                "x": -23,
+                "y": 3,
+                "distance": 0.03255813953488372,
+                "absoluteX": 261.5,
+                "absoluteY": 210.6999969482422,
+                "width": 45,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": 0,
+                "y": 13,
+                "distance": 0.03255813953488372,
+                "width": 45,
+                "height": 20
+              },
+              "visualStyle": {
+                "stroke": "#1DDD3D",
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 260,
+                "y": 207.7
+              },
+              "targetPort": {
+                "x": 853,
+                "y": 117.6
+              },
+              "vertices": [
+                {
+                  "x": 361,
+                  "y": 207.7
+                },
+                {
+                  "x": 361,
+                  "y": 242.4
+                },
+                {
+                  "x": 813,
+                  "y": 242.4
+                },
+                {
+                  "x": 813,
+                  "y": 117.6
+                }
+              ]
+            },
+            {
+              "type": "RELATION",
+              "name": "OGB_REPLIES",
+              "graphEndpointPairKey": "GRAPH_OBJ|oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:EDGE:OGB_REPLIES|oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_COMMENTS|oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_COMMENTS",
+              "sourceID": "OGB.COMMENTS",
+              "targetID": "OGB.COMMENTS",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceObjectId": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_COMMENTS",
+              "targetObjectId": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_COMMENTS",
+              "sourceLabelBounds": {
+                "x": -40,
+                "y": -22,
+                "distance": 0.49999999999999956,
+                "absoluteX": 491,
+                "absoluteY": 70.4000015258789,
+                "width": 80,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": 0,
+                "y": -12,
+                "distance": 0.49999999999999956,
+                "width": 80,
+                "height": 20
+              },
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 494.33333333333337,
+                "y": 120.4
+              },
+              "targetPort": {
+                "x": 567.6666666666667,
+                "y": 120.4
+              },
+              "vertices": [
+                {
+                  "x": 494.33333333333337,
+                  "y": 92.4
+                },
+                {
+                  "x": 567.6666666666667,
+                  "y": 92.4
+                }
+              ]
+            },
+            {
+              "type": "RELATION",
+              "name": "OGB_USER_MADE_COMMENT",
+              "graphEndpointPairKey": "GRAPH_OBJ|oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:EDGE:OGB_USER_MADE_COMMENT|oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_USERS|oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_COMMENTS",
+              "sourceID": "OGB.USERS",
+              "targetID": "OGB.COMMENTS",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceObjectId": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_USERS",
+              "targetObjectId": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_COMMENTS",
+              "sourceLabelBounds": {
+                "x": -19,
+                "y": 3,
+                "distance": 0.13043478260869565,
+                "absoluteX": 262,
+                "absoluteY": 171.89999389648438,
+                "width": 38,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": 0,
+                "y": 13,
+                "distance": 0.13043478260869565,
+                "width": 38,
+                "height": 20
+              },
+              "visualStyle": {
+                "stroke": "#CA38FF",
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 260,
+                "y": 168.9
+              },
+              "targetPort": {
+                "x": 421,
+                "y": 168.9
+              },
+              "vertices": []
+            },
+            {
+              "type": "RELATION",
+              "name": "OGB_VIEWS",
+              "graphEndpointPairKey": "GRAPH_OBJ|oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:EDGE:OGB_VIEWS|oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_USERS|oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_POSTS",
+              "sourceID": "OGB.USERS",
+              "targetID": "OGB.POSTS",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceObjectId": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_USERS",
+              "targetObjectId": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_POSTS",
+              "sourceLabelBounds": {
+                "x": -23,
+                "y": 3,
+                "distance": 0.03586590543112282,
+                "absoluteX": 261.5,
+                "absoluteY": 152.5,
+                "width": 45,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": 0,
+                "y": 13,
+                "distance": 0.03586590543112282,
+                "width": 45,
+                "height": 20
+              },
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 260,
+                "y": 149.5
+              },
+              "targetPort": {
+                "x": 853,
+                "y": 59.4
+              },
+              "vertices": [
+                {
+                  "x": 361,
+                  "y": 149.5
+                },
+                {
+                  "x": 361,
+                  "y": 59.4
+                }
+              ]
+            }
+          ]
+        },
+        "options": {
+          "showOwnerInHeader": false,
+          "connectionOwner": "HR",
+          "titleFontSizePx": 13,
+          "bodyFontSizePx": 12,
+          "graphMaxVisibleNodeProperties": 12,
+          "graphMaxVisibleEdgeProperties": 3,
+          "colors": {
+            "table": "#FFFFB4",
+            "nodeTable": "#A4E1FF",
+            "edgeTable": "#1260BA",
+            "mview": "#229b12",
+            "view": "#89d185",
+            "dualityView": "#89d185",
+            "graphNode": "#A4E1FF",
+            "graphEdge": "#3794ff",
+            "fkLink": "#509bf1",
+            "ifkLink": "#e06c75"
+          },
+          "graphPresentation": true,
+          "graphCompactReservedPropertyRows": 4,
+          "showColumns": false,
+          "showDataType": false,
+          "showRelationshipAttributes": false,
+          "showRelationshipEndpointLabels": true,
+          "showComments": true,
+          "showGraphImplicitColumns": false,
+          "diagramColorsEnabled": true,
+          "showConstraints": false,
+          "showIndexes": false
+        }
+      },
+      {
+        "id": "graph-oragram-book-graph-details",
+        "name": "ORAGRAM_BOOK_GRAPH Details",
+        "graphId": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH",
+        "layout": {
+          "items": [
+            {
+              "type": "ENTITY",
+              "name": "COMMENTS",
+              "schema": "OGB",
+              "id": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_COMMENTS",
+              "bounds": {
+                "x": 752,
+                "y": 257,
+                "width": 220,
+                "height": 90
+              }
+            },
+            {
+              "type": "ENTITY",
+              "name": "POSTS",
+              "schema": "OGB",
+              "id": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_POSTS",
+              "bounds": {
+                "x": 1387,
+                "y": 46,
+                "width": 220,
+                "height": 90
+              }
+            },
+            {
+              "type": "ENTITY",
+              "name": "USERS",
+              "schema": "OGB",
+              "id": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_USERS",
+              "bounds": {
+                "x": 40,
+                "y": 251.6,
+                "width": 220,
+                "height": 126
+              }
+            },
+            {
+              "type": "RELATION",
+              "name": "OGB_COMMENTED_ON",
+              "sourceID": "OGB.COMMENTS",
+              "targetID": "OGB.POSTS",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceObjectId": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_COMMENTS",
+              "targetObjectId": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_POSTS",
+              "sourceLabelBounds": {
+                "x": -47,
+                "y": 3,
+                "distance": 0.07716535433070867,
+                "absoluteX": 974,
+                "absoluteY": 305,
+                "width": 94,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": -105,
+                "y": 14,
+                "distance": 0.38976377952755903,
+                "absoluteX": 1114.5,
+                "absoluteY": 316,
+                "width": 103,
+                "height": 28
+              },
+              "visualStyle": {
+                "stroke": "#DF729D",
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 972,
+                "y": 302
+              },
+              "targetPort": {
+                "x": 1387,
+                "y": 82
+              },
+              "vertices": [
+                {
+                  "x": 1311,
+                  "y": 302
+                },
+                {
+                  "x": 1311,
+                  "y": 82
+                }
+              ]
+            },
+            {
+              "type": "RELATION",
+              "name": "OGB_CREATES",
+              "sourceID": "OGB.USERS",
+              "targetID": "OGB.POSTS",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceObjectId": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_USERS",
+              "targetObjectId": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_POSTS",
+              "sourceLabelBounds": {
+                "x": -30,
+                "y": 3,
+                "distance": 0.019024036719410557,
+                "absoluteX": 260.4726867675781,
+                "absoluteY": 330.20001220703125,
+                "width": 59,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": 0,
+                "y": -17,
+                "distance": 0.4836332890445706,
+                "absoluteX": 910.8837890625,
+                "absoluteY": 434,
+                "width": 103,
+                "height": 28
+              },
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 260,
+                "y": 327.2
+              },
+              "targetPort": {
+                "x": 1387,
+                "y": 100
+              },
+              "vertices": [
+                {
+                  "x": 379,
+                  "y": 327.2
+                },
+                {
+                  "x": 379,
+                  "y": 451
+                },
+                {
+                  "x": 1329,
+                  "y": 451
+                },
+                {
+                  "x": 1329,
+                  "y": 100
+                }
+              ]
+            },
+            {
+              "type": "RELATION",
+              "name": "OGB_FOLLOWS",
+              "sourceID": "OGB.USERS",
+              "targetID": "OGB.USERS",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceObjectId": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_USERS",
+              "targetObjectId": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_USERS",
+              "sourceLabelBounds": {
+                "x": -14,
+                "y": -35,
+                "distance": 0.21649484536082472,
+                "absoluteX": 99.33333587646484,
+                "absoluteY": 188.60000610351562,
+                "width": 59,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": 0,
+                "y": -34,
+                "distance": 0.7164948453608246,
+                "absoluteX": 178,
+                "absoluteY": 189.60000610351562,
+                "width": 103,
+                "height": 28
+              },
+              "visualStyle": {
+                "stroke": "#38FF6A",
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 113.33333333333334,
+                "y": 251.6
+              },
+              "targetPort": {
+                "x": 186.66666666666669,
+                "y": 251.6
+              },
+              "vertices": [
+                {
+                  "x": 113.33333333333334,
+                  "y": 223.6
+                },
+                {
+                  "x": 186.66666666666669,
+                  "y": 223.6
+                }
+              ]
+            },
+            {
+              "type": "RELATION",
+              "name": "OGB_LIKES",
+              "sourceID": "OGB.USERS",
+              "targetID": "OGB.POSTS",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceObjectId": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_USERS",
+              "targetObjectId": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_POSTS",
+              "sourceLabelBounds": {
+                "x": -23,
+                "y": 3,
+                "distance": 0.01491537805917448,
+                "absoluteX": 261.5,
+                "absoluteY": 355.3999938964844,
+                "width": 45,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": 0,
+                "y": 24,
+                "distance": 0.4813101181054426,
+                "absoluteX": 910,
+                "absoluteY": 517,
+                "width": 207,
+                "height": 42
+              },
+              "visualStyle": {
+                "stroke": "#1DDD3D",
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 260,
+                "y": 352.4
+              },
+              "targetPort": {
+                "x": 1387,
+                "y": 118
+              },
+              "vertices": [
+                {
+                  "x": 361,
+                  "y": 352.4
+                },
+                {
+                  "x": 361,
+                  "y": 493
+                },
+                {
+                  "x": 1347,
+                  "y": 493
+                },
+                {
+                  "x": 1347,
+                  "y": 118
+                }
+              ]
+            },
+            {
+              "type": "RELATION",
+              "name": "OGB_REPLIES",
+              "sourceID": "OGB.COMMENTS",
+              "targetID": "OGB.COMMENTS",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceObjectId": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_COMMENTS",
+              "targetObjectId": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_COMMENTS",
+              "sourceLabelBounds": {
+                "x": -42,
+                "y": -35,
+                "distance": 0.21649484536082467,
+                "absoluteX": 783.3333129882812,
+                "absoluteY": 194,
+                "width": 80,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": 0,
+                "y": -48,
+                "distance": 0.7319587628865974,
+                "absoluteX": 892,
+                "absoluteY": 181,
+                "width": 215,
+                "height": 42
+              },
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 825.3333333333334,
+                "y": 257
+              },
+              "targetPort": {
+                "x": 898.6666666666667,
+                "y": 257
+              },
+              "vertices": [
+                {
+                  "x": 825.3333333333334,
+                  "y": 229
+                },
+                {
+                  "x": 898.6666666666667,
+                  "y": 229
+                }
+              ]
+            },
+            {
+              "type": "RELATION",
+              "name": "OGB_USER_MADE_COMMENT",
+              "sourceID": "OGB.USERS",
+              "targetID": "OGB.COMMENTS",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceObjectId": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_USERS",
+              "targetObjectId": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_COMMENTS",
+              "sourceLabelBounds": {
+                "x": -19,
+                "y": 3,
+                "distance": 0.042682926829268296,
+                "absoluteX": 262,
+                "absoluteY": 305,
+                "width": 38,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": -53,
+                "y": 25,
+                "distance": 0.5619918699186992,
+                "absoluteX": 483.5,
+                "absoluteY": 327,
+                "width": 231,
+                "height": 42
+              },
+              "visualStyle": {
+                "stroke": "#CA38FF",
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 260,
+                "y": 302
+              },
+              "targetPort": {
+                "x": 752,
+                "y": 302
+              },
+              "vertices": []
+            },
+            {
+              "type": "RELATION",
+              "name": "OGB_VIEWS",
+              "sourceID": "OGB.USERS",
+              "targetID": "OGB.POSTS",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceObjectId": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_USERS",
+              "targetObjectId": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_POSTS",
+              "sourceLabelBounds": {
+                "x": -23,
+                "y": 3,
+                "distance": 0.018286311389759665,
+                "absoluteX": 261.5,
+                "absoluteY": 279.79998779296875,
+                "width": 45,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": 0,
+                "y": -24,
+                "distance": 0.6439767129422301,
+                "absoluteX": 910,
+                "absoluteY": 40,
+                "width": 207,
+                "height": 42
+              },
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 260,
+                "y": 276.8
+              },
+              "targetPort": {
+                "x": 1387,
+                "y": 64
+              },
+              "vertices": [
+                {
+                  "x": 361,
+                  "y": 276.8
+                },
+                {
+                  "x": 361,
+                  "y": 64
+                }
+              ]
+            }
+          ]
+        },
+        "options": {
+          "showOwnerInHeader": false,
+          "connectionOwner": "HR",
+          "titleFontSizePx": 13,
+          "bodyFontSizePx": 12,
+          "diagramColorsEnabled": true,
+          "colors": {
+            "table": "#ffffb4",
+            "nodeTable": "#a4e1ff",
+            "edgeTable": "#1260ba",
+            "mview": "#229b12",
+            "view": "#89d185",
+            "dualityView": "#89d185",
+            "graphNode": "#a4e1ff",
+            "graphEdge": "#3794ff",
+            "entity": "#a4e1ff",
+            "logicalView": "#89d185",
+            "relationshipAttributes": "#ccffcc",
+            "fkLink": "#509bf1",
+            "ifkLink": "#e06c75"
+          },
+          "linkConnectorMode": "straight",
+          "showColumns": true,
+          "showDataType": true,
+          "showComments": true,
+          "showKeyColumnsOnly": false,
+          "showConstraints": false,
+          "showIndexes": false,
+          "showRelationshipAttributes": true,
+          "showRelationshipEndpointLabels": true,
+          "showGraphImplicitColumns": false,
+          "graphPresentation": true
+        }
+      }
+    ],
+    "sharedModel": {
+      "schema": "OGB",
+      "tables": [
+        {
+          "name": "OGB.OGB_COMMENTED_ON",
+          "objectType": "TABLE",
+          "columns": [
+            {
+              "name": "ID",
+              "type": "NUMBER",
+              "mandatory": true,
+              "isPrimaryKey": true
+            },
+            {
+              "name": "COMMENT_ID",
+              "type": "NUMBER",
+              "isForeignKey": true
+            },
+            {
+              "name": "POST_ID",
+              "type": "NUMBER",
+              "isForeignKey": true
+            }
+          ],
+          "primaryKey": {
+            "name": "OGB_COMMENTED_ON_PK",
+            "columns": [
+              "ID"
+            ]
+          },
+          "uniqueConstraints": [],
+          "foreignKeys": [
+            {
+              "name": "OGB_COMMENTED_ON_POST_FK",
+              "columns": [
+                "POST_ID"
+              ],
+              "referencedTable": "OGB_POSTS",
+              "referencedColumns": [
+                "ID"
+              ],
+              "deleteRule": "noAction"
+            },
+            {
+              "name": "OGB_COMMENT_ID_FK",
+              "columns": [
+                "COMMENT_ID"
+              ],
+              "referencedTable": "OGB_COMMENTS",
+              "referencedColumns": [
+                "ID"
+              ],
+              "deleteRule": "noAction"
+            }
+          ],
+          "indexes": [
+            {
+              "name": "OGB_COMMENTED_ON_PK",
+              "type": "UNIQUE",
+              "columns": [
+                "ID ASC"
+              ]
+            }
+          ],
+          "oraclePropertyGraphRole": "EDGE",
+          "logicalSchema": "OGB",
+          "logicalName": "OGB_COMMENTED_ON",
+          "logicalQualifiedName": "OGB.OGB_COMMENTED_ON",
+          "displayName": "OGB.OGB_COMMENTED_ON"
+        },
+        {
+          "name": "OGB.OGB_COMMENTS",
+          "objectType": "TABLE",
+          "columns": [
+            {
+              "name": "ID",
+              "type": "NUMBER",
+              "mandatory": true,
+              "isPrimaryKey": true
+            },
+            {
+              "name": "COMMENT_TEXT",
+              "type": "VARCHAR2(4000)"
+            }
+          ],
+          "primaryKey": {
+            "name": "OGB_COMMENTS_PK",
+            "columns": [
+              "ID"
+            ]
+          },
+          "uniqueConstraints": [],
+          "indexes": [
+            {
+              "name": "OGB_COMMENTS_PK",
+              "type": "UNIQUE",
+              "columns": [
+                "ID ASC"
+              ]
+            }
+          ],
+          "oraclePropertyGraphRole": "VERTEX",
+          "logicalSchema": "OGB",
+          "logicalName": "OGB_COMMENTS",
+          "logicalQualifiedName": "OGB.OGB_COMMENTS",
+          "displayName": "OGB.OGB_COMMENTS"
+        },
+        {
+          "name": "OGB.OGB_CREATES",
+          "objectType": "TABLE",
+          "columns": [
+            {
+              "name": "ID",
+              "type": "NUMBER",
+              "mandatory": true,
+              "isPrimaryKey": true
+            },
+            {
+              "name": "POSTER_ID",
+              "type": "NUMBER",
+              "isForeignKey": true
+            },
+            {
+              "name": "POST_ID",
+              "type": "NUMBER",
+              "isForeignKey": true
+            }
+          ],
+          "primaryKey": {
+            "name": "OGB_CREATES_PK",
+            "columns": [
+              "ID"
+            ]
+          },
+          "uniqueConstraints": [],
+          "foreignKeys": [
+            {
+              "name": "OGB_CREATED_POST_FK",
+              "columns": [
+                "POST_ID"
+              ],
+              "referencedTable": "OGB_POSTS",
+              "referencedColumns": [
+                "ID"
+              ],
+              "deleteRule": "noAction"
+            },
+            {
+              "name": "OGB_CREATOR_FK",
+              "columns": [
+                "POSTER_ID"
+              ],
+              "referencedTable": "OGB_USERS",
+              "referencedColumns": [
+                "ID"
+              ],
+              "deleteRule": "noAction"
+            }
+          ],
+          "indexes": [
+            {
+              "name": "OGB_CREATES_PK",
+              "type": "UNIQUE",
+              "columns": [
+                "ID ASC"
+              ]
+            }
+          ],
+          "oraclePropertyGraphRole": "EDGE",
+          "logicalSchema": "OGB",
+          "logicalName": "OGB_CREATES",
+          "logicalQualifiedName": "OGB.OGB_CREATES",
+          "displayName": "OGB.OGB_CREATES"
+        },
+        {
+          "name": "OGB.OGB_FOLLOWS",
+          "objectType": "TABLE",
+          "columns": [
+            {
+              "name": "ID",
+              "type": "NUMBER",
+              "mandatory": true,
+              "isPrimaryKey": true
+            },
+            {
+              "name": "FOLLOWER_ID",
+              "type": "NUMBER",
+              "isForeignKey": true
+            },
+            {
+              "name": "FOLLOWED_ID",
+              "type": "NUMBER"
+            },
+            {
+              "name": "FOLLOWED_DATE",
+              "type": "TIMESTAMP(6)"
+            }
+          ],
+          "primaryKey": {
+            "name": "OGB_FOLLOWS_PK",
+            "columns": [
+              "ID"
+            ]
+          },
+          "uniqueConstraints": [],
+          "foreignKeys": [
+            {
+              "name": "OGB_FOLLOWER_FK",
+              "columns": [
+                "FOLLOWER_ID"
+              ],
+              "referencedTable": "OGB_USERS",
+              "referencedColumns": [
+                "ID"
+              ],
+              "deleteRule": "noAction"
+            }
+          ],
+          "indexes": [
+            {
+              "name": "OGB_FOLLOWS_PK",
+              "type": "UNIQUE",
+              "columns": [
+                "ID ASC"
+              ]
+            }
+          ],
+          "oraclePropertyGraphRole": "EDGE",
+          "logicalSchema": "OGB",
+          "logicalName": "OGB_FOLLOWS",
+          "logicalQualifiedName": "OGB.OGB_FOLLOWS",
+          "displayName": "OGB.OGB_FOLLOWS"
+        },
+        {
+          "name": "OGB.OGB_LIKES",
+          "objectType": "TABLE",
+          "columns": [
+            {
+              "name": "ID",
+              "type": "NUMBER",
+              "mandatory": true,
+              "isPrimaryKey": true
+            },
+            {
+              "name": "LIKER_ID",
+              "type": "NUMBER",
+              "isForeignKey": true
+            },
+            {
+              "name": "POST_ID",
+              "type": "NUMBER",
+              "isForeignKey": true
+            },
+            {
+              "name": "LIKE_DATE",
+              "type": "TIMESTAMP(6)"
+            }
+          ],
+          "primaryKey": {
+            "name": "OGB_LIKES_PK",
+            "columns": [
+              "ID"
+            ]
+          },
+          "uniqueConstraints": [],
+          "foreignKeys": [
+            {
+              "name": "OGB_LIKED_POST_FK",
+              "columns": [
+                "POST_ID"
+              ],
+              "referencedTable": "OGB_POSTS",
+              "referencedColumns": [
+                "ID"
+              ],
+              "deleteRule": "noAction"
+            },
+            {
+              "name": "OGB_LIKING_USER_FK",
+              "columns": [
+                "LIKER_ID"
+              ],
+              "referencedTable": "OGB_USERS",
+              "referencedColumns": [
+                "ID"
+              ],
+              "deleteRule": "noAction"
+            }
+          ],
+          "indexes": [
+            {
+              "name": "OGB_LIKES_PK",
+              "type": "UNIQUE",
+              "columns": [
+                "ID ASC"
+              ]
+            }
+          ],
+          "oraclePropertyGraphRole": "EDGE",
+          "logicalSchema": "OGB",
+          "logicalName": "OGB_LIKES",
+          "logicalQualifiedName": "OGB.OGB_LIKES",
+          "displayName": "OGB.OGB_LIKES"
+        },
+        {
+          "name": "OGB.OGB_POSTS",
+          "objectType": "TABLE",
+          "columns": [
+            {
+              "name": "ID",
+              "type": "NUMBER",
+              "mandatory": true,
+              "isPrimaryKey": true
+            },
+            {
+              "name": "CONTENT",
+              "type": "VARCHAR2(4000)"
+            },
+            {
+              "name": "POSTED_DATE",
+              "type": "TIMESTAMP(6)"
+            }
+          ],
+          "primaryKey": {
+            "name": "OGB_POSTS_PK",
+            "columns": [
+              "ID"
+            ]
+          },
+          "uniqueConstraints": [],
+          "indexes": [
+            {
+              "name": "OGB_POSTS_PK",
+              "type": "UNIQUE",
+              "columns": [
+                "ID ASC"
+              ]
+            }
+          ],
+          "oraclePropertyGraphRole": "VERTEX",
+          "logicalSchema": "OGB",
+          "logicalName": "OGB_POSTS",
+          "logicalQualifiedName": "OGB.OGB_POSTS",
+          "displayName": "OGB.OGB_POSTS"
+        },
+        {
+          "name": "OGB.OGB_REPLIES",
+          "objectType": "TABLE",
+          "columns": [
+            {
+              "name": "ID",
+              "type": "NUMBER",
+              "mandatory": true,
+              "isPrimaryKey": true
+            },
+            {
+              "name": "COMMENT_ID",
+              "type": "NUMBER",
+              "isForeignKey": true
+            },
+            {
+              "name": "REPLY_TO",
+              "type": "NUMBER",
+              "isForeignKey": true
+            },
+            {
+              "name": "REPLY_DATE",
+              "type": "TIMESTAMP(6)"
+            }
+          ],
+          "primaryKey": {
+            "name": "OGB_REPLIES_PK",
+            "columns": [
+              "ID"
+            ]
+          },
+          "uniqueConstraints": [],
+          "foreignKeys": [
+            {
+              "name": "OGB_REPLY_MADE_FK",
+              "columns": [
+                "COMMENT_ID"
+              ],
+              "referencedTable": "OGB_COMMENTS",
+              "referencedColumns": [
+                "ID"
+              ],
+              "deleteRule": "noAction"
+            },
+            {
+              "name": "OGB_REPLY_TO_FK",
+              "columns": [
+                "REPLY_TO"
+              ],
+              "referencedTable": "OGB_COMMENTS",
+              "referencedColumns": [
+                "ID"
+              ],
+              "deleteRule": "noAction"
+            }
+          ],
+          "indexes": [
+            {
+              "name": "OGB_REPLIES_PK",
+              "type": "UNIQUE",
+              "columns": [
+                "ID ASC"
+              ]
+            }
+          ],
+          "oraclePropertyGraphRole": "EDGE",
+          "logicalSchema": "OGB",
+          "logicalName": "OGB_REPLIES",
+          "logicalQualifiedName": "OGB.OGB_REPLIES",
+          "displayName": "OGB.OGB_REPLIES"
+        },
+        {
+          "name": "OGB.OGB_USER_MADE_COMMENT",
+          "objectType": "TABLE",
+          "columns": [
+            {
+              "name": "ID",
+              "type": "NUMBER",
+              "mandatory": true,
+              "isPrimaryKey": true
+            },
+            {
+              "name": "USER_ID",
+              "type": "NUMBER",
+              "isForeignKey": true
+            },
+            {
+              "name": "COMMENT_ID",
+              "type": "NUMBER"
+            },
+            {
+              "name": "COMMENT_DATE",
+              "type": "TIMESTAMP(6)"
+            }
+          ],
+          "primaryKey": {
+            "name": "OGB_MADE_COMMENT_PK",
+            "columns": [
+              "ID"
+            ]
+          },
+          "uniqueConstraints": [],
+          "foreignKeys": [
+            {
+              "name": "OGB_COMMENTER_FK",
+              "columns": [
+                "USER_ID"
+              ],
+              "referencedTable": "OGB_USERS",
+              "referencedColumns": [
+                "ID"
+              ],
+              "deleteRule": "noAction"
+            }
+          ],
+          "indexes": [
+            {
+              "name": "OGB_MADE_COMMENT_PK",
+              "type": "UNIQUE",
+              "columns": [
+                "ID ASC"
+              ]
+            }
+          ],
+          "oraclePropertyGraphRole": "EDGE",
+          "logicalSchema": "OGB",
+          "logicalName": "OGB_USER_MADE_COMMENT",
+          "logicalQualifiedName": "OGB.OGB_USER_MADE_COMMENT",
+          "displayName": "OGB.OGB_USER_MADE_COMMENT"
+        },
+        {
+          "name": "OGB.OGB_USERS",
+          "objectType": "TABLE",
+          "columns": [
+            {
+              "name": "ID",
+              "type": "NUMBER",
+              "mandatory": true,
+              "isPrimaryKey": true
+            },
+            {
+              "name": "FIRST",
+              "type": "VARCHAR2(4000)"
+            },
+            {
+              "name": "LAST",
+              "type": "VARCHAR2(4000)"
+            },
+            {
+              "name": "EMAIL",
+              "type": "VARCHAR2(4000)"
+            },
+            {
+              "name": "DOB",
+              "type": "DATE"
+            },
+            {
+              "name": "SIGN_UP_DATE",
+              "type": "TIMESTAMP(6)"
+            }
+          ],
+          "primaryKey": {
+            "name": "OGB_USER_PK",
+            "columns": [
+              "ID"
+            ]
+          },
+          "uniqueConstraints": [],
+          "indexes": [
+            {
+              "name": "OGB_USER_PK",
+              "type": "UNIQUE",
+              "columns": [
+                "ID ASC"
+              ]
+            }
+          ],
+          "oraclePropertyGraphRole": "VERTEX",
+          "logicalSchema": "OGB",
+          "logicalName": "OGB_USERS",
+          "logicalQualifiedName": "OGB.OGB_USERS",
+          "displayName": "OGB.OGB_USERS"
+        },
+        {
+          "name": "OGB.OGB_VIEWS",
+          "objectType": "TABLE",
+          "columns": [
+            {
+              "name": "ID",
+              "type": "NUMBER",
+              "mandatory": true,
+              "isPrimaryKey": true
+            },
+            {
+              "name": "VIEWER_ID",
+              "type": "NUMBER",
+              "isForeignKey": true
+            },
+            {
+              "name": "POST_ID",
+              "type": "NUMBER",
+              "isForeignKey": true
+            },
+            {
+              "name": "VIEW_DATE",
+              "type": "TIMESTAMP(6)"
+            }
+          ],
+          "primaryKey": {
+            "name": "OGB_VIEWS_PK",
+            "columns": [
+              "ID"
+            ]
+          },
+          "uniqueConstraints": [],
+          "foreignKeys": [
+            {
+              "name": "OGB_VIEWED_POST_FK",
+              "columns": [
+                "POST_ID"
+              ],
+              "referencedTable": "OGB_POSTS",
+              "referencedColumns": [
+                "ID"
+              ],
+              "deleteRule": "noAction"
+            },
+            {
+              "name": "OGB_VIEWER_FK",
+              "columns": [
+                "VIEWER_ID"
+              ],
+              "referencedTable": "OGB_USERS",
+              "referencedColumns": [
+                "ID"
+              ],
+              "deleteRule": "noAction"
+            }
+          ],
+          "indexes": [
+            {
+              "name": "OGB_VIEWS_PK",
+              "type": "UNIQUE",
+              "columns": [
+                "ID ASC"
+              ]
+            }
+          ],
+          "oraclePropertyGraphRole": "EDGE",
+          "logicalSchema": "OGB",
+          "logicalName": "OGB_VIEWS",
+          "logicalQualifiedName": "OGB.OGB_VIEWS",
+          "displayName": "OGB.OGB_VIEWS"
+        },
+        {
+          "id": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:EDGE:OGB_COMMENTED_ON",
+          "name": "COMMENTED_ON",
+          "logicalName": "OGB_COMMENTED_ON",
+          "logicalSchema": "OGB",
+          "logicalQualifiedName": "OGB.OGB_COMMENTED_ON",
+          "displayName": "COMMENTED_ON",
+          "objectType": "GRAPH_EDGE",
+          "columns": [
+            {
+              "name": "ID",
+              "type": "NUMBER",
+              "mandatory": true,
+              "isPrimaryKey": true
+            }
+          ],
+          "uniqueConstraints": [],
+          "graphTooltipText": "COMMENTED_ON\n  ID  NUMBER\n\nBacking object: OGB.OGB_COMMENTED_ON",
+          "primaryKey": {
+            "name": "OGB_COMMENTED_ON_KEY",
+            "columns": [
+              "ID"
+            ]
+          },
+          "graphEndpoints": [
+            {
+              "fromTable": "OGB.COMMENTS",
+              "toTable": "OGB.POSTS",
+              "constraintName": "OGB_COMMENTED_ON",
+              "pairKey": "OGB.ORAGRAM_BOOK_GRAPH|OGB_COMMENTED_ON|OGB.COMMENTS|OGB.POSTS"
+            }
+          ]
+        },
+        {
+          "id": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:EDGE:OGB_CREATES",
+          "name": "CREATES",
+          "logicalName": "OGB_CREATES",
+          "logicalSchema": "OGB",
+          "logicalQualifiedName": "OGB.OGB_CREATES",
+          "displayName": "CREATES",
+          "objectType": "GRAPH_EDGE",
+          "columns": [
+            {
+              "name": "ID",
+              "type": "NUMBER",
+              "mandatory": true,
+              "isPrimaryKey": true
+            }
+          ],
+          "uniqueConstraints": [],
+          "graphTooltipText": "CREATES\n  ID  NUMBER\n\nBacking object: OGB.OGB_CREATES",
+          "primaryKey": {
+            "name": "OGB_CREATES_KEY",
+            "columns": [
+              "ID"
+            ]
+          },
+          "graphEndpoints": [
+            {
+              "fromTable": "OGB.USERS",
+              "toTable": "OGB.POSTS",
+              "constraintName": "OGB_CREATES",
+              "pairKey": "OGB.ORAGRAM_BOOK_GRAPH|OGB_CREATES|OGB.USERS|OGB.POSTS"
+            }
+          ]
+        },
+        {
+          "id": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:EDGE:OGB_FOLLOWS",
+          "name": "FOLLOWS",
+          "logicalName": "OGB_FOLLOWS",
+          "logicalSchema": "OGB",
+          "logicalQualifiedName": "OGB.OGB_FOLLOWS",
+          "displayName": "FOLLOWS",
+          "objectType": "GRAPH_EDGE",
+          "columns": [
+            {
+              "name": "ID",
+              "type": "NUMBER",
+              "mandatory": true,
+              "isPrimaryKey": true
+            }
+          ],
+          "uniqueConstraints": [],
+          "graphTooltipText": "FOLLOWS\n  ID  NUMBER\n\nBacking object: OGB.OGB_FOLLOWS",
+          "primaryKey": {
+            "name": "OGB_FOLLOWS_KEY",
+            "columns": [
+              "ID"
+            ]
+          },
+          "graphEndpoints": [
+            {
+              "fromTable": "OGB.USERS",
+              "toTable": "OGB.USERS",
+              "constraintName": "OGB_FOLLOWS",
+              "pairKey": "OGB.ORAGRAM_BOOK_GRAPH|OGB_FOLLOWS|OGB.USERS|OGB.USERS"
+            }
+          ]
+        },
+        {
+          "id": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:EDGE:OGB_LIKES",
+          "name": "LIKED",
+          "logicalName": "OGB_LIKES",
+          "logicalSchema": "OGB",
+          "logicalQualifiedName": "OGB.OGB_LIKES",
+          "displayName": "LIKED",
+          "objectType": "GRAPH_EDGE",
+          "columns": [
+            {
+              "name": "ID",
+              "type": "NUMBER",
+              "mandatory": true,
+              "isPrimaryKey": true
+            },
+            {
+              "name": "LIKE_DATE",
+              "type": "TIMESTAMP(6)"
+            }
+          ],
+          "uniqueConstraints": [],
+          "graphTooltipText": "LIKED\n  ID         NUMBER\n  LIKE_DATE  TIMESTAMP(6)\n\nBacking object: OGB.OGB_LIKES",
+          "primaryKey": {
+            "name": "OGB_LIKES_KEY",
+            "columns": [
+              "ID"
+            ]
+          },
+          "graphEndpoints": [
+            {
+              "fromTable": "OGB.USERS",
+              "toTable": "OGB.POSTS",
+              "constraintName": "OGB_LIKES",
+              "pairKey": "OGB.ORAGRAM_BOOK_GRAPH|OGB_LIKES|OGB.USERS|OGB.POSTS"
+            }
+          ]
+        },
+        {
+          "id": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:EDGE:OGB_REPLIES",
+          "name": "REPLIED_TO",
+          "logicalName": "OGB_REPLIES",
+          "logicalSchema": "OGB",
+          "logicalQualifiedName": "OGB.OGB_REPLIES",
+          "displayName": "REPLIED_TO",
+          "objectType": "GRAPH_EDGE",
+          "columns": [
+            {
+              "name": "ID",
+              "type": "NUMBER",
+              "mandatory": true,
+              "isPrimaryKey": true
+            },
+            {
+              "name": "REPLY_DATE",
+              "type": "TIMESTAMP(6)"
+            }
+          ],
+          "uniqueConstraints": [],
+          "graphTooltipText": "REPLIED_TO\n  ID          NUMBER\n  REPLY_DATE  TIMESTAMP(6)\n\nBacking object: OGB.OGB_REPLIES",
+          "primaryKey": {
+            "name": "OGB_REPLIES_KEY",
+            "columns": [
+              "ID"
+            ]
+          },
+          "graphEndpoints": [
+            {
+              "fromTable": "OGB.COMMENTS",
+              "toTable": "OGB.COMMENTS",
+              "constraintName": "OGB_REPLIES",
+              "pairKey": "OGB.ORAGRAM_BOOK_GRAPH|OGB_REPLIES|OGB.COMMENTS|OGB.COMMENTS"
+            }
+          ]
+        },
+        {
+          "id": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:EDGE:OGB_USER_MADE_COMMENT",
+          "name": "OWNS",
+          "logicalName": "OGB_USER_MADE_COMMENT",
+          "logicalSchema": "OGB",
+          "logicalQualifiedName": "OGB.OGB_USER_MADE_COMMENT",
+          "displayName": "OWNS",
+          "objectType": "GRAPH_EDGE",
+          "columns": [
+            {
+              "name": "ID",
+              "type": "NUMBER",
+              "mandatory": true,
+              "isPrimaryKey": true
+            },
+            {
+              "name": "COMMENT_DATE",
+              "type": "TIMESTAMP(6)"
+            }
+          ],
+          "uniqueConstraints": [],
+          "graphTooltipText": "OWNS\n  ID            NUMBER\n  COMMENT_DATE  TIMESTAMP(6)\n\nBacking object: OGB.OGB_USER_MADE_COMMENT",
+          "primaryKey": {
+            "name": "OGB_USER_MADE_COMMENT_KEY",
+            "columns": [
+              "ID"
+            ]
+          },
+          "graphEndpoints": [
+            {
+              "fromTable": "OGB.USERS",
+              "toTable": "OGB.COMMENTS",
+              "constraintName": "OGB_USER_MADE_COMMENT",
+              "pairKey": "OGB.ORAGRAM_BOOK_GRAPH|OGB_USER_MADE_COMMENT|OGB.USERS|OGB.COMMENTS"
+            }
+          ]
+        },
+        {
+          "id": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:EDGE:OGB_VIEWS",
+          "name": "VIEWS",
+          "logicalName": "OGB_VIEWS",
+          "logicalSchema": "OGB",
+          "logicalQualifiedName": "OGB.OGB_VIEWS",
+          "displayName": "VIEWS",
+          "objectType": "GRAPH_EDGE",
+          "columns": [
+            {
+              "name": "ID",
+              "type": "NUMBER",
+              "mandatory": true,
+              "isPrimaryKey": true
+            },
+            {
+              "name": "VIEW_DATE",
+              "type": "TIMESTAMP(6)"
+            }
+          ],
+          "uniqueConstraints": [],
+          "graphTooltipText": "VIEWS\n  ID         NUMBER\n  VIEW_DATE  TIMESTAMP(6)\n\nBacking object: OGB.OGB_VIEWS",
+          "primaryKey": {
+            "name": "OGB_VIEWS_KEY",
+            "columns": [
+              "ID"
+            ]
+          },
+          "graphEndpoints": [
+            {
+              "fromTable": "OGB.USERS",
+              "toTable": "OGB.POSTS",
+              "constraintName": "OGB_VIEWS",
+              "pairKey": "OGB.ORAGRAM_BOOK_GRAPH|OGB_VIEWS|OGB.USERS|OGB.POSTS"
+            }
+          ]
+        },
+        {
+          "id": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_COMMENTS",
+          "name": "COMMENTS",
+          "logicalName": "OGB_COMMENTS",
+          "logicalSchema": "OGB",
+          "logicalQualifiedName": "OGB.OGB_COMMENTS",
+          "displayName": "COMMENTS",
+          "objectType": "GRAPH_NODE",
+          "graphTitleChoices": [
+            "COMMENTS"
+          ],
+          "graphTitleSource": "COMMENTS",
+          "columns": [
+            {
+              "name": "ID",
+              "type": "NUMBER",
+              "mandatory": true,
+              "isPrimaryKey": true
+            },
+            {
+              "name": "COMMENT_TEXT",
+              "type": "VARCHAR2(4000)"
+            }
+          ],
+          "uniqueConstraints": [],
+          "graphTooltipText": "COMMENTS\n  ID            NUMBER\n  COMMENT_TEXT  VARCHAR2(4000)\n\nBacking object: OGB.OGB_COMMENTS",
+          "primaryKey": {
+            "name": "OGB_COMMENTS_KEY",
+            "columns": [
+              "ID"
+            ]
+          }
+        },
+        {
+          "id": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_POSTS",
+          "name": "POSTS",
+          "logicalName": "OGB_POSTS",
+          "logicalSchema": "OGB",
+          "logicalQualifiedName": "OGB.OGB_POSTS",
+          "displayName": "POSTS",
+          "objectType": "GRAPH_NODE",
+          "graphTitleChoices": [
+            "POSTS"
+          ],
+          "graphTitleSource": "POSTS",
+          "columns": [
+            {
+              "name": "ID",
+              "type": "NUMBER",
+              "mandatory": true,
+              "isPrimaryKey": true
+            },
+            {
+              "name": "CONTENT",
+              "type": "VARCHAR2(4000)"
+            },
+            {
+              "name": "POSTED_DATE",
+              "type": "TIMESTAMP(6)"
+            }
+          ],
+          "uniqueConstraints": [],
+          "graphTooltipText": "POSTS\n  ID           NUMBER\n  CONTENT      VARCHAR2(4000)\n  POSTED_DATE  TIMESTAMP(6)\n\nBacking object: OGB.OGB_POSTS",
+          "primaryKey": {
+            "name": "OGB_POSTS_KEY",
+            "columns": [
+              "ID"
+            ]
+          }
+        },
+        {
+          "id": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_USERS",
+          "name": "USERS",
+          "logicalName": "OGB_USERS",
+          "logicalSchema": "OGB",
+          "logicalQualifiedName": "OGB.OGB_USERS",
+          "displayName": "USERS",
+          "objectType": "GRAPH_NODE",
+          "graphTitleChoices": [
+            "USERS"
+          ],
+          "graphTitleSource": "USERS",
+          "columns": [
+            {
+              "name": "ID",
+              "type": "NUMBER",
+              "mandatory": true,
+              "isPrimaryKey": true
+            },
+            {
+              "name": "DOB",
+              "type": "DATE"
+            },
+            {
+              "name": "EMAIL",
+              "type": "VARCHAR2(4000)"
+            },
+            {
+              "name": "FIRST",
+              "type": "VARCHAR2(4000)"
+            },
+            {
+              "name": "LAST",
+              "type": "VARCHAR2(4000)"
+            },
+            {
+              "name": "SIGN_UP_DATE",
+              "type": "TIMESTAMP(6)"
+            }
+          ],
+          "uniqueConstraints": [],
+          "graphTooltipText": "USERS\n  ID            NUMBER\n  DOB           DATE\n  EMAIL         VARCHAR2(4000)\n  FIRST         VARCHAR2(4000)\n  LAST          VARCHAR2(4000)\n  SIGN_UP_DATE  TIMESTAMP(6)\n\nBacking object: OGB.OGB_USERS",
+          "primaryKey": {
+            "name": "OGB_USERS_KEY",
+            "columns": [
+              "ID"
+            ]
+          }
+        }
+      ],
+      "links": [
+        {
+          "fromTable": "OGB.OGB_COMMENTED_ON",
+          "toTable": "OGB.OGB_POSTS",
+          "constraintName": "OGB_COMMENTED_ON_POST_FK",
+          "deleteRule": "noAction",
+          "isTargetOnDiagram": true,
+          "mappings": [
+            {
+              "fromColumn": "POST_ID",
+              "toColumn": "ID"
+            }
+          ],
+          "logicalFromTable": "OGB.OGB_COMMENTED_ON",
+          "logicalToTable": "OGB.OGB_POSTS",
+          "sourceInstanceId": "OGB.OGB_COMMENTED_ON#0",
+          "targetInstanceId": "OGB.OGB_POSTS#0",
+          "visualStyle": {
+            "strokeDasharray": "8 4"
+          }
+        },
+        {
+          "fromTable": "OGB.OGB_COMMENTED_ON",
+          "toTable": "OGB.OGB_COMMENTS",
+          "constraintName": "OGB_COMMENT_ID_FK",
+          "deleteRule": "noAction",
+          "isTargetOnDiagram": true,
+          "mappings": [
+            {
+              "fromColumn": "COMMENT_ID",
+              "toColumn": "ID"
+            }
+          ],
+          "logicalFromTable": "OGB.OGB_COMMENTED_ON",
+          "logicalToTable": "OGB.OGB_COMMENTS",
+          "sourceInstanceId": "OGB.OGB_COMMENTED_ON#0",
+          "targetInstanceId": "OGB.OGB_COMMENTS#0",
+          "visualStyle": {
+            "strokeDasharray": "8 4"
+          }
+        },
+        {
+          "fromTable": "OGB.OGB_CREATES",
+          "toTable": "OGB.OGB_POSTS",
+          "constraintName": "OGB_CREATED_POST_FK",
+          "deleteRule": "noAction",
+          "isTargetOnDiagram": true,
+          "mappings": [
+            {
+              "fromColumn": "POST_ID",
+              "toColumn": "ID"
+            }
+          ],
+          "logicalFromTable": "OGB.OGB_CREATES",
+          "logicalToTable": "OGB.OGB_POSTS",
+          "sourceInstanceId": "OGB.OGB_CREATES#0",
+          "targetInstanceId": "OGB.OGB_POSTS#0",
+          "visualStyle": {
+            "strokeDasharray": "8 4"
+          }
+        },
+        {
+          "fromTable": "OGB.OGB_CREATES",
+          "toTable": "OGB.OGB_USERS",
+          "constraintName": "OGB_CREATOR_FK",
+          "deleteRule": "noAction",
+          "isTargetOnDiagram": true,
+          "mappings": [
+            {
+              "fromColumn": "POSTER_ID",
+              "toColumn": "ID"
+            }
+          ],
+          "logicalFromTable": "OGB.OGB_CREATES",
+          "logicalToTable": "OGB.OGB_USERS",
+          "sourceInstanceId": "OGB.OGB_CREATES#0",
+          "targetInstanceId": "OGB.OGB_USERS#0",
+          "visualStyle": {
+            "strokeDasharray": "8 4"
+          }
+        },
+        {
+          "fromTable": "OGB.OGB_FOLLOWS",
+          "toTable": "OGB.OGB_USERS",
+          "constraintName": "OGB_FOLLOWER_FK",
+          "deleteRule": "noAction",
+          "isTargetOnDiagram": true,
+          "mappings": [
+            {
+              "fromColumn": "FOLLOWER_ID",
+              "toColumn": "ID"
+            }
+          ],
+          "logicalFromTable": "OGB.OGB_FOLLOWS",
+          "logicalToTable": "OGB.OGB_USERS",
+          "sourceInstanceId": "OGB.OGB_FOLLOWS#0",
+          "targetInstanceId": "OGB.OGB_USERS#0",
+          "visualStyle": {
+            "strokeDasharray": "8 4"
+          }
+        },
+        {
+          "fromTable": "OGB.OGB_LIKES",
+          "toTable": "OGB.OGB_POSTS",
+          "constraintName": "OGB_LIKED_POST_FK",
+          "deleteRule": "noAction",
+          "isTargetOnDiagram": true,
+          "mappings": [
+            {
+              "fromColumn": "POST_ID",
+              "toColumn": "ID"
+            }
+          ],
+          "logicalFromTable": "OGB.OGB_LIKES",
+          "logicalToTable": "OGB.OGB_POSTS",
+          "sourceInstanceId": "OGB.OGB_LIKES#0",
+          "targetInstanceId": "OGB.OGB_POSTS#0",
+          "visualStyle": {
+            "strokeDasharray": "8 4"
+          }
+        },
+        {
+          "fromTable": "OGB.OGB_LIKES",
+          "toTable": "OGB.OGB_USERS",
+          "constraintName": "OGB_LIKING_USER_FK",
+          "deleteRule": "noAction",
+          "isTargetOnDiagram": true,
+          "mappings": [
+            {
+              "fromColumn": "LIKER_ID",
+              "toColumn": "ID"
+            }
+          ],
+          "logicalFromTable": "OGB.OGB_LIKES",
+          "logicalToTable": "OGB.OGB_USERS",
+          "sourceInstanceId": "OGB.OGB_LIKES#0",
+          "targetInstanceId": "OGB.OGB_USERS#0",
+          "visualStyle": {
+            "strokeDasharray": "8 4"
+          }
+        },
+        {
+          "fromTable": "OGB.OGB_REPLIES",
+          "toTable": "OGB.OGB_COMMENTS",
+          "constraintName": "OGB_REPLY_MADE_FK",
+          "deleteRule": "noAction",
+          "isTargetOnDiagram": true,
+          "mappings": [
+            {
+              "fromColumn": "COMMENT_ID",
+              "toColumn": "ID"
+            }
+          ],
+          "logicalFromTable": "OGB.OGB_REPLIES",
+          "logicalToTable": "OGB.OGB_COMMENTS",
+          "sourceInstanceId": "OGB.OGB_REPLIES#0",
+          "targetInstanceId": "OGB.OGB_COMMENTS#0",
+          "visualStyle": {
+            "strokeDasharray": "8 4"
+          }
+        },
+        {
+          "fromTable": "OGB.OGB_REPLIES",
+          "toTable": "OGB.OGB_COMMENTS",
+          "constraintName": "OGB_REPLY_TO_FK",
+          "deleteRule": "noAction",
+          "isTargetOnDiagram": true,
+          "mappings": [
+            {
+              "fromColumn": "REPLY_TO",
+              "toColumn": "ID"
+            }
+          ],
+          "logicalFromTable": "OGB.OGB_REPLIES",
+          "logicalToTable": "OGB.OGB_COMMENTS",
+          "sourceInstanceId": "OGB.OGB_REPLIES#0",
+          "targetInstanceId": "OGB.OGB_COMMENTS#0",
+          "visualStyle": {
+            "strokeDasharray": "8 4"
+          }
+        },
+        {
+          "fromTable": "OGB.OGB_USER_MADE_COMMENT",
+          "toTable": "OGB.OGB_USERS",
+          "constraintName": "OGB_COMMENTER_FK",
+          "deleteRule": "noAction",
+          "isTargetOnDiagram": true,
+          "mappings": [
+            {
+              "fromColumn": "USER_ID",
+              "toColumn": "ID"
+            }
+          ],
+          "logicalFromTable": "OGB.OGB_USER_MADE_COMMENT",
+          "logicalToTable": "OGB.OGB_USERS",
+          "sourceInstanceId": "OGB.OGB_USER_MADE_COMMENT#0",
+          "targetInstanceId": "OGB.OGB_USERS#0",
+          "visualStyle": {
+            "strokeDasharray": "8 4"
+          }
+        },
+        {
+          "fromTable": "OGB.OGB_VIEWS",
+          "toTable": "OGB.OGB_POSTS",
+          "constraintName": "OGB_VIEWED_POST_FK",
+          "deleteRule": "noAction",
+          "isTargetOnDiagram": true,
+          "mappings": [
+            {
+              "fromColumn": "POST_ID",
+              "toColumn": "ID"
+            }
+          ],
+          "logicalFromTable": "OGB.OGB_VIEWS",
+          "logicalToTable": "OGB.OGB_POSTS",
+          "sourceInstanceId": "OGB.OGB_VIEWS#0",
+          "targetInstanceId": "OGB.OGB_POSTS#0",
+          "visualStyle": {
+            "strokeDasharray": "8 4"
+          }
+        },
+        {
+          "fromTable": "OGB.OGB_VIEWS",
+          "toTable": "OGB.OGB_USERS",
+          "constraintName": "OGB_VIEWER_FK",
+          "deleteRule": "noAction",
+          "isTargetOnDiagram": true,
+          "mappings": [
+            {
+              "fromColumn": "VIEWER_ID",
+              "toColumn": "ID"
+            }
+          ],
+          "logicalFromTable": "OGB.OGB_VIEWS",
+          "logicalToTable": "OGB.OGB_USERS",
+          "sourceInstanceId": "OGB.OGB_VIEWS#0",
+          "targetInstanceId": "OGB.OGB_USERS#0",
+          "visualStyle": {
+            "strokeDasharray": "8 4"
+          }
+        },
+        {
+          "fromTable": "OGB.OGB_FOLLOWS",
+          "toTable": "OGB.OGB_USERS",
+          "constraintName": "OGB_FOLLOWS_DESTINATION",
+          "isImpliedForeignKey": true,
+          "graphEndpointRole": "to",
+          "mappings": [
+            {
+              "fromColumn": "FOLLOWED_ID",
+              "toColumn": "ID"
+            }
+          ],
+          "logicalFromTable": "OGB.OGB_FOLLOWS",
+          "logicalToTable": "OGB.OGB_USERS",
+          "sourceInstanceId": "OGB.OGB_FOLLOWS#0",
+          "targetInstanceId": "OGB.OGB_USERS#0",
+          "visualStyle": {
+            "strokeDasharray": "8 4"
+          }
+        },
+        {
+          "fromTable": "OGB.OGB_USER_MADE_COMMENT",
+          "toTable": "OGB.OGB_COMMENTS",
+          "constraintName": "OGB_USER_MADE_COMMENT_DESTINATION",
+          "isImpliedForeignKey": true,
+          "graphEndpointRole": "to",
+          "mappings": [
+            {
+              "fromColumn": "COMMENT_ID",
+              "toColumn": "ID"
+            }
+          ],
+          "logicalFromTable": "OGB.OGB_USER_MADE_COMMENT",
+          "logicalToTable": "OGB.OGB_COMMENTS",
+          "sourceInstanceId": "OGB.OGB_USER_MADE_COMMENT#0",
+          "targetInstanceId": "OGB.OGB_COMMENTS#0",
+          "visualStyle": {
+            "strokeDasharray": "8 4"
+          }
+        }
+      ],
+      "graphs": [
+        {
+          "graphId": "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH",
+          "name": "ORAGRAM_BOOK_GRAPH",
+          "tableRefs": [
+            "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:EDGE:OGB_COMMENTED_ON",
+            "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:EDGE:OGB_CREATES",
+            "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:EDGE:OGB_FOLLOWS",
+            "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:EDGE:OGB_LIKES",
+            "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:EDGE:OGB_REPLIES",
+            "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:EDGE:OGB_USER_MADE_COMMENT",
+            "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:EDGE:OGB_VIEWS",
+            "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_COMMENTS",
+            "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_POSTS",
+            "oracle-pg:OGB:ORAGRAM_BOOK_GRAPH:VERTEX:OGB_USERS"
+          ],
+          "source": {
+            "provider": "oracle",
+            "owner": "OGB",
+            "graphName": "ORAGRAM_BOOK_GRAPH"
+          }
+        }
+      ]
+    }
+  }
+}

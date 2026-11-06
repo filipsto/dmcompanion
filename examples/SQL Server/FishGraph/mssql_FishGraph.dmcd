@@ -1,0 +1,1964 @@
+{
+  "diagramType": "DMC Visualizer",
+  "connectionName": "FishGraph DB",
+  "connectionType": "mssql",
+  "schema": "DBO",
+  "metadata": {
+    "fontSizes": {
+      "titleFontSizePx": 13,
+      "bodyFontSizePx": 12
+    },
+    "includeIndexes": true,
+    "showOwnerInHeader": false,
+    "connectionOwner": "dbo",
+    "connectionType": "mssql",
+    "connectionName": "FishGraph DB",
+    "diagramScope": {
+      "provider": "mssql",
+      "connectionName": "FishGraph DB",
+      "catalog": "FishGraph"
+    },
+    "schema": "DBO",
+    "version": 2
+  },
+  "workspace": {
+    "activeTabId": "display-1",
+    "tabs": [
+      {
+        "id": "objects-with-fks",
+        "name": "Tables presentation",
+        "layout": {
+          "items": [
+            {
+              "type": "TABLE",
+              "name": "FISHLOVER",
+              "schema": "DBO",
+              "instanceId": "DBO.FishLover#0",
+              "bounds": {
+                "x": 586,
+                "y": 342,
+                "width": 269,
+                "height": 97
+              }
+            },
+            {
+              "type": "TABLE",
+              "name": "FISHPOST",
+              "schema": "DBO",
+              "instanceId": "DBO.FishPost#0",
+              "bounds": {
+                "x": 40,
+                "y": 334.6875,
+                "width": 275,
+                "height": 111
+              }
+            },
+            {
+              "type": "TABLE",
+              "name": "FISHSPECIES",
+              "schema": "DBO",
+              "instanceId": "DBO.FishSpecies#0",
+              "bounds": {
+                "x": 1096,
+                "y": 336,
+                "width": 295,
+                "height": 111
+              }
+            },
+            {
+              "type": "TABLE",
+              "name": "LIKES",
+              "schema": "DBO",
+              "instanceId": "DBO.Likes#0",
+              "bounds": {
+                "x": 641,
+                "y": 680,
+                "width": 135,
+                "height": 111
+              }
+            },
+            {
+              "type": "TABLE",
+              "name": "LINKSTO",
+              "schema": "DBO",
+              "instanceId": "DBO.LinksTo#0",
+              "bounds": {
+                "x": 697,
+                "y": 40,
+                "width": 135,
+                "height": 111
+              }
+            },
+            {
+              "type": "TABLE",
+              "name": "POSTS",
+              "schema": "DBO",
+              "instanceId": "DBO.Posts#0",
+              "bounds": {
+                "x": 133,
+                "y": 104,
+                "width": 225,
+                "height": 118
+              }
+            },
+            {
+              "type": "IFK_REFERENCE",
+              "name": "GRAPH_LIKES_FROM",
+              "graphEndpointPairKey": "GRAPH_Likes|dbo.FishLover|dbo.FishLover",
+              "sourceID": "DBO.LIKES",
+              "targetID": "DBO.FISHLOVER",
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 677.99945,
+                "y": 680
+              },
+              "targetPort": {
+                "x": 678.99868,
+                "y": 439
+              },
+              "vertices": []
+            },
+            {
+              "type": "IFK_REFERENCE",
+              "name": "GRAPH_LIKES_TO",
+              "graphEndpointPairKey": "GRAPH_Likes|dbo.FishLover|dbo.FishLover",
+              "sourceID": "DBO.LIKES",
+              "targetID": "DBO.FISHLOVER",
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 759.9998,
+                "y": 680
+              },
+              "targetPort": {
+                "x": 761.00064,
+                "y": 439
+              },
+              "vertices": []
+            },
+            {
+              "type": "IFK_REFERENCE",
+              "name": "GRAPH_LIKES_TO",
+              "graphEndpointPairKey": "GRAPH_Likes|dbo.FishLover|dbo.FishPost",
+              "sourceID": "DBO.LIKES",
+              "targetID": "DBO.FISHPOST",
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 641,
+                "y": 716.99963
+              },
+              "targetPort": {
+                "x": 241,
+                "y": 445.6875
+              },
+              "vertices": [
+                {
+                  "x": 241,
+                  "y": 717
+                }
+              ]
+            },
+            {
+              "type": "IFK_REFERENCE",
+              "name": "GRAPH_LIKES_TO",
+              "graphEndpointPairKey": "GRAPH_Likes|dbo.FishLover|dbo.FishSpecies",
+              "sourceID": "DBO.LIKES",
+              "targetID": "DBO.FISHSPECIES",
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 776,
+                "y": 711.00008
+              },
+              "targetPort": {
+                "x": 1189,
+                "y": 447
+              },
+              "vertices": [
+                {
+                  "x": 1189,
+                  "y": 711
+                }
+              ]
+            },
+            {
+              "type": "IFK_REFERENCE",
+              "name": "GRAPH_LINKSTO_FROM",
+              "graphEndpointPairKey": "GRAPH_LinksTo|dbo.FishPost|dbo.FishLover",
+              "sourceID": "DBO.LINKSTO",
+              "targetID": "DBO.FISHPOST",
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 697,
+                "y": 64.5999960899353
+              },
+              "targetPort": {
+                "x": 78,
+                "y": 334.6875
+              },
+              "vertices": [
+                {
+                  "x": 78,
+                  "y": 64.6
+                }
+              ]
+            },
+            {
+              "type": "IFK_REFERENCE",
+              "name": "GRAPH_LINKSTO_TO",
+              "graphEndpointPairKey": "GRAPH_LinksTo|dbo.FishPost|dbo.FishLover",
+              "sourceID": "DBO.LINKSTO",
+              "targetID": "DBO.FISHLOVER",
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 768.00055,
+                "y": 151
+              },
+              "targetPort": {
+                "x": 768.00002,
+                "y": 342
+              },
+              "vertices": []
+            },
+            {
+              "type": "IFK_REFERENCE",
+              "name": "GRAPH_LINKSTO_TO",
+              "graphEndpointPairKey": "GRAPH_LinksTo|dbo.FishPost|dbo.FishPost",
+              "sourceID": "DBO.LINKSTO",
+              "targetID": "DBO.FISHPOST",
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 697,
+                "y": 89
+              },
+              "targetPort": {
+                "x": 114,
+                "y": 334.6875
+              },
+              "vertices": [
+                {
+                  "x": 114,
+                  "y": 89
+                }
+              ]
+            },
+            {
+              "type": "IFK_REFERENCE",
+              "name": "GRAPH_LINKSTO_TO",
+              "graphEndpointPairKey": "GRAPH_LinksTo|dbo.FishPost|dbo.FishSpecies",
+              "sourceID": "DBO.LINKSTO",
+              "targetID": "DBO.FISHSPECIES",
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 832,
+                "y": 112
+              },
+              "targetPort": {
+                "x": 1243.5,
+                "y": 336
+              },
+              "vertices": [
+                {
+                  "x": 1243.5,
+                  "y": 112
+                }
+              ]
+            },
+            {
+              "type": "IFK_REFERENCE",
+              "name": "GRAPH_POSTS_FROM",
+              "graphEndpointPairKey": "GRAPH_Posts|dbo.FishLover|dbo.FishPost",
+              "sourceID": "DBO.POSTS",
+              "targetID": "DBO.FISHLOVER",
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 358,
+                "y": 171.59999849046977
+              },
+              "targetPort": {
+                "x": 635.00104,
+                "y": 342
+              },
+              "vertices": [
+                {
+                  "x": 635,
+                  "y": 171.6
+                }
+              ]
+            },
+            {
+              "type": "IFK_REFERENCE",
+              "name": "GRAPH_POSTS_TO",
+              "graphEndpointPairKey": "GRAPH_Posts|dbo.FishLover|dbo.FishPost",
+              "sourceID": "DBO.POSTS",
+              "targetID": "DBO.FISHPOST",
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 200,
+                "y": 222
+              },
+              "targetPort": {
+                "x": 200,
+                "y": 334.6875
+              },
+              "vertices": []
+            }
+          ]
+        },
+        "options": {
+          "showOwnerInHeader": false,
+          "connectionOwner": "dbo",
+          "titleFontSizePx": 13,
+          "bodyFontSizePx": 12,
+          "diagramColorsEnabled": true,
+          "colors": {
+            "table": "#ffffb4",
+            "mview": "#229b12",
+            "view": "#89d185",
+            "dualityView": "#89d185",
+            "graphNode": "#a4e1ff",
+            "entity": "#d7ba7d",
+            "logicalView": "#89d185",
+            "relationshipAttributes": "#ccffcc",
+            "fkLink": "#509bf1",
+            "ifkLink": "#e6ccce"
+          },
+          "linkConnectorMode": "straight",
+          "showColumns": true,
+          "showDataType": true,
+          "showComments": true,
+          "showKeyColumnsOnly": false,
+          "showConstraints": true,
+          "showIndexes": true,
+          "showRelationshipAttributes": true,
+          "showRelationshipEndpointLabels": true,
+          "showGraphImplicitColumns": false
+        }
+      },
+      {
+        "id": "display-1",
+        "name": "Graph Details 1",
+        "graphId": "graph:graph",
+        "layout": {
+          "items": [
+            {
+              "type": "ENTITY",
+              "name": "FISHLOVER",
+              "schema": "DBO",
+              "manualHeightOverride": true,
+              "bounds": {
+                "x": 40,
+                "y": 94.8,
+                "width": 250,
+                "height": 110
+              }
+            },
+            {
+              "type": "ENTITY",
+              "name": "FISHPOST",
+              "schema": "DBO",
+              "manualHeightOverride": true,
+              "bounds": {
+                "x": 628,
+                "y": 90.8,
+                "width": 270,
+                "height": 107
+              }
+            },
+            {
+              "type": "ENTITY",
+              "name": "FISHSPECIES",
+              "schema": "DBO",
+              "bounds": {
+                "x": 709,
+                "y": 360.8,
+                "width": 220,
+                "height": 90
+              }
+            },
+            {
+              "type": "RELATION",
+              "name": "LIKES",
+              "sourceID": "DBO.FISHLOVER",
+              "targetID": "DBO.FISHLOVER",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceLabelBounds": {
+                "x": -46,
+                "y": 17,
+                "distance": 0.2995626826505391,
+                "absoluteX": 67.33333587646484,
+                "absoluteY": 57,
+                "width": 45,
+                "height": 20
+              },
+              "visualStyle": {
+                "stroke": "#DCDBDC",
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 113.33333333333334,
+                "y": 94.8
+              },
+              "targetPort": {
+                "x": 186.66666666666669,
+                "y": 94.8
+              },
+              "vertices": [
+                {
+                  "x": 113.33333333333334,
+                  "y": 66.8
+                },
+                {
+                  "x": 113.33333333333334,
+                  "y": 40
+                },
+                {
+                  "x": 186.66666666666669,
+                  "y": 40
+                },
+                {
+                  "x": 186.66666666666669,
+                  "y": 66.8
+                }
+              ]
+            },
+            {
+              "type": "RELATION",
+              "name": "LIKES",
+              "sourceID": "DBO.FISHLOVER",
+              "targetID": "DBO.FISHPOST",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceLabelBounds": {
+                "x": 4,
+                "y": 9,
+                "distance": 0.031033840751128236,
+                "absoluteX": 304.48944091796875,
+                "absoluteY": 193.60000610351562,
+                "width": 45,
+                "height": 20
+              },
+              "visualStyle": {
+                "stroke": "#DCDBDC",
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 290,
+                "y": 184.5977528089888
+              },
+              "targetPort": {
+                "x": 628,
+                "y": 184.6
+              },
+              "vertices": []
+            },
+            {
+              "type": "RELATION",
+              "name": "LIKES",
+              "sourceID": "DBO.FISHLOVER",
+              "targetID": "DBO.FISHSPECIES",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceLabelBounds": {
+                "x": 7,
+                "y": 0,
+                "distance": 0.10201063908974495,
+                "absoluteX": 216.8699951171875,
+                "absoluteY": 273.26239013671875,
+                "width": 45,
+                "height": 20
+              },
+              "visualStyle": {
+                "stroke": "#DCDBDC",
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 209.87028301443274,
+                "y": 204.8
+              },
+              "targetPort": {
+                "x": 709,
+                "y": 376.8
+              },
+              "vertices": [
+                {
+                  "x": 209.87,
+                  "y": 376.8
+                }
+              ]
+            },
+            {
+              "type": "RELATION",
+              "name": "LINKSTO",
+              "sourceID": "DBO.FISHPOST",
+              "targetID": "DBO.FISHLOVER",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceLabelBounds": {
+                "x": 0,
+                "y": -33,
+                "distance": 0.20966039078958917,
+                "absoluteX": 557.134765625,
+                "absoluteY": 85.4000015258789,
+                "width": 66,
+                "height": 20
+              },
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 628,
+                "y": 118.39999999999999
+              },
+              "targetPort": {
+                "x": 290,
+                "y": 118.4
+              },
+              "vertices": []
+            },
+            {
+              "type": "RELATION",
+              "name": "LINKSTO",
+              "sourceID": "DBO.FISHPOST",
+              "targetID": "DBO.FISHPOST",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceLabelBounds": {
+                "x": -33,
+                "y": -35,
+                "distance": 0.12,
+                "absoluteX": 668.3318481445312,
+                "absoluteY": 40.279998779296875,
+                "width": 66,
+                "height": 20
+              },
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 701.3333333333334,
+                "y": 90.8
+              },
+              "targetPort": {
+                "x": 774.6666666666667,
+                "y": 90.8
+              },
+              "vertices": [
+                {
+                  "x": 701.3333333333334,
+                  "y": 62.8
+                },
+                {
+                  "x": 774.6666666666667,
+                  "y": 62.8
+                }
+              ]
+            },
+            {
+              "type": "RELATION",
+              "name": "LINKSTO",
+              "sourceID": "DBO.FISHPOST",
+              "targetID": "DBO.FISHSPECIES",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceLabelBounds": {
+                "x": 3,
+                "y": 0,
+                "distance": 0.43358768072316956,
+                "absoluteX": 825.5494384765625,
+                "absoluteY": 268.47479248046875,
+                "width": 66,
+                "height": 20
+              },
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 822.9702380952376,
+                "y": 197.8
+              },
+              "targetPort": {
+                "x": 822,
+                "y": 360.8
+              },
+              "vertices": []
+            },
+            {
+              "type": "RELATION",
+              "name": "POSTS",
+              "sourceID": "DBO.FISHLOVER",
+              "targetID": "DBO.FISHPOST",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceLabelBounds": {
+                "x": 0,
+                "y": -17,
+                "distance": 0.029483479030883115,
+                "absoluteX": 299.9654235839844,
+                "absoluteY": 141.8000030517578,
+                "width": 45,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": -22,
+                "y": -31,
+                "distance": 0.3499678708194347,
+                "absoluteX": 386.2891540527344,
+                "absoluteY": 127.80000305175781,
+                "width": 167,
+                "height": 28
+              },
+              "visualStyle": {
+                "stroke": "#DE50F1",
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 290,
+                "y": 158.8
+              },
+              "targetPort": {
+                "x": 628,
+                "y": 158.8
+              },
+              "vertices": []
+            }
+          ]
+        },
+        "options": {
+          "showOwnerInHeader": false,
+          "connectionOwner": "dbo",
+          "titleFontSizePx": 13,
+          "bodyFontSizePx": 12,
+          "diagramColorsEnabled": true,
+          "colors": {
+            "table": "#FFFFB4",
+            "mview": "#229b12",
+            "view": "#89d185",
+            "dualityView": "#89d185",
+            "graphNode": "#A4E1FF",
+            "graphEdge": "#509bf1",
+            "fkLink": "#509bf1",
+            "ifkLink": "#e06c75"
+          },
+          "showColumns": true,
+          "showDataType": true,
+          "showConstraints": false,
+          "showIndexes": false,
+          "showRelationshipAttributes": true,
+          "showRelationshipEndpointLabels": true,
+          "showGraphImplicitColumns": false,
+          "graphPresentation": true
+        }
+      },
+      {
+        "id": "display-2",
+        "name": "Graph Details 2",
+        "graphId": "graph:graph",
+        "layout": {
+          "items": [
+            {
+              "type": "ENTITY",
+              "name": "FISHLOVER",
+              "schema": "DBO",
+              "manualHeightOverride": true,
+              "bounds": {
+                "x": 40,
+                "y": 100,
+                "width": 248,
+                "height": 173
+              }
+            },
+            {
+              "type": "ENTITY",
+              "name": "FISHPOST",
+              "schema": "DBO",
+              "manualHeightOverride": true,
+              "bounds": {
+                "x": 791,
+                "y": 90,
+                "width": 270,
+                "height": 119
+              }
+            },
+            {
+              "type": "ENTITY",
+              "name": "FISHSPECIES",
+              "schema": "DBO",
+              "manualHeightOverride": true,
+              "bounds": {
+                "x": 1234,
+                "y": 107,
+                "width": 274,
+                "height": 156
+              }
+            },
+            {
+              "type": "RELATION",
+              "name": "LIKES",
+              "graphEndpointPairKey": "GRAPH_Likes|dbo.FishLover|dbo.FishLover",
+              "sourceID": "DBO.FISHLOVER",
+              "targetID": "DBO.FISHLOVER",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceLabelBounds": {
+                "x": 0,
+                "y": -22,
+                "distance": 0.34897025171624707,
+                "absoluteX": 152.5,
+                "absoluteY": 50,
+                "width": 45,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": 0,
+                "y": -12,
+                "absoluteX": 175,
+                "absoluteY": 61,
+                "distance": 0.4999999999999999,
+                "width": 45,
+                "height": 20
+              },
+              "visualStyle": {
+                "stroke": "#DCDBDC",
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 129.66666666666669,
+                "y": 100
+              },
+              "targetPort": {
+                "x": 219.33333333333334,
+                "y": 100
+              },
+              "vertices": [
+                {
+                  "x": 129.66666666666669,
+                  "y": 72
+                },
+                {
+                  "x": 219.33333333333334,
+                  "y": 72
+                }
+              ]
+            },
+            {
+              "type": "RELATION",
+              "name": "LIKES",
+              "graphEndpointPairKey": "GRAPH_Likes|dbo.FishLover|dbo.FishPost",
+              "sourceID": "DBO.FISHLOVER",
+              "targetID": "DBO.FISHPOST",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceLabelBounds": {
+                "x": -8,
+                "y": 1,
+                "distance": 0.046622264509990484,
+                "absoluteX": 303.45098876953125,
+                "absoluteY": 201,
+                "width": 45,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": 0,
+                "y": 13,
+                "absoluteX": 334,
+                "absoluteY": 168,
+                "distance": 0.046622264509990484,
+                "width": 45,
+                "height": 20
+              },
+              "visualStyle": {
+                "stroke": "#DCDBDC",
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 288,
+                "y": 200.00076976744188
+              },
+              "targetPort": {
+                "x": 791,
+                "y": 199.9996
+              },
+              "vertices": []
+            },
+            {
+              "type": "RELATION",
+              "name": "LIKES",
+              "graphEndpointPairKey": "GRAPH_Likes|dbo.FishLover|dbo.FishSpecies",
+              "sourceID": "DBO.FISHLOVER",
+              "targetID": "DBO.FISHSPECIES",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceLabelBounds": {
+                "x": 63,
+                "y": 2,
+                "distance": 0.00886599582200298,
+                "absoluteX": 359.3872375488281,
+                "absoluteY": 237.4600067138672,
+                "width": 45,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": 0,
+                "y": 13,
+                "absoluteX": 334,
+                "absoluteY": 186,
+                "distance": 0.025179856115107913,
+                "width": 45,
+                "height": 20
+              },
+              "visualStyle": {
+                "stroke": "#DCDBDC",
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 288,
+                "y": 235.4632427908507
+              },
+              "targetPort": {
+                "x": 1234,
+                "y": 235.46
+              },
+              "vertices": []
+            },
+            {
+              "type": "RELATION",
+              "name": "LINKSTO",
+              "graphEndpointPairKey": "GRAPH_LinksTo|dbo.FishPost|dbo.FishLover",
+              "sourceID": "DBO.FISHPOST",
+              "targetID": "DBO.FISHLOVER",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceLabelBounds": {
+                "x": -42,
+                "y": -29,
+                "distance": 0.07194244604316546,
+                "absoluteX": 712.8129272460938,
+                "absoluteY": 83.5,
+                "width": 66,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": 0,
+                "y": 13,
+                "absoluteX": 756,
+                "absoluteY": 128,
+                "distance": 0.07194244604316546,
+                "width": 66,
+                "height": 20
+              },
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 791,
+                "y": 112.5
+              },
+              "targetPort": {
+                "x": 288,
+                "y": 112.5
+              },
+              "vertices": []
+            },
+            {
+              "type": "RELATION",
+              "name": "LINKSTO",
+              "graphEndpointPairKey": "GRAPH_LinksTo|dbo.FishPost|dbo.FishPost",
+              "sourceID": "DBO.FISHPOST",
+              "targetID": "DBO.FISHPOST",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceLabelBounds": {
+                "x": 0,
+                "y": -22,
+                "distance": 0.2832957110609482,
+                "absoluteX": 896.5,
+                "absoluteY": 40,
+                "width": 66,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": 0,
+                "y": -12,
+                "absoluteX": 929,
+                "absoluteY": 52,
+                "distance": 0.5,
+                "width": 66,
+                "height": 20
+              },
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 882.6666666666666,
+                "y": 90
+              },
+              "targetPort": {
+                "x": 974.3333333333334,
+                "y": 90
+              },
+              "vertices": [
+                {
+                  "x": 882.6666666666666,
+                  "y": 62
+                },
+                {
+                  "x": 974.3333333333334,
+                  "y": 62
+                }
+              ]
+            },
+            {
+              "type": "RELATION",
+              "name": "LINKSTO",
+              "graphEndpointPairKey": "GRAPH_LinksTo|dbo.FishPost|dbo.FishSpecies",
+              "sourceID": "DBO.FISHPOST",
+              "targetID": "DBO.FISHSPECIES",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceLabelBounds": {
+                "x": -32,
+                "y": 7,
+                "distance": 0.20833333333333334,
+                "absoluteX": 1065.0416259765625,
+                "absoluteY": 142.19500732421875,
+                "width": 66,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": 0,
+                "y": 13,
+                "absoluteX": 1101,
+                "absoluteY": 150,
+                "distance": 0.20833333333333334,
+                "width": 66,
+                "height": 20
+              },
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 1061,
+                "y": 134.7236842105262
+              },
+              "targetPort": {
+                "x": 1234,
+                "y": 137
+              },
+              "vertices": []
+            },
+            {
+              "type": "RELATION",
+              "name": "POSTS",
+              "graphEndpointPairKey": "GRAPH_Posts|dbo.FishLover|dbo.FishPost",
+              "sourceID": "DBO.FISHLOVER",
+              "targetID": "DBO.FISHPOST",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceLabelBounds": {
+                "x": -9,
+                "y": 3,
+                "distance": 0.0508298755186722,
+                "absoluteX": 304.5674133300781,
+                "absoluteY": 161.4600067138672,
+                "width": 45,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": -40,
+                "y": -2,
+                "distance": 0.36410788381742737,
+                "absoluteX": 431.1462707519531,
+                "absoluteY": 156.4600067138672,
+                "width": 167,
+                "height": 28
+              },
+              "visualStyle": {
+                "stroke": "#DE50F1",
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 288,
+                "y": 158.46320453259378
+              },
+              "targetPort": {
+                "x": 791,
+                "y": 158.46
+              },
+              "vertices": []
+            }
+          ]
+        },
+        "options": {
+          "showOwnerInHeader": false,
+          "connectionOwner": "dbo",
+          "titleFontSizePx": 13,
+          "bodyFontSizePx": 12,
+          "diagramColorsEnabled": true,
+          "colors": {
+            "table": "#ffffb4",
+            "mview": "#229b12",
+            "view": "#89d185",
+            "dualityView": "#89d185",
+            "graphNode": "#a4e1ff",
+            "graphEdge": "#509bf1",
+            "entity": "#d7ba7d",
+            "logicalView": "#89d185",
+            "relationshipAttributes": "#ccffcc",
+            "fkLink": "#509bf1",
+            "ifkLink": "#e6ccce"
+          },
+          "linkConnectorMode": "straight",
+          "showColumns": true,
+          "showDataType": true,
+          "showComments": true,
+          "showKeyColumnsOnly": false,
+          "showConstraints": false,
+          "showIndexes": false,
+          "showRelationshipAttributes": true,
+          "showRelationshipEndpointLabels": true,
+          "showGraphImplicitColumns": false,
+          "graphPresentation": true
+        }
+      },
+      {
+        "id": "display-3",
+        "name": "Graph Compact",
+        "graphId": "graph:graph",
+        "layout": {
+          "items": [
+            {
+              "type": "ENTITY",
+              "name": "FISHLOVER",
+              "schema": "DBO",
+              "bounds": {
+                "x": 40,
+                "y": 94.5,
+                "width": 264,
+                "height": 90
+              }
+            },
+            {
+              "type": "ENTITY",
+              "name": "FISHPOST",
+              "schema": "DBO",
+              "bounds": {
+                "x": 524,
+                "y": 90,
+                "width": 306,
+                "height": 90
+              }
+            },
+            {
+              "type": "ENTITY",
+              "name": "FISHSPECIES",
+              "schema": "DBO",
+              "bounds": {
+                "x": 543,
+                "y": 275,
+                "width": 295,
+                "height": 90
+              }
+            },
+            {
+              "type": "RELATION",
+              "name": "LIKES",
+              "graphEndpointPairKey": "GRAPH_Likes|dbo.FishLover|dbo.FishLover",
+              "sourceID": "DBO.FISHLOVER",
+              "targetID": "DBO.FISHLOVER",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceLabelBounds": {
+                "x": -22,
+                "y": -21,
+                "distance": 0.4999999999999999,
+                "absoluteX": 152.5,
+                "absoluteY": 45.5,
+                "width": 45,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": 0,
+                "y": -12,
+                "absoluteX": 175,
+                "absoluteY": 55,
+                "distance": 0.4999999999999999,
+                "width": 45,
+                "height": 20
+              },
+              "visualStyle": {
+                "stroke": "#BDBFC2",
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 129.66666666666669,
+                "y": 94.5
+              },
+              "targetPort": {
+                "x": 219.33333333333334,
+                "y": 94.5
+              },
+              "vertices": [
+                {
+                  "x": 129.66666666666669,
+                  "y": 66.5
+                },
+                {
+                  "x": 219.33333333333334,
+                  "y": 66.5
+                }
+              ]
+            },
+            {
+              "type": "RELATION",
+              "name": "LIKES",
+              "graphEndpointPairKey": "GRAPH_Likes|dbo.FishLover|dbo.FishPost",
+              "sourceID": "DBO.FISHLOVER",
+              "targetID": "DBO.FISHPOST",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceLabelBounds": {
+                "x": 2,
+                "y": 7,
+                "distance": 0.13179653075718925,
+                "absoluteX": 334.9952392578125,
+                "absoluteY": 187,
+                "width": 45,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": 0,
+                "y": 13,
+                "absoluteX": 334,
+                "absoluteY": 162,
+                "distance": 0.109375,
+                "width": 45,
+                "height": 20
+              },
+              "visualStyle": {
+                "stroke": "#BDBFC2",
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 304,
+                "y": 180
+              },
+              "targetPort": {
+                "x": 524,
+                "y": 180
+              },
+              "vertices": []
+            },
+            {
+              "type": "RELATION",
+              "name": "LIKES",
+              "graphEndpointPairKey": "GRAPH_Likes|dbo.FishLover|dbo.FishSpecies",
+              "sourceID": "DBO.FISHLOVER",
+              "targetID": "DBO.FISHSPECIES",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceLabelBounds": {
+                "x": 0,
+                "y": -31,
+                "distance": 0.41324921135646686,
+                "absoluteX": 264,
+                "absoluteY": 304,
+                "width": 45,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": 0,
+                "y": 13,
+                "absoluteX": 334,
+                "absoluteY": 180,
+                "distance": 0.03467799009200283,
+                "width": 45,
+                "height": 20
+              },
+              "visualStyle": {
+                "stroke": "#BDBFC2",
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 218,
+                "y": 184.5
+              },
+              "targetPort": {
+                "x": 543,
+                "y": 335
+              },
+              "vertices": [
+                {
+                  "x": 218,
+                  "y": 335
+                }
+              ]
+            },
+            {
+              "type": "RELATION",
+              "name": "LINKSTO",
+              "graphEndpointPairKey": "GRAPH_LinksTo|dbo.FishPost|dbo.FishLover",
+              "sourceID": "DBO.FISHPOST",
+              "targetID": "DBO.FISHLOVER",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceLabelBounds": {
+                "x": 2,
+                "y": -23,
+                "distance": 0.34460893110795454,
+                "absoluteX": 450.18603515625,
+                "absoluteY": 89.5,
+                "width": 66,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": 0,
+                "y": 13,
+                "absoluteX": 489,
+                "absoluteY": 126,
+                "distance": 0.16279069767441862,
+                "width": 66,
+                "height": 20
+              },
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 524,
+                "y": 112.5
+              },
+              "targetPort": {
+                "x": 304,
+                "y": 112.5
+              },
+              "vertices": []
+            },
+            {
+              "type": "RELATION",
+              "name": "LINKSTO",
+              "graphEndpointPairKey": "GRAPH_LinksTo|dbo.FishPost|dbo.FishPost",
+              "sourceID": "DBO.FISHPOST",
+              "targetID": "DBO.FISHPOST",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceLabelBounds": {
+                "x": -32,
+                "y": -22,
+                "distance": 0.5,
+                "absoluteX": 629.5,
+                "absoluteY": 40,
+                "width": 66,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": 0,
+                "y": -12,
+                "absoluteX": 662,
+                "absoluteY": 50,
+                "distance": 0.5,
+                "width": 66,
+                "height": 20
+              },
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 615.6666666666666,
+                "y": 90
+              },
+              "targetPort": {
+                "x": 707.3333333333334,
+                "y": 90
+              },
+              "vertices": [
+                {
+                  "x": 615.6666666666666,
+                  "y": 62
+                },
+                {
+                  "x": 707.3333333333334,
+                  "y": 62
+                }
+              ]
+            },
+            {
+              "type": "RELATION",
+              "name": "LINKSTO",
+              "graphEndpointPairKey": "GRAPH_LinksTo|dbo.FishPost|dbo.FishSpecies",
+              "sourceID": "DBO.FISHPOST",
+              "targetID": "DBO.FISHSPECIES",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceLabelBounds": {
+                "x": 2,
+                "y": 0,
+                "distance": 0.13464909603721217,
+                "absoluteX": 720,
+                "absoluteY": 192.79165649414062,
+                "width": 66,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": 0,
+                "y": 13,
+                "absoluteX": 834,
+                "absoluteY": 148,
+                "distance": 0.20833333333333334,
+                "width": 66,
+                "height": 20
+              },
+              "visualStyle": {
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 718,
+                "y": 180
+              },
+              "targetPort": {
+                "x": 718,
+                "y": 275
+              },
+              "vertices": []
+            },
+            {
+              "type": "RELATION",
+              "name": "POSTS",
+              "graphEndpointPairKey": "GRAPH_Posts|dbo.FishLover|dbo.FishPost",
+              "sourceID": "DBO.FISHLOVER",
+              "targetID": "DBO.FISHPOST",
+              "relationshipKind": "GRAPH_EDGE",
+              "sourceLabelBounds": {
+                "x": -18,
+                "y": -1,
+                "distance": 0.11161731207289294,
+                "absoluteX": 310.5558166503906,
+                "absoluteY": 134,
+                "width": 45,
+                "height": 20
+              },
+              "relationshipAttributeLabelBounds": {
+                "x": 0,
+                "y": 13,
+                "absoluteX": 334,
+                "absoluteY": 144,
+                "distance": 0.11161731207289294,
+                "width": 45,
+                "height": 20
+              },
+              "visualStyle": {
+                "stroke": "#DE50F1",
+                "strokeDasharray": "8 4"
+              },
+              "style": "dash",
+              "connector": "straight",
+              "sourcePort": {
+                "x": 304,
+                "y": 135
+              },
+              "targetPort": {
+                "x": 524,
+                "y": 135
+              },
+              "vertices": []
+            }
+          ]
+        },
+        "options": {
+          "showOwnerInHeader": false,
+          "connectionOwner": "dbo",
+          "titleFontSizePx": 13,
+          "bodyFontSizePx": 12,
+          "diagramColorsEnabled": true,
+          "colors": {
+            "table": "#ffffb4",
+            "mview": "#229b12",
+            "view": "#89d185",
+            "dualityView": "#89d185",
+            "graphNode": "#a4e1ff",
+            "graphEdge": "#509bf1",
+            "entity": "#d7ba7d",
+            "logicalView": "#89d185",
+            "relationshipAttributes": "#ccffcc",
+            "fkLink": "#509bf1",
+            "ifkLink": "#e6ccce"
+          },
+          "linkConnectorMode": "straight",
+          "showColumns": false,
+          "showDataType": false,
+          "showComments": true,
+          "showKeyColumnsOnly": false,
+          "showConstraints": false,
+          "showIndexes": false,
+          "showRelationshipAttributes": false,
+          "showRelationshipEndpointLabels": true,
+          "showGraphImplicitColumns": false,
+          "graphPresentation": true
+        }
+      }
+    ],
+    "sharedModel": {
+      "schema": "DBO",
+      "diagramScope": {
+        "provider": "mssql",
+        "connectionName": "FishGraph DB",
+        "catalog": "FishGraph"
+      },
+      "tables": [
+        {
+          "schema": "DBO",
+          "name": "DBO.FishLover",
+          "objectType": "GRAPH_NODE",
+          "columns": [
+            {
+              "name": "graph_id_40A77C375B664850A534496BA7119ACF",
+              "type": "bigint",
+              "mandatory": true,
+              "graphType": 1,
+              "graphTypeDesc": "GRAPH_ID",
+              "isGraphImplicit": true
+            },
+            {
+              "name": "$node_id_D021036D788A42B880A2A6D246F4B5FC",
+              "type": "nvarchar(1000)",
+              "mandatory": true,
+              "graphType": 2,
+              "graphTypeDesc": "GRAPH_ID_COMPUTED",
+              "isGraphImplicit": true
+            },
+            {
+              "name": "FishLoverID",
+              "type": "int",
+              "mandatory": true,
+              "isPrimaryKey": true
+            },
+            {
+              "name": "Username",
+              "type": "nvarchar(50)",
+              "mandatory": true
+            }
+          ],
+          "uniqueConstraints": [],
+          "primaryKey": {
+            "name": "PK__FishLove__3EDBFCA72694EE17",
+            "columns": [
+              "FishLoverID"
+            ]
+          },
+          "indexes": [
+            {
+              "name": "GRAPH_UNIQUE_INDEX_32AF6CD7DF4B4054A664EC7D372B457B",
+              "type": "UNIQUE NONCLUSTERED",
+              "columns": [
+                "graph_id_40A77C375B664850A534496BA7119ACF"
+              ]
+            }
+          ],
+          "logicalName": "FishLover",
+          "logicalSchema": "DBO",
+          "logicalQualifiedName": "DBO.FishLover",
+          "displayName": "DBO.FishLover"
+        },
+        {
+          "schema": "DBO",
+          "name": "DBO.FishPost",
+          "objectType": "GRAPH_NODE",
+          "columns": [
+            {
+              "name": "graph_id_050492C6CD5A427B80555E0B2D7D6616",
+              "type": "bigint",
+              "mandatory": true,
+              "graphType": 1,
+              "graphTypeDesc": "GRAPH_ID",
+              "isGraphImplicit": true
+            },
+            {
+              "name": "$node_id_A6B3726B121646909276CC6716EC7FE1",
+              "type": "nvarchar(1000)",
+              "mandatory": true,
+              "graphType": 2,
+              "graphTypeDesc": "GRAPH_ID_COMPUTED",
+              "isGraphImplicit": true
+            },
+            {
+              "name": "PostID",
+              "type": "int",
+              "mandatory": true,
+              "isPrimaryKey": true
+            },
+            {
+              "name": "Title",
+              "type": "nvarchar(50)",
+              "mandatory": true
+            },
+            {
+              "name": "MessageText",
+              "type": "nvarchar(800)",
+              "mandatory": true
+            }
+          ],
+          "uniqueConstraints": [],
+          "primaryKey": {
+            "name": "PK__FishPost__AA126038AB0A6F6A",
+            "columns": [
+              "PostID"
+            ]
+          },
+          "indexes": [
+            {
+              "name": "GRAPH_UNIQUE_INDEX_FD5558E6F760475CA89276A5209B2EF4",
+              "type": "UNIQUE NONCLUSTERED",
+              "columns": [
+                "graph_id_050492C6CD5A427B80555E0B2D7D6616"
+              ]
+            }
+          ],
+          "logicalName": "FishPost",
+          "logicalSchema": "DBO",
+          "logicalQualifiedName": "DBO.FishPost",
+          "displayName": "DBO.FishPost"
+        },
+        {
+          "schema": "DBO",
+          "name": "DBO.FishSpecies",
+          "objectType": "GRAPH_NODE",
+          "columns": [
+            {
+              "name": "graph_id_F0CA90FD3C58409CBA402904FD3789B2",
+              "type": "bigint",
+              "mandatory": true,
+              "graphType": 1,
+              "graphTypeDesc": "GRAPH_ID",
+              "isGraphImplicit": true
+            },
+            {
+              "name": "$node_id_87492CED09434DCDA0E18A05059DDAB1",
+              "type": "nvarchar(1000)",
+              "mandatory": true,
+              "graphType": 2,
+              "graphTypeDesc": "GRAPH_ID_COMPUTED",
+              "isGraphImplicit": true
+            },
+            {
+              "name": "FishID",
+              "type": "int",
+              "mandatory": true,
+              "isPrimaryKey": true
+            },
+            {
+              "name": "CommonName",
+              "type": "nvarchar(100)",
+              "mandatory": true
+            },
+            {
+              "name": "ScientificName",
+              "type": "nvarchar(100)",
+              "mandatory": true
+            }
+          ],
+          "uniqueConstraints": [],
+          "primaryKey": {
+            "name": "PK__FishSpec__F82A5BF995577719",
+            "columns": [
+              "FishID"
+            ]
+          },
+          "indexes": [
+            {
+              "name": "GRAPH_UNIQUE_INDEX_FC8A51998C6044EC844A8E8CB819184B",
+              "type": "UNIQUE NONCLUSTERED",
+              "columns": [
+                "graph_id_F0CA90FD3C58409CBA402904FD3789B2"
+              ]
+            }
+          ],
+          "logicalName": "FishSpecies",
+          "logicalSchema": "DBO",
+          "logicalQualifiedName": "DBO.FishSpecies",
+          "displayName": "DBO.FishSpecies"
+        },
+        {
+          "schema": "DBO",
+          "name": "DBO.Likes",
+          "objectType": "GRAPH_EDGE",
+          "columns": [
+            {
+              "name": "graph_id_D8084FBB404D47D780C9DDBAD8E7B56F",
+              "type": "bigint",
+              "mandatory": true,
+              "graphType": 1,
+              "graphTypeDesc": "GRAPH_ID",
+              "isGraphImplicit": true
+            },
+            {
+              "name": "$edge_id_5F28EC52CB6A4EC3A4DE3518C18AB4A0",
+              "type": "nvarchar(1000)",
+              "mandatory": true,
+              "graphType": 2,
+              "graphTypeDesc": "GRAPH_ID_COMPUTED",
+              "isGraphImplicit": true
+            },
+            {
+              "name": "from_obj_id_ABB05FB388094B3D9E8476B26A4E13CF",
+              "type": "int",
+              "mandatory": true,
+              "graphType": 4,
+              "graphTypeDesc": "GRAPH_FROM_OBJ_ID",
+              "isGraphImplicit": true
+            },
+            {
+              "name": "from_id_3186E83F77AE4E4295EB753F1C95BE99",
+              "type": "bigint",
+              "mandatory": true,
+              "graphType": 3,
+              "graphTypeDesc": "GRAPH_FROM_ID",
+              "isGraphImplicit": true
+            },
+            {
+              "name": "$from_id_EC82786BADD848CFBBE77D8276E0B6A0",
+              "type": "nvarchar(1000)",
+              "graphType": 5,
+              "graphTypeDesc": "GRAPH_FROM_ID_COMPUTED",
+              "isGraphImplicit": true
+            },
+            {
+              "name": "to_obj_id_6340FA2A1F47428EB14C070090BC37A5",
+              "type": "int",
+              "mandatory": true,
+              "graphType": 7,
+              "graphTypeDesc": "GRAPH_TO_OBJ_ID",
+              "isGraphImplicit": true
+            },
+            {
+              "name": "to_id_2AAA1817855E4321A1B7C87B87F3350B",
+              "type": "bigint",
+              "mandatory": true,
+              "graphType": 6,
+              "graphTypeDesc": "GRAPH_TO_ID",
+              "isGraphImplicit": true
+            },
+            {
+              "name": "$to_id_E94D429E1E0D4197A1C7876F78202F79",
+              "type": "nvarchar(1000)",
+              "graphType": 8,
+              "graphTypeDesc": "GRAPH_TO_ID_COMPUTED",
+              "isGraphImplicit": true
+            }
+          ],
+          "uniqueConstraints": [],
+          "indexes": [
+            {
+              "name": "GRAPH_UNIQUE_INDEX_D8291C16953F4DA79084F3DF782B070D",
+              "type": "UNIQUE NONCLUSTERED",
+              "columns": [
+                "graph_id_D8084FBB404D47D780C9DDBAD8E7B56F"
+              ]
+            }
+          ],
+          "graphEndpoints": [
+            {
+              "fromTable": "dbo.FishLover",
+              "toTable": "dbo.FishLover",
+              "constraintName": "GRAPH_Likes",
+              "pairKey": "GRAPH_Likes|dbo.FishLover|dbo.FishLover",
+              "deleteRule": "noAction"
+            },
+            {
+              "fromTable": "dbo.FishLover",
+              "toTable": "dbo.FishPost",
+              "constraintName": "GRAPH_Likes",
+              "pairKey": "GRAPH_Likes|dbo.FishLover|dbo.FishPost",
+              "deleteRule": "noAction"
+            },
+            {
+              "fromTable": "dbo.FishLover",
+              "toTable": "dbo.FishSpecies",
+              "constraintName": "GRAPH_Likes",
+              "pairKey": "GRAPH_Likes|dbo.FishLover|dbo.FishSpecies",
+              "deleteRule": "noAction"
+            }
+          ],
+          "logicalName": "Likes",
+          "logicalSchema": "DBO",
+          "logicalQualifiedName": "DBO.Likes",
+          "displayName": "DBO.Likes"
+        },
+        {
+          "schema": "DBO",
+          "name": "DBO.LinksTo",
+          "objectType": "GRAPH_EDGE",
+          "columns": [
+            {
+              "name": "graph_id_CA4DFC00397442559E4BD731087A564E",
+              "type": "bigint",
+              "mandatory": true,
+              "graphType": 1,
+              "graphTypeDesc": "GRAPH_ID",
+              "isGraphImplicit": true
+            },
+            {
+              "name": "$edge_id_B073C587170844C19FA163BB3AB56C85",
+              "type": "nvarchar(1000)",
+              "mandatory": true,
+              "graphType": 2,
+              "graphTypeDesc": "GRAPH_ID_COMPUTED",
+              "isGraphImplicit": true
+            },
+            {
+              "name": "from_obj_id_D0F7AF4605DA4DB3B17DD677F647C51A",
+              "type": "int",
+              "mandatory": true,
+              "graphType": 4,
+              "graphTypeDesc": "GRAPH_FROM_OBJ_ID",
+              "isGraphImplicit": true
+            },
+            {
+              "name": "from_id_CFA2C767062E48518FC68788DE3A90D6",
+              "type": "bigint",
+              "mandatory": true,
+              "graphType": 3,
+              "graphTypeDesc": "GRAPH_FROM_ID",
+              "isGraphImplicit": true
+            },
+            {
+              "name": "$from_id_7B4F8686884846A389494612772666BA",
+              "type": "nvarchar(1000)",
+              "graphType": 5,
+              "graphTypeDesc": "GRAPH_FROM_ID_COMPUTED",
+              "isGraphImplicit": true
+            },
+            {
+              "name": "to_obj_id_0120E2B6BCA548699160E4A33C074BB7",
+              "type": "int",
+              "mandatory": true,
+              "graphType": 7,
+              "graphTypeDesc": "GRAPH_TO_OBJ_ID",
+              "isGraphImplicit": true
+            },
+            {
+              "name": "to_id_F6DFC4F9C69B4A3FB341C420F45C428A",
+              "type": "bigint",
+              "mandatory": true,
+              "graphType": 6,
+              "graphTypeDesc": "GRAPH_TO_ID",
+              "isGraphImplicit": true
+            },
+            {
+              "name": "$to_id_8681BC843CBD4003B475580D5FD9DEE6",
+              "type": "nvarchar(1000)",
+              "graphType": 8,
+              "graphTypeDesc": "GRAPH_TO_ID_COMPUTED",
+              "isGraphImplicit": true
+            }
+          ],
+          "uniqueConstraints": [],
+          "indexes": [
+            {
+              "name": "GRAPH_UNIQUE_INDEX_7A6B7AA49BFF4196BE98B260CFF2374F",
+              "type": "UNIQUE NONCLUSTERED",
+              "columns": [
+                "graph_id_CA4DFC00397442559E4BD731087A564E"
+              ]
+            }
+          ],
+          "graphEndpoints": [
+            {
+              "fromTable": "dbo.FishPost",
+              "toTable": "dbo.FishLover",
+              "constraintName": "GRAPH_LinksTo",
+              "pairKey": "GRAPH_LinksTo|dbo.FishPost|dbo.FishLover",
+              "deleteRule": "noAction"
+            },
+            {
+              "fromTable": "dbo.FishPost",
+              "toTable": "dbo.FishPost",
+              "constraintName": "GRAPH_LinksTo",
+              "pairKey": "GRAPH_LinksTo|dbo.FishPost|dbo.FishPost",
+              "deleteRule": "noAction"
+            },
+            {
+              "fromTable": "dbo.FishPost",
+              "toTable": "dbo.FishSpecies",
+              "constraintName": "GRAPH_LinksTo",
+              "pairKey": "GRAPH_LinksTo|dbo.FishPost|dbo.FishSpecies",
+              "deleteRule": "noAction"
+            }
+          ],
+          "logicalName": "LinksTo",
+          "logicalSchema": "DBO",
+          "logicalQualifiedName": "DBO.LinksTo",
+          "displayName": "DBO.LinksTo"
+        },
+        {
+          "schema": "DBO",
+          "name": "DBO.Posts",
+          "objectType": "GRAPH_EDGE",
+          "columns": [
+            {
+              "name": "graph_id_76B53055757D470985C162057BFE836B",
+              "type": "bigint",
+              "mandatory": true,
+              "graphType": 1,
+              "graphTypeDesc": "GRAPH_ID",
+              "isGraphImplicit": true
+            },
+            {
+              "name": "$edge_id_DBF47BF1143540C584206CE18294662B",
+              "type": "nvarchar(1000)",
+              "mandatory": true,
+              "graphType": 2,
+              "graphTypeDesc": "GRAPH_ID_COMPUTED",
+              "isGraphImplicit": true
+            },
+            {
+              "name": "from_obj_id_39AAF7A3DDBC440A8D1DD4396AB9488C",
+              "type": "int",
+              "mandatory": true,
+              "graphType": 4,
+              "graphTypeDesc": "GRAPH_FROM_OBJ_ID",
+              "isGraphImplicit": true
+            },
+            {
+              "name": "from_id_92C2FA8F83EA4B84ABA618B48E0D50F6",
+              "type": "bigint",
+              "mandatory": true,
+              "graphType": 3,
+              "graphTypeDesc": "GRAPH_FROM_ID",
+              "isGraphImplicit": true
+            },
+            {
+              "name": "$from_id_A6C5DB96F9824D39BCE2AD25D43A8E72",
+              "type": "nvarchar(1000)",
+              "graphType": 5,
+              "graphTypeDesc": "GRAPH_FROM_ID_COMPUTED",
+              "isGraphImplicit": true
+            },
+            {
+              "name": "to_obj_id_B7EB8C48829E40C5AC082E04F049DFD5",
+              "type": "int",
+              "mandatory": true,
+              "graphType": 7,
+              "graphTypeDesc": "GRAPH_TO_OBJ_ID",
+              "isGraphImplicit": true
+            },
+            {
+              "name": "to_id_D8112F308A294B3A80C9508255D8E848",
+              "type": "bigint",
+              "mandatory": true,
+              "graphType": 6,
+              "graphTypeDesc": "GRAPH_TO_ID",
+              "isGraphImplicit": true
+            },
+            {
+              "name": "$to_id_8C5825910B304046A8B9C98C9A3D1605",
+              "type": "nvarchar(1000)",
+              "graphType": 8,
+              "graphTypeDesc": "GRAPH_TO_ID_COMPUTED",
+              "isGraphImplicit": true
+            },
+            {
+              "name": "ImportantFlag",
+              "type": "bit",
+              "mandatory": true
+            }
+          ],
+          "uniqueConstraints": [],
+          "indexes": [
+            {
+              "name": "GRAPH_UNIQUE_INDEX_CF745390121944B3A8ECE8F6A8F84FAD",
+              "type": "UNIQUE NONCLUSTERED",
+              "columns": [
+                "graph_id_76B53055757D470985C162057BFE836B"
+              ]
+            }
+          ],
+          "graphEndpoints": [
+            {
+              "fromTable": "dbo.FishLover",
+              "toTable": "dbo.FishPost",
+              "constraintName": "GRAPH_Posts",
+              "pairKey": "GRAPH_Posts|dbo.FishLover|dbo.FishPost",
+              "deleteRule": "noAction"
+            }
+          ],
+          "logicalName": "Posts",
+          "logicalSchema": "DBO",
+          "logicalQualifiedName": "DBO.Posts",
+          "displayName": "DBO.Posts"
+        }
+      ],
+      "graphs": [
+        {
+          "graphId": "graph:graph",
+          "name": "Graph",
+          "tableRefs": [
+            "DBO.FISHLOVER",
+            "DBO.FISHPOST",
+            "DBO.FISHSPECIES",
+            "DBO.LIKES",
+            "DBO.LINKSTO",
+            "DBO.POSTS"
+          ]
+        }
+      ]
+    }
+  }
+}

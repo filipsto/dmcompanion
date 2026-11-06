@@ -1,0 +1,7920 @@
+USE AdventureWorks
+;
+
+-- dbo.AWBuildVersion (Table)
+CREATE TABLE dbo.AWBuildVersion
+    (
+     SystemInformationID tinyint IDENTITY(1,1) NOT NULL ,
+     [Database Version]  nvarchar(25) NOT NULL ,
+     VersionDate         datetime NOT NULL ,
+     ModifiedDate        datetime NOT NULL CONSTRAINT DF_AWBuildVersion_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_AWBuildVersion_SystemInformationID PRIMARY KEY CLUSTERED (SystemInformationID)
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Current version number of the AdventureWorks 2025 sample database. ',
+    @level0type = N'SCHEMA', @level0name = N'dbo',
+    @level1type = N'TABLE', @level1name = N'AWBuildVersion'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key for AWBuildVersion records.',
+    @level0type = N'SCHEMA', @level0name = N'dbo',
+    @level1type = N'TABLE', @level1name = N'AWBuildVersion',
+    @level2type = N'COLUMN', @level2name = N'SystemInformationID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Version number of the database in 9.yy.mm.dd.00 format.',
+    @level0type = N'SCHEMA', @level0name = N'dbo',
+    @level1type = N'TABLE', @level1name = N'AWBuildVersion',
+    @level2type = N'COLUMN', @level2name = N'Database Version'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'dbo',
+    @level1type = N'TABLE', @level1name = N'AWBuildVersion',
+    @level2type = N'COLUMN', @level2name = N'VersionDate'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'dbo',
+    @level1type = N'TABLE', @level1name = N'AWBuildVersion',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- dbo.DatabaseLog (Table)
+CREATE TABLE dbo.DatabaseLog
+    (
+     DatabaseLogID int IDENTITY(1,1) NOT NULL ,
+     PostTime      datetime NOT NULL ,
+     DatabaseUser  sysname NOT NULL ,
+     Event         sysname NOT NULL ,
+     [Schema]      sysname ,
+     Object        sysname ,
+     TSQL          nvarchar(max) NOT NULL ,
+     XmlEvent      xml NOT NULL ,
+     CONSTRAINT PK_DatabaseLog_DatabaseLogID PRIMARY KEY NONCLUSTERED (DatabaseLogID)
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Audit table tracking all DDL changes made to the AdventureWorks database. Data is captured by the database trigger ddlDatabaseTriggerLog.',
+    @level0type = N'SCHEMA', @level0name = N'dbo',
+    @level1type = N'TABLE', @level1name = N'DatabaseLog'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key for DatabaseLog records.',
+    @level0type = N'SCHEMA', @level0name = N'dbo',
+    @level1type = N'TABLE', @level1name = N'DatabaseLog',
+    @level2type = N'COLUMN', @level2name = N'DatabaseLogID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'The date and time the DDL change occurred.',
+    @level0type = N'SCHEMA', @level0name = N'dbo',
+    @level1type = N'TABLE', @level1name = N'DatabaseLog',
+    @level2type = N'COLUMN', @level2name = N'PostTime'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'The user who implemented the DDL change.',
+    @level0type = N'SCHEMA', @level0name = N'dbo',
+    @level1type = N'TABLE', @level1name = N'DatabaseLog',
+    @level2type = N'COLUMN', @level2name = N'DatabaseUser'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'The type of DDL statement that was executed.',
+    @level0type = N'SCHEMA', @level0name = N'dbo',
+    @level1type = N'TABLE', @level1name = N'DatabaseLog',
+    @level2type = N'COLUMN', @level2name = N'Event'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'The schema to which the changed object belongs.',
+    @level0type = N'SCHEMA', @level0name = N'dbo',
+    @level1type = N'TABLE', @level1name = N'DatabaseLog',
+    @level2type = N'COLUMN', @level2name = N'Schema'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'The object that was changed by the DDL statment.',
+    @level0type = N'SCHEMA', @level0name = N'dbo',
+    @level1type = N'TABLE', @level1name = N'DatabaseLog',
+    @level2type = N'COLUMN', @level2name = N'Object'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'The exact Transact-SQL statement that was executed.',
+    @level0type = N'SCHEMA', @level0name = N'dbo',
+    @level1type = N'TABLE', @level1name = N'DatabaseLog',
+    @level2type = N'COLUMN', @level2name = N'TSQL'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'The raw XML data generated by database trigger.',
+    @level0type = N'SCHEMA', @level0name = N'dbo',
+    @level1type = N'TABLE', @level1name = N'DatabaseLog',
+    @level2type = N'COLUMN', @level2name = N'XmlEvent'
+;
+
+-- dbo.ErrorLog (Table)
+CREATE TABLE dbo.ErrorLog
+    (
+     ErrorLogID     int IDENTITY(1,1) NOT NULL ,
+     ErrorTime      datetime NOT NULL CONSTRAINT DF_ErrorLog_ErrorTime DEFAULT (getdate()) ,
+     UserName       sysname NOT NULL ,
+     ErrorNumber    int NOT NULL ,
+     ErrorSeverity  int ,
+     ErrorState     int ,
+     ErrorProcedure nvarchar(126) ,
+     ErrorLine      int ,
+     ErrorMessage   nvarchar(4000) NOT NULL ,
+     CONSTRAINT PK_ErrorLog_ErrorLogID PRIMARY KEY CLUSTERED (ErrorLogID)
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Audit table tracking errors in the the AdventureWorks database that are caught by the CATCH block of a TRY...CATCH construct. Data is inserted by stored procedure dbo.uspLogError when it is executed from inside the CATCH block of a TRY...CATCH construct.',
+    @level0type = N'SCHEMA', @level0name = N'dbo',
+    @level1type = N'TABLE', @level1name = N'ErrorLog'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key for ErrorLog records.',
+    @level0type = N'SCHEMA', @level0name = N'dbo',
+    @level1type = N'TABLE', @level1name = N'ErrorLog',
+    @level2type = N'COLUMN', @level2name = N'ErrorLogID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'The date and time at which the error occurred.',
+    @level0type = N'SCHEMA', @level0name = N'dbo',
+    @level1type = N'TABLE', @level1name = N'ErrorLog',
+    @level2type = N'COLUMN', @level2name = N'ErrorTime'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'The user who executed the batch in which the error occurred.',
+    @level0type = N'SCHEMA', @level0name = N'dbo',
+    @level1type = N'TABLE', @level1name = N'ErrorLog',
+    @level2type = N'COLUMN', @level2name = N'UserName'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'The error number of the error that occurred.',
+    @level0type = N'SCHEMA', @level0name = N'dbo',
+    @level1type = N'TABLE', @level1name = N'ErrorLog',
+    @level2type = N'COLUMN', @level2name = N'ErrorNumber'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'The severity of the error that occurred.',
+    @level0type = N'SCHEMA', @level0name = N'dbo',
+    @level1type = N'TABLE', @level1name = N'ErrorLog',
+    @level2type = N'COLUMN', @level2name = N'ErrorSeverity'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'The state number of the error that occurred.',
+    @level0type = N'SCHEMA', @level0name = N'dbo',
+    @level1type = N'TABLE', @level1name = N'ErrorLog',
+    @level2type = N'COLUMN', @level2name = N'ErrorState'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'The name of the stored procedure or trigger where the error occurred.',
+    @level0type = N'SCHEMA', @level0name = N'dbo',
+    @level1type = N'TABLE', @level1name = N'ErrorLog',
+    @level2type = N'COLUMN', @level2name = N'ErrorProcedure'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'The line number at which the error occurred.',
+    @level0type = N'SCHEMA', @level0name = N'dbo',
+    @level1type = N'TABLE', @level1name = N'ErrorLog',
+    @level2type = N'COLUMN', @level2name = N'ErrorLine'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'The message text of the error that occurred.',
+    @level0type = N'SCHEMA', @level0name = N'dbo',
+    @level1type = N'TABLE', @level1name = N'ErrorLog',
+    @level2type = N'COLUMN', @level2name = N'ErrorMessage'
+;
+
+-- dbo.sysdiagrams (Table)
+CREATE TABLE dbo.sysdiagrams
+    (
+     name         sysname NOT NULL ,
+     principal_id int NOT NULL ,
+     diagram_id   int IDENTITY(1,1) NOT NULL ,
+     version      int ,
+     definition   varbinary(max) ,
+     PRIMARY KEY CLUSTERED (diagram_id)
+    )
+;
+
+ALTER TABLE dbo.sysdiagrams
+    ADD CONSTRAINT UK_principal_name UNIQUE NONCLUSTERED
+    (
+     principal_id ,
+     name
+    )
+;
+
+-- HumanResources.Department (Table)
+CREATE TABLE HumanResources.Department
+    (
+     DepartmentID smallint IDENTITY(1,1) NOT NULL ,
+     Name         dbo.Name NOT NULL ,
+     GroupName    dbo.Name NOT NULL ,
+     ModifiedDate datetime NOT NULL CONSTRAINT DF_Department_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_Department_DepartmentID PRIMARY KEY CLUSTERED (DepartmentID)
+    )
+;
+
+CREATE UNIQUE INDEX AK_Department_Name ON HumanResources.Department
+    (
+     Name ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Lookup table containing the departments within the Adventure Works Cycles company.',
+    @level0type = N'SCHEMA', @level0name = N'HumanResources',
+    @level1type = N'TABLE', @level1name = N'Department'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key for Department records.',
+    @level0type = N'SCHEMA', @level0name = N'HumanResources',
+    @level1type = N'TABLE', @level1name = N'Department',
+    @level2type = N'COLUMN', @level2name = N'DepartmentID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Name of the department.',
+    @level0type = N'SCHEMA', @level0name = N'HumanResources',
+    @level1type = N'TABLE', @level1name = N'Department',
+    @level2type = N'COLUMN', @level2name = N'Name'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Name of the group to which the department belongs.',
+    @level0type = N'SCHEMA', @level0name = N'HumanResources',
+    @level1type = N'TABLE', @level1name = N'Department',
+    @level2type = N'COLUMN', @level2name = N'GroupName'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'HumanResources',
+    @level1type = N'TABLE', @level1name = N'Department',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- HumanResources.Employee (Table)
+CREATE TABLE HumanResources.Employee
+    (
+     BusinessEntityID  int NOT NULL ,
+     NationalIDNumber  nvarchar(15) NOT NULL ,
+     LoginID           nvarchar(256) NOT NULL ,
+     OrganizationNode  hierarchyid ,
+     OrganizationLevel AS ([OrganizationNode].[GetLevel]()) ,
+     JobTitle          nvarchar(50) NOT NULL ,
+     BirthDate         date NOT NULL ,
+     MaritalStatus     nchar(1) NOT NULL ,
+     Gender            nchar(1) NOT NULL ,
+     HireDate          date NOT NULL ,
+     SalariedFlag      dbo.Flag NOT NULL CONSTRAINT DF_Employee_SalariedFlag DEFAULT ((1)) ,
+     VacationHours     smallint NOT NULL CONSTRAINT DF_Employee_VacationHours DEFAULT ((0)) ,
+     SickLeaveHours    smallint NOT NULL CONSTRAINT DF_Employee_SickLeaveHours DEFAULT ((0)) ,
+     CurrentFlag       dbo.Flag NOT NULL CONSTRAINT DF_Employee_CurrentFlag DEFAULT ((1)) ,
+     rowguid           uniqueidentifier NOT NULL CONSTRAINT DF_Employee_rowguid DEFAULT (newid()) ,
+     ModifiedDate      datetime NOT NULL CONSTRAINT DF_Employee_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_Employee_BusinessEntityID PRIMARY KEY CLUSTERED (BusinessEntityID)
+    )
+;
+
+ALTER TABLE HumanResources.Employee
+    ADD CONSTRAINT CK_Employee_BirthDate CHECK (
+        [BirthDate]>='1930-01-01'
+        AND [BirthDate]<=dateadd(year,(-18),getdate())
+    )
+;
+
+ALTER TABLE HumanResources.Employee
+    ADD CONSTRAINT CK_Employee_Gender CHECK (upper([Gender])='F' OR upper([Gender])='M')
+;
+
+ALTER TABLE HumanResources.Employee
+    ADD CONSTRAINT CK_Employee_HireDate CHECK (
+        [HireDate]>='1996-07-01'
+        AND [HireDate]<=dateadd(day,(1),getdate())
+    )
+;
+
+ALTER TABLE HumanResources.Employee
+    ADD CONSTRAINT CK_Employee_MaritalStatus CHECK (upper([MaritalStatus])='S' OR upper([MaritalStatus])='M')
+;
+
+ALTER TABLE HumanResources.Employee
+    ADD CONSTRAINT CK_Employee_SickLeaveHours CHECK ([SickLeaveHours]>=(0) AND [SickLeaveHours]<=(120))
+;
+
+ALTER TABLE HumanResources.Employee
+    ADD CONSTRAINT CK_Employee_VacationHours CHECK ([VacationHours]>=(-40) AND [VacationHours]<=(240))
+;
+
+CREATE INDEX IX_Employee_OrganizationNode ON HumanResources.Employee
+    (
+     OrganizationNode ASC
+    )
+;
+
+CREATE INDEX IX_Employee_OrganizationLevel_OrganizationNode ON HumanResources.Employee
+    (
+     OrganizationLevel ASC ,
+     OrganizationNode ASC
+    )
+;
+
+CREATE UNIQUE INDEX AK_Employee_LoginID ON HumanResources.Employee
+    (
+     LoginID ASC
+    )
+;
+
+CREATE UNIQUE INDEX AK_Employee_NationalIDNumber ON HumanResources.Employee
+    (
+     NationalIDNumber ASC
+    )
+;
+
+CREATE UNIQUE INDEX AK_Employee_rowguid ON HumanResources.Employee
+    (
+     rowguid ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Employee information such as salary, department, and title.',
+    @level0type = N'SCHEMA', @level0name = N'HumanResources',
+    @level1type = N'TABLE', @level1name = N'Employee'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key for Employee records.  Foreign key to BusinessEntity.BusinessEntityID.',
+    @level0type = N'SCHEMA', @level0name = N'HumanResources',
+    @level1type = N'TABLE', @level1name = N'Employee',
+    @level2type = N'COLUMN', @level2name = N'BusinessEntityID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Unique national identification number such as a social security number.',
+    @level0type = N'SCHEMA', @level0name = N'HumanResources',
+    @level1type = N'TABLE', @level1name = N'Employee',
+    @level2type = N'COLUMN', @level2name = N'NationalIDNumber'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Network login.',
+    @level0type = N'SCHEMA', @level0name = N'HumanResources',
+    @level1type = N'TABLE', @level1name = N'Employee',
+    @level2type = N'COLUMN', @level2name = N'LoginID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Where the employee is located in corporate hierarchy.',
+    @level0type = N'SCHEMA', @level0name = N'HumanResources',
+    @level1type = N'TABLE', @level1name = N'Employee',
+    @level2type = N'COLUMN', @level2name = N'OrganizationNode'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'The depth of the employee in the corporate hierarchy.',
+    @level0type = N'SCHEMA', @level0name = N'HumanResources',
+    @level1type = N'TABLE', @level1name = N'Employee',
+    @level2type = N'COLUMN', @level2name = N'OrganizationLevel'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Work title such as Buyer or Sales Representative.',
+    @level0type = N'SCHEMA', @level0name = N'HumanResources',
+    @level1type = N'TABLE', @level1name = N'Employee',
+    @level2type = N'COLUMN', @level2name = N'JobTitle'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date of birth.',
+    @level0type = N'SCHEMA', @level0name = N'HumanResources',
+    @level1type = N'TABLE', @level1name = N'Employee',
+    @level2type = N'COLUMN', @level2name = N'BirthDate'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'M = Married, S = Single',
+    @level0type = N'SCHEMA', @level0name = N'HumanResources',
+    @level1type = N'TABLE', @level1name = N'Employee',
+    @level2type = N'COLUMN', @level2name = N'MaritalStatus'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'M = Male, F = Female',
+    @level0type = N'SCHEMA', @level0name = N'HumanResources',
+    @level1type = N'TABLE', @level1name = N'Employee',
+    @level2type = N'COLUMN', @level2name = N'Gender'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Employee hired on this date.',
+    @level0type = N'SCHEMA', @level0name = N'HumanResources',
+    @level1type = N'TABLE', @level1name = N'Employee',
+    @level2type = N'COLUMN', @level2name = N'HireDate'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Job classification. 0 = Hourly, not exempt from collective bargaining. 1 = Salaried, exempt from collective bargaining.',
+    @level0type = N'SCHEMA', @level0name = N'HumanResources',
+    @level1type = N'TABLE', @level1name = N'Employee',
+    @level2type = N'COLUMN', @level2name = N'SalariedFlag'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Number of available vacation hours.',
+    @level0type = N'SCHEMA', @level0name = N'HumanResources',
+    @level1type = N'TABLE', @level1name = N'Employee',
+    @level2type = N'COLUMN', @level2name = N'VacationHours'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Number of available sick leave hours.',
+    @level0type = N'SCHEMA', @level0name = N'HumanResources',
+    @level1type = N'TABLE', @level1name = N'Employee',
+    @level2type = N'COLUMN', @level2name = N'SickLeaveHours'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'0 = Inactive, 1 = Active',
+    @level0type = N'SCHEMA', @level0name = N'HumanResources',
+    @level1type = N'TABLE', @level1name = N'Employee',
+    @level2type = N'COLUMN', @level2name = N'CurrentFlag'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.',
+    @level0type = N'SCHEMA', @level0name = N'HumanResources',
+    @level1type = N'TABLE', @level1name = N'Employee',
+    @level2type = N'COLUMN', @level2name = N'rowguid'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'HumanResources',
+    @level1type = N'TABLE', @level1name = N'Employee',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- HumanResources.EmployeeDepartmentHistory (Table)
+CREATE TABLE HumanResources.EmployeeDepartmentHistory
+    (
+     BusinessEntityID int NOT NULL ,
+     DepartmentID     smallint NOT NULL ,
+     ShiftID          tinyint NOT NULL ,
+     StartDate        date NOT NULL ,
+     EndDate          date ,
+     ModifiedDate     datetime NOT NULL CONSTRAINT DF_EmployeeDepartmentHistory_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_EmployeeDepartmentHistory_BusinessEntityID_StartDate_DepartmentID PRIMARY KEY CLUSTERED (BusinessEntityID, StartDate, DepartmentID, ShiftID)
+    )
+;
+
+ALTER TABLE HumanResources.EmployeeDepartmentHistory
+    ADD CONSTRAINT CK_EmployeeDepartmentHistory_EndDate CHECK ([EndDate]>=[StartDate] OR [EndDate] IS NULL)
+;
+
+CREATE INDEX IX_EmployeeDepartmentHistory_DepartmentID ON HumanResources.EmployeeDepartmentHistory
+    (
+     DepartmentID ASC
+    )
+;
+
+CREATE INDEX IX_EmployeeDepartmentHistory_ShiftID ON HumanResources.EmployeeDepartmentHistory
+    (
+     ShiftID ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Employee department transfers.',
+    @level0type = N'SCHEMA', @level0name = N'HumanResources',
+    @level1type = N'TABLE', @level1name = N'EmployeeDepartmentHistory'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Employee identification number. Foreign key to Employee.BusinessEntityID.',
+    @level0type = N'SCHEMA', @level0name = N'HumanResources',
+    @level1type = N'TABLE', @level1name = N'EmployeeDepartmentHistory',
+    @level2type = N'COLUMN', @level2name = N'BusinessEntityID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Department in which the employee worked including currently. Foreign key to Department.DepartmentID.',
+    @level0type = N'SCHEMA', @level0name = N'HumanResources',
+    @level1type = N'TABLE', @level1name = N'EmployeeDepartmentHistory',
+    @level2type = N'COLUMN', @level2name = N'DepartmentID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Identifies which 8-hour shift the employee works. Foreign key to Shift.Shift.ID.',
+    @level0type = N'SCHEMA', @level0name = N'HumanResources',
+    @level1type = N'TABLE', @level1name = N'EmployeeDepartmentHistory',
+    @level2type = N'COLUMN', @level2name = N'ShiftID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date the employee started work in the department.',
+    @level0type = N'SCHEMA', @level0name = N'HumanResources',
+    @level1type = N'TABLE', @level1name = N'EmployeeDepartmentHistory',
+    @level2type = N'COLUMN', @level2name = N'StartDate'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date the employee left the department. NULL = Current department.',
+    @level0type = N'SCHEMA', @level0name = N'HumanResources',
+    @level1type = N'TABLE', @level1name = N'EmployeeDepartmentHistory',
+    @level2type = N'COLUMN', @level2name = N'EndDate'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'HumanResources',
+    @level1type = N'TABLE', @level1name = N'EmployeeDepartmentHistory',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- HumanResources.EmployeePayHistory (Table)
+CREATE TABLE HumanResources.EmployeePayHistory
+    (
+     BusinessEntityID int NOT NULL ,
+     RateChangeDate   datetime NOT NULL ,
+     Rate             money NOT NULL ,
+     PayFrequency     tinyint NOT NULL ,
+     ModifiedDate     datetime NOT NULL CONSTRAINT DF_EmployeePayHistory_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_EmployeePayHistory_BusinessEntityID_RateChangeDate PRIMARY KEY CLUSTERED (BusinessEntityID, RateChangeDate)
+    )
+;
+
+ALTER TABLE HumanResources.EmployeePayHistory
+    ADD CONSTRAINT CK_EmployeePayHistory_PayFrequency CHECK ([PayFrequency]=(2) OR [PayFrequency]=(1))
+;
+
+ALTER TABLE HumanResources.EmployeePayHistory
+    ADD CONSTRAINT CK_EmployeePayHistory_Rate CHECK ([Rate]>=(6.50) AND [Rate]<=(200.00))
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Employee pay history.',
+    @level0type = N'SCHEMA', @level0name = N'HumanResources',
+    @level1type = N'TABLE', @level1name = N'EmployeePayHistory'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Employee identification number. Foreign key to Employee.BusinessEntityID.',
+    @level0type = N'SCHEMA', @level0name = N'HumanResources',
+    @level1type = N'TABLE', @level1name = N'EmployeePayHistory',
+    @level2type = N'COLUMN', @level2name = N'BusinessEntityID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date the change in pay is effective',
+    @level0type = N'SCHEMA', @level0name = N'HumanResources',
+    @level1type = N'TABLE', @level1name = N'EmployeePayHistory',
+    @level2type = N'COLUMN', @level2name = N'RateChangeDate'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Salary hourly rate.',
+    @level0type = N'SCHEMA', @level0name = N'HumanResources',
+    @level1type = N'TABLE', @level1name = N'EmployeePayHistory',
+    @level2type = N'COLUMN', @level2name = N'Rate'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'1 = Salary received monthly, 2 = Salary received biweekly',
+    @level0type = N'SCHEMA', @level0name = N'HumanResources',
+    @level1type = N'TABLE', @level1name = N'EmployeePayHistory',
+    @level2type = N'COLUMN', @level2name = N'PayFrequency'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'HumanResources',
+    @level1type = N'TABLE', @level1name = N'EmployeePayHistory',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- HumanResources.JobCandidate (Table)
+CREATE TABLE HumanResources.JobCandidate
+    (
+     JobCandidateID   int IDENTITY(1,1) NOT NULL ,
+     BusinessEntityID int ,
+     Resume           xml ,
+     ModifiedDate     datetime NOT NULL CONSTRAINT DF_JobCandidate_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_JobCandidate_JobCandidateID PRIMARY KEY CLUSTERED (JobCandidateID)
+    )
+;
+
+CREATE INDEX IX_JobCandidate_BusinessEntityID ON HumanResources.JobCandidate
+    (
+     BusinessEntityID ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Résumés submitted to Human Resources by job applicants.',
+    @level0type = N'SCHEMA', @level0name = N'HumanResources',
+    @level1type = N'TABLE', @level1name = N'JobCandidate'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key for JobCandidate records.',
+    @level0type = N'SCHEMA', @level0name = N'HumanResources',
+    @level1type = N'TABLE', @level1name = N'JobCandidate',
+    @level2type = N'COLUMN', @level2name = N'JobCandidateID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Employee identification number if applicant was hired. Foreign key to Employee.BusinessEntityID.',
+    @level0type = N'SCHEMA', @level0name = N'HumanResources',
+    @level1type = N'TABLE', @level1name = N'JobCandidate',
+    @level2type = N'COLUMN', @level2name = N'BusinessEntityID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Résumé in XML format.',
+    @level0type = N'SCHEMA', @level0name = N'HumanResources',
+    @level1type = N'TABLE', @level1name = N'JobCandidate',
+    @level2type = N'COLUMN', @level2name = N'Resume'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'HumanResources',
+    @level1type = N'TABLE', @level1name = N'JobCandidate',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- HumanResources.Shift (Table)
+CREATE TABLE HumanResources.Shift
+    (
+     ShiftID      tinyint IDENTITY(1,1) NOT NULL ,
+     Name         dbo.Name NOT NULL ,
+     StartTime    time(7) NOT NULL ,
+     EndTime      time(7) NOT NULL ,
+     ModifiedDate datetime NOT NULL CONSTRAINT DF_Shift_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_Shift_ShiftID PRIMARY KEY CLUSTERED (ShiftID)
+    )
+;
+
+CREATE UNIQUE INDEX AK_Shift_Name ON HumanResources.Shift
+    (
+     Name ASC
+    )
+;
+
+CREATE UNIQUE INDEX AK_Shift_StartTime_EndTime ON HumanResources.Shift
+    (
+     StartTime ASC ,
+     EndTime ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Work shift lookup table.',
+    @level0type = N'SCHEMA', @level0name = N'HumanResources',
+    @level1type = N'TABLE', @level1name = N'Shift'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key for Shift records.',
+    @level0type = N'SCHEMA', @level0name = N'HumanResources',
+    @level1type = N'TABLE', @level1name = N'Shift',
+    @level2type = N'COLUMN', @level2name = N'ShiftID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Shift description.',
+    @level0type = N'SCHEMA', @level0name = N'HumanResources',
+    @level1type = N'TABLE', @level1name = N'Shift',
+    @level2type = N'COLUMN', @level2name = N'Name'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Shift start time.',
+    @level0type = N'SCHEMA', @level0name = N'HumanResources',
+    @level1type = N'TABLE', @level1name = N'Shift',
+    @level2type = N'COLUMN', @level2name = N'StartTime'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Shift end time.',
+    @level0type = N'SCHEMA', @level0name = N'HumanResources',
+    @level1type = N'TABLE', @level1name = N'Shift',
+    @level2type = N'COLUMN', @level2name = N'EndTime'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'HumanResources',
+    @level1type = N'TABLE', @level1name = N'Shift',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Person.Address (Table)
+CREATE TABLE Person.Address
+    (
+     AddressID       int IDENTITY(1,1) NOT NULL ,
+     AddressLine1    nvarchar(60) NOT NULL ,
+     AddressLine2    nvarchar(60) ,
+     City            nvarchar(30) NOT NULL ,
+     StateProvinceID int NOT NULL ,
+     PostalCode      nvarchar(15) NOT NULL ,
+     SpatialLocation geography ,
+     rowguid         uniqueidentifier NOT NULL CONSTRAINT DF_Address_rowguid DEFAULT (newid()) ,
+     ModifiedDate    datetime NOT NULL CONSTRAINT DF_Address_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_Address_AddressID PRIMARY KEY CLUSTERED (AddressID)
+    )
+;
+
+CREATE UNIQUE INDEX AK_Address_rowguid ON Person.Address
+    (
+     rowguid ASC
+    )
+;
+
+CREATE UNIQUE INDEX IX_Address_AddressLine1_AddressLine2_City_StateProvinceID_PostalCode ON Person.Address
+    (
+     AddressLine1 ASC ,
+     AddressLine2 ASC ,
+     City ASC ,
+     StateProvinceID ASC ,
+     PostalCode ASC
+    )
+;
+
+CREATE INDEX IX_Address_StateProvinceID ON Person.Address
+    (
+     StateProvinceID ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Street address information for customers, employees, and vendors.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'Address'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key for Address records.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'Address',
+    @level2type = N'COLUMN', @level2name = N'AddressID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'First street address line.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'Address',
+    @level2type = N'COLUMN', @level2name = N'AddressLine1'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Second street address line.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'Address',
+    @level2type = N'COLUMN', @level2name = N'AddressLine2'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Name of the city.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'Address',
+    @level2type = N'COLUMN', @level2name = N'City'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Unique identification number for the state or province. Foreign key to StateProvince table.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'Address',
+    @level2type = N'COLUMN', @level2name = N'StateProvinceID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Postal code for the street address.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'Address',
+    @level2type = N'COLUMN', @level2name = N'PostalCode'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Latitude and longitude of this address.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'Address',
+    @level2type = N'COLUMN', @level2name = N'SpatialLocation'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'Address',
+    @level2type = N'COLUMN', @level2name = N'rowguid'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'Address',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Person.AddressType (Table)
+CREATE TABLE Person.AddressType
+    (
+     AddressTypeID int IDENTITY(1,1) NOT NULL ,
+     Name          dbo.Name NOT NULL ,
+     rowguid       uniqueidentifier NOT NULL CONSTRAINT DF_AddressType_rowguid DEFAULT (newid()) ,
+     ModifiedDate  datetime NOT NULL CONSTRAINT DF_AddressType_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_AddressType_AddressTypeID PRIMARY KEY CLUSTERED (AddressTypeID)
+    )
+;
+
+CREATE UNIQUE INDEX AK_AddressType_rowguid ON Person.AddressType
+    (
+     rowguid ASC
+    )
+;
+
+CREATE UNIQUE INDEX AK_AddressType_Name ON Person.AddressType
+    (
+     Name ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Types of addresses stored in the Address table. ',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'AddressType'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key for AddressType records.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'AddressType',
+    @level2type = N'COLUMN', @level2name = N'AddressTypeID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Address type description. For example, Billing, Home, or Shipping.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'AddressType',
+    @level2type = N'COLUMN', @level2name = N'Name'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'AddressType',
+    @level2type = N'COLUMN', @level2name = N'rowguid'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'AddressType',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Person.BusinessEntity (Table)
+CREATE TABLE Person.BusinessEntity
+    (
+     BusinessEntityID int IDENTITY(1,1) NOT NULL ,
+     rowguid          uniqueidentifier NOT NULL CONSTRAINT DF_BusinessEntity_rowguid DEFAULT (newid()) ,
+     ModifiedDate     datetime NOT NULL CONSTRAINT DF_BusinessEntity_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_BusinessEntity_BusinessEntityID PRIMARY KEY CLUSTERED (BusinessEntityID)
+    )
+;
+
+CREATE UNIQUE INDEX AK_BusinessEntity_rowguid ON Person.BusinessEntity
+    (
+     rowguid ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Source of the ID that connects vendors, customers, and employees with address and contact information.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'BusinessEntity'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key for all customers, vendors, and employees.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'BusinessEntity',
+    @level2type = N'COLUMN', @level2name = N'BusinessEntityID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'BusinessEntity',
+    @level2type = N'COLUMN', @level2name = N'rowguid'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'BusinessEntity',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Person.BusinessEntityAddress (Table)
+CREATE TABLE Person.BusinessEntityAddress
+    (
+     BusinessEntityID int NOT NULL ,
+     AddressID        int NOT NULL ,
+     AddressTypeID    int NOT NULL ,
+     rowguid          uniqueidentifier NOT NULL CONSTRAINT DF_BusinessEntityAddress_rowguid DEFAULT (newid()) ,
+     ModifiedDate     datetime NOT NULL CONSTRAINT DF_BusinessEntityAddress_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_BusinessEntityAddress_BusinessEntityID_AddressID_AddressTypeID PRIMARY KEY CLUSTERED (BusinessEntityID, AddressID, AddressTypeID)
+    )
+;
+
+CREATE UNIQUE INDEX AK_BusinessEntityAddress_rowguid ON Person.BusinessEntityAddress
+    (
+     rowguid ASC
+    )
+;
+
+CREATE INDEX IX_BusinessEntityAddress_AddressID ON Person.BusinessEntityAddress
+    (
+     AddressID ASC
+    )
+;
+
+CREATE INDEX IX_BusinessEntityAddress_AddressTypeID ON Person.BusinessEntityAddress
+    (
+     AddressTypeID ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Cross-reference table mapping customers, vendors, and employees to their addresses.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'BusinessEntityAddress'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key. Foreign key to BusinessEntity.BusinessEntityID.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'BusinessEntityAddress',
+    @level2type = N'COLUMN', @level2name = N'BusinessEntityID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key. Foreign key to Address.AddressID.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'BusinessEntityAddress',
+    @level2type = N'COLUMN', @level2name = N'AddressID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key. Foreign key to AddressType.AddressTypeID.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'BusinessEntityAddress',
+    @level2type = N'COLUMN', @level2name = N'AddressTypeID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'BusinessEntityAddress',
+    @level2type = N'COLUMN', @level2name = N'rowguid'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'BusinessEntityAddress',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Person.BusinessEntityContact (Table)
+CREATE TABLE Person.BusinessEntityContact
+    (
+     BusinessEntityID int NOT NULL ,
+     PersonID         int NOT NULL ,
+     ContactTypeID    int NOT NULL ,
+     rowguid          uniqueidentifier NOT NULL CONSTRAINT DF_BusinessEntityContact_rowguid DEFAULT (newid()) ,
+     ModifiedDate     datetime NOT NULL CONSTRAINT DF_BusinessEntityContact_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_BusinessEntityContact_BusinessEntityID_PersonID_ContactTypeID PRIMARY KEY CLUSTERED (BusinessEntityID, PersonID, ContactTypeID)
+    )
+;
+
+CREATE UNIQUE INDEX AK_BusinessEntityContact_rowguid ON Person.BusinessEntityContact
+    (
+     rowguid ASC
+    )
+;
+
+CREATE INDEX IX_BusinessEntityContact_PersonID ON Person.BusinessEntityContact
+    (
+     PersonID ASC
+    )
+;
+
+CREATE INDEX IX_BusinessEntityContact_ContactTypeID ON Person.BusinessEntityContact
+    (
+     ContactTypeID ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Cross-reference table mapping stores, vendors, and employees to people',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'BusinessEntityContact'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key. Foreign key to BusinessEntity.BusinessEntityID.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'BusinessEntityContact',
+    @level2type = N'COLUMN', @level2name = N'BusinessEntityID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key. Foreign key to Person.BusinessEntityID.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'BusinessEntityContact',
+    @level2type = N'COLUMN', @level2name = N'PersonID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key.  Foreign key to ContactType.ContactTypeID.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'BusinessEntityContact',
+    @level2type = N'COLUMN', @level2name = N'ContactTypeID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'BusinessEntityContact',
+    @level2type = N'COLUMN', @level2name = N'rowguid'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'BusinessEntityContact',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Person.ContactType (Table)
+CREATE TABLE Person.ContactType
+    (
+     ContactTypeID int IDENTITY(1,1) NOT NULL ,
+     Name          dbo.Name NOT NULL ,
+     ModifiedDate  datetime NOT NULL CONSTRAINT DF_ContactType_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_ContactType_ContactTypeID PRIMARY KEY CLUSTERED (ContactTypeID)
+    )
+;
+
+CREATE UNIQUE INDEX AK_ContactType_Name ON Person.ContactType
+    (
+     Name ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Lookup table containing the types of business entity contacts.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'ContactType'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key for ContactType records.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'ContactType',
+    @level2type = N'COLUMN', @level2name = N'ContactTypeID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Contact type description.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'ContactType',
+    @level2type = N'COLUMN', @level2name = N'Name'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'ContactType',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Person.CountryRegion (Table)
+CREATE TABLE Person.CountryRegion
+    (
+     CountryRegionCode nvarchar(3) NOT NULL ,
+     Name              dbo.Name NOT NULL ,
+     ModifiedDate      datetime NOT NULL CONSTRAINT DF_CountryRegion_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_CountryRegion_CountryRegionCode PRIMARY KEY CLUSTERED (CountryRegionCode)
+    )
+;
+
+CREATE UNIQUE INDEX AK_CountryRegion_Name ON Person.CountryRegion
+    (
+     Name ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Lookup table containing the ISO standard codes for countries and regions.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'CountryRegion'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'ISO standard code for countries and regions.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'CountryRegion',
+    @level2type = N'COLUMN', @level2name = N'CountryRegionCode'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Country or region name.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'CountryRegion',
+    @level2type = N'COLUMN', @level2name = N'Name'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'CountryRegion',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Person.EmailAddress (Table)
+CREATE TABLE Person.EmailAddress
+    (
+     BusinessEntityID int NOT NULL ,
+     EmailAddressID   int IDENTITY(1,1) NOT NULL ,
+     EmailAddress     nvarchar(50) ,
+     rowguid          uniqueidentifier NOT NULL CONSTRAINT DF_EmailAddress_rowguid DEFAULT (newid()) ,
+     ModifiedDate     datetime NOT NULL CONSTRAINT DF_EmailAddress_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_EmailAddress_BusinessEntityID_EmailAddressID PRIMARY KEY CLUSTERED (BusinessEntityID, EmailAddressID)
+    )
+;
+
+CREATE INDEX IX_EmailAddress_EmailAddress ON Person.EmailAddress
+    (
+     EmailAddress ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Where to send a person email.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'EmailAddress'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key. Person associated with this email address.  Foreign key to Person.BusinessEntityID',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'EmailAddress',
+    @level2type = N'COLUMN', @level2name = N'BusinessEntityID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key. ID of this email address.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'EmailAddress',
+    @level2type = N'COLUMN', @level2name = N'EmailAddressID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'E-mail address for the person.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'EmailAddress',
+    @level2type = N'COLUMN', @level2name = N'EmailAddress'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'EmailAddress',
+    @level2type = N'COLUMN', @level2name = N'rowguid'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'EmailAddress',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Person.Password (Table)
+CREATE TABLE Person.Password
+    (
+     BusinessEntityID int NOT NULL ,
+     PasswordHash     varchar(128) NOT NULL ,
+     PasswordSalt     varchar(10) NOT NULL ,
+     rowguid          uniqueidentifier NOT NULL CONSTRAINT DF_Password_rowguid DEFAULT (newid()) ,
+     ModifiedDate     datetime NOT NULL CONSTRAINT DF_Password_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_Password_BusinessEntityID PRIMARY KEY CLUSTERED (BusinessEntityID)
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'One way hashed authentication information',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'Password'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Password for the e-mail account.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'Password',
+    @level2type = N'COLUMN', @level2name = N'PasswordHash'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Random value concatenated with the password string before the password is hashed.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'Password',
+    @level2type = N'COLUMN', @level2name = N'PasswordSalt'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'Password',
+    @level2type = N'COLUMN', @level2name = N'rowguid'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'Password',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Person.Person (Table)
+CREATE TABLE Person.Person
+    (
+     BusinessEntityID      int NOT NULL ,
+     PersonType            nchar(2) NOT NULL ,
+     NameStyle             dbo.NameStyle NOT NULL CONSTRAINT DF_Person_NameStyle DEFAULT ((0)) ,
+     Title                 nvarchar(8) ,
+     FirstName             dbo.Name NOT NULL ,
+     MiddleName            dbo.Name ,
+     LastName              dbo.Name NOT NULL ,
+     Suffix                nvarchar(10) ,
+     EmailPromotion        int NOT NULL CONSTRAINT DF_Person_EmailPromotion DEFAULT ((0)) ,
+     AdditionalContactInfo xml ,
+     Demographics          xml ,
+     rowguid               uniqueidentifier NOT NULL CONSTRAINT DF_Person_rowguid DEFAULT (newid()) ,
+     ModifiedDate          datetime NOT NULL CONSTRAINT DF_Person_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_Person_BusinessEntityID PRIMARY KEY CLUSTERED (BusinessEntityID)
+    )
+;
+
+ALTER TABLE Person.Person
+    ADD CONSTRAINT CK_Person_EmailPromotion CHECK ([EmailPromotion]>=(0) AND [EmailPromotion]<=(2))
+;
+
+ALTER TABLE Person.Person
+    ADD CONSTRAINT CK_Person_PersonType CHECK (
+        [PersonType] IS NULL
+        OR (
+            upper([PersonType])='GC'
+            OR upper([PersonType])='SP'
+            OR upper([PersonType])='EM'
+            OR upper([PersonType])='IN'
+            OR upper([PersonType])='VC'
+            OR upper([PersonType])='SC'
+        )
+    )
+;
+
+CREATE INDEX IX_Person_LastName_FirstName_MiddleName ON Person.Person
+    (
+     LastName ASC ,
+     FirstName ASC ,
+     MiddleName ASC
+    )
+;
+
+CREATE UNIQUE INDEX AK_Person_rowguid ON Person.Person
+    (
+     rowguid ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Human beings involved with AdventureWorks: employees, customer contacts, and vendor contacts.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'Person'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key for Person records.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'Person',
+    @level2type = N'COLUMN', @level2name = N'BusinessEntityID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary type of person: SC = Store Contact, IN = Individual (retail) customer, SP = Sales person, EM = Employee (non-sales), VC = Vendor contact, GC = General contact',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'Person',
+    @level2type = N'COLUMN', @level2name = N'PersonType'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'0 = The data in FirstName and LastName are stored in western style (first name, last name) order.  1 = Eastern style (last name, first name) order.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'Person',
+    @level2type = N'COLUMN', @level2name = N'NameStyle'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'A courtesy title. For example, Mr. or Ms.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'Person',
+    @level2type = N'COLUMN', @level2name = N'Title'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'First name of the person.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'Person',
+    @level2type = N'COLUMN', @level2name = N'FirstName'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Middle name or middle initial of the person.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'Person',
+    @level2type = N'COLUMN', @level2name = N'MiddleName'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Last name of the person.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'Person',
+    @level2type = N'COLUMN', @level2name = N'LastName'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Surname suffix. For example, Sr. or Jr.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'Person',
+    @level2type = N'COLUMN', @level2name = N'Suffix'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'0 = Contact does not wish to receive e-mail promotions, 1 = Contact does wish to receive e-mail promotions from AdventureWorks, 2 = Contact does wish to receive e-mail promotions from AdventureWorks and selected partners. ',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'Person',
+    @level2type = N'COLUMN', @level2name = N'EmailPromotion'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Additional contact information about the person stored in xml format. ',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'Person',
+    @level2type = N'COLUMN', @level2name = N'AdditionalContactInfo'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Personal information such as hobbies, and income collected from online shoppers. Used for sales analysis.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'Person',
+    @level2type = N'COLUMN', @level2name = N'Demographics'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'Person',
+    @level2type = N'COLUMN', @level2name = N'rowguid'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'Person',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Person.PersonPhone (Table)
+CREATE TABLE Person.PersonPhone
+    (
+     BusinessEntityID  int NOT NULL ,
+     PhoneNumber       dbo.Phone NOT NULL ,
+     PhoneNumberTypeID int NOT NULL ,
+     ModifiedDate      datetime NOT NULL CONSTRAINT DF_PersonPhone_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_PersonPhone_BusinessEntityID_PhoneNumber_PhoneNumberTypeID PRIMARY KEY CLUSTERED (BusinessEntityID, PhoneNumber, PhoneNumberTypeID)
+    )
+;
+
+CREATE INDEX IX_PersonPhone_PhoneNumber ON Person.PersonPhone
+    (
+     PhoneNumber ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Telephone number and type of a person.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'PersonPhone'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Business entity identification number. Foreign key to Person.BusinessEntityID.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'PersonPhone',
+    @level2type = N'COLUMN', @level2name = N'BusinessEntityID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Telephone number identification number.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'PersonPhone',
+    @level2type = N'COLUMN', @level2name = N'PhoneNumber'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Kind of phone number. Foreign key to PhoneNumberType.PhoneNumberTypeID.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'PersonPhone',
+    @level2type = N'COLUMN', @level2name = N'PhoneNumberTypeID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'PersonPhone',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Person.PhoneNumberType (Table)
+CREATE TABLE Person.PhoneNumberType
+    (
+     PhoneNumberTypeID int IDENTITY(1,1) NOT NULL ,
+     Name              dbo.Name NOT NULL ,
+     ModifiedDate      datetime NOT NULL CONSTRAINT DF_PhoneNumberType_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_PhoneNumberType_PhoneNumberTypeID PRIMARY KEY CLUSTERED (PhoneNumberTypeID)
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Type of phone number of a person.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'PhoneNumberType'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key for telephone number type records.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'PhoneNumberType',
+    @level2type = N'COLUMN', @level2name = N'PhoneNumberTypeID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Name of the telephone number type',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'PhoneNumberType',
+    @level2type = N'COLUMN', @level2name = N'Name'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'PhoneNumberType',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Person.StateProvince (Table)
+CREATE TABLE Person.StateProvince
+    (
+     StateProvinceID         int IDENTITY(1,1) NOT NULL ,
+     StateProvinceCode       nchar(3) NOT NULL ,
+     CountryRegionCode       nvarchar(3) NOT NULL ,
+     IsOnlyStateProvinceFlag dbo.Flag NOT NULL CONSTRAINT DF_StateProvince_IsOnlyStateProvinceFlag DEFAULT ((1)) ,
+     Name                    dbo.Name NOT NULL ,
+     TerritoryID             int NOT NULL ,
+     rowguid                 uniqueidentifier NOT NULL CONSTRAINT DF_StateProvince_rowguid DEFAULT (newid()) ,
+     ModifiedDate            datetime NOT NULL CONSTRAINT DF_StateProvince_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_StateProvince_StateProvinceID PRIMARY KEY CLUSTERED (StateProvinceID)
+    )
+;
+
+CREATE UNIQUE INDEX AK_StateProvince_Name ON Person.StateProvince
+    (
+     Name ASC
+    )
+;
+
+CREATE UNIQUE INDEX AK_StateProvince_StateProvinceCode_CountryRegionCode ON Person.StateProvince
+    (
+     StateProvinceCode ASC ,
+     CountryRegionCode ASC
+    )
+;
+
+CREATE UNIQUE INDEX AK_StateProvince_rowguid ON Person.StateProvince
+    (
+     rowguid ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'State and province lookup table.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'StateProvince'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key for StateProvince records.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'StateProvince',
+    @level2type = N'COLUMN', @level2name = N'StateProvinceID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'ISO standard state or province code.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'StateProvince',
+    @level2type = N'COLUMN', @level2name = N'StateProvinceCode'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'ISO standard country or region code. Foreign key to CountryRegion.CountryRegionCode. ',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'StateProvince',
+    @level2type = N'COLUMN', @level2name = N'CountryRegionCode'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'0 = StateProvinceCode exists. 1 = StateProvinceCode unavailable, using CountryRegionCode.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'StateProvince',
+    @level2type = N'COLUMN', @level2name = N'IsOnlyStateProvinceFlag'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'State or province description.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'StateProvince',
+    @level2type = N'COLUMN', @level2name = N'Name'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'ID of the territory in which the state or province is located. Foreign key to SalesTerritory.SalesTerritoryID.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'StateProvince',
+    @level2type = N'COLUMN', @level2name = N'TerritoryID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'StateProvince',
+    @level2type = N'COLUMN', @level2name = N'rowguid'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Person',
+    @level1type = N'TABLE', @level1name = N'StateProvince',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Production.BillOfMaterials (Table)
+CREATE TABLE Production.BillOfMaterials
+    (
+     BillOfMaterialsID int IDENTITY(1,1) NOT NULL ,
+     ProductAssemblyID int ,
+     ComponentID       int NOT NULL ,
+     StartDate         datetime NOT NULL CONSTRAINT DF_BillOfMaterials_StartDate DEFAULT (getdate()) ,
+     EndDate           datetime ,
+     UnitMeasureCode   nchar(3) NOT NULL ,
+     BOMLevel          smallint NOT NULL ,
+     PerAssemblyQty    decimal(8,2) NOT NULL CONSTRAINT DF_BillOfMaterials_PerAssemblyQty DEFAULT ((1.00)) ,
+     ModifiedDate      datetime NOT NULL CONSTRAINT DF_BillOfMaterials_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_BillOfMaterials_BillOfMaterialsID PRIMARY KEY NONCLUSTERED (BillOfMaterialsID)
+    )
+;
+
+ALTER TABLE Production.BillOfMaterials
+    ADD CONSTRAINT CK_BillOfMaterials_BOMLevel CHECK (
+        [ProductAssemblyID] IS NULL
+            AND [BOMLevel]=(0)
+            AND [PerAssemblyQty]=(1.00)
+        OR [ProductAssemblyID] IS NOT NULL
+            AND [BOMLevel]>=(1)
+    )
+;
+
+ALTER TABLE Production.BillOfMaterials
+    ADD CONSTRAINT CK_BillOfMaterials_EndDate CHECK ([EndDate]>[StartDate] OR [EndDate] IS NULL)
+;
+
+ALTER TABLE Production.BillOfMaterials
+    ADD CONSTRAINT CK_BillOfMaterials_PerAssemblyQty CHECK ([PerAssemblyQty]>=(1.00))
+;
+
+ALTER TABLE Production.BillOfMaterials
+    ADD CONSTRAINT CK_BillOfMaterials_ProductAssemblyID CHECK ([ProductAssemblyID]<>[ComponentID])
+;
+
+CREATE UNIQUE CLUSTERED INDEX AK_BillOfMaterials_ProductAssemblyID_ComponentID_StartDate ON Production.BillOfMaterials
+    (
+     ProductAssemblyID ASC ,
+     ComponentID ASC ,
+     StartDate ASC
+    )
+;
+
+CREATE INDEX IX_BillOfMaterials_UnitMeasureCode ON Production.BillOfMaterials
+    (
+     UnitMeasureCode ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Items required to make bicycles and bicycle subassemblies. It identifies the heirarchical relationship between a parent product and its components.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'BillOfMaterials'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key for BillOfMaterials records.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'BillOfMaterials',
+    @level2type = N'COLUMN', @level2name = N'BillOfMaterialsID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Parent product identification number. Foreign key to Product.ProductID.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'BillOfMaterials',
+    @level2type = N'COLUMN', @level2name = N'ProductAssemblyID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Component identification number. Foreign key to Product.ProductID.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'BillOfMaterials',
+    @level2type = N'COLUMN', @level2name = N'ComponentID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date the component started being used in the assembly item.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'BillOfMaterials',
+    @level2type = N'COLUMN', @level2name = N'StartDate'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date the component stopped being used in the assembly item.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'BillOfMaterials',
+    @level2type = N'COLUMN', @level2name = N'EndDate'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Standard code identifying the unit of measure for the quantity.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'BillOfMaterials',
+    @level2type = N'COLUMN', @level2name = N'UnitMeasureCode'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Indicates the depth the component is from its parent (AssemblyID).',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'BillOfMaterials',
+    @level2type = N'COLUMN', @level2name = N'BOMLevel'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Quantity of the component needed to create the assembly.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'BillOfMaterials',
+    @level2type = N'COLUMN', @level2name = N'PerAssemblyQty'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'BillOfMaterials',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Production.Culture (Table)
+CREATE TABLE Production.Culture
+    (
+     CultureID    nchar(6) NOT NULL ,
+     Name         dbo.Name NOT NULL ,
+     ModifiedDate datetime NOT NULL CONSTRAINT DF_Culture_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_Culture_CultureID PRIMARY KEY CLUSTERED (CultureID)
+    )
+;
+
+CREATE UNIQUE INDEX AK_Culture_Name ON Production.Culture
+    (
+     Name ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Lookup table containing the languages in which some AdventureWorks data is stored.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Culture'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key for Culture records.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Culture',
+    @level2type = N'COLUMN', @level2name = N'CultureID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Culture description.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Culture',
+    @level2type = N'COLUMN', @level2name = N'Name'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Culture',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Production.Document (Table)
+CREATE TABLE Production.Document
+    (
+     DocumentNode    hierarchyid NOT NULL ,
+     DocumentLevel   AS ([DocumentNode].[GetLevel]()) ,
+     Title           nvarchar(50) NOT NULL ,
+     Owner           int NOT NULL ,
+     FolderFlag      bit NOT NULL CONSTRAINT DF_Document_FolderFlag DEFAULT ((0)) ,
+     FileName        nvarchar(400) NOT NULL ,
+     FileExtension   nvarchar(8) NOT NULL ,
+     Revision        nchar(5) NOT NULL ,
+     ChangeNumber    int NOT NULL CONSTRAINT DF_Document_ChangeNumber DEFAULT ((0)) ,
+     Status          tinyint NOT NULL ,
+     DocumentSummary nvarchar(max) ,
+     Document        varbinary(max) ,
+     rowguid         uniqueidentifier NOT NULL CONSTRAINT DF_Document_rowguid DEFAULT (newid()) ,
+     ModifiedDate    datetime NOT NULL CONSTRAINT DF_Document_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_Document_DocumentNode PRIMARY KEY CLUSTERED (DocumentNode)
+    )
+;
+
+ALTER TABLE Production.Document
+    ADD UNIQUE NONCLUSTERED
+    (
+     rowguid
+    )
+;
+
+ALTER TABLE Production.Document
+    ADD CONSTRAINT CK_Document_Status CHECK ([Status]>=(1) AND [Status]<=(3))
+;
+
+CREATE UNIQUE INDEX AK_Document_DocumentLevel_DocumentNode ON Production.Document
+    (
+     DocumentLevel ASC ,
+     DocumentNode ASC
+    )
+;
+
+CREATE UNIQUE INDEX AK_Document_rowguid ON Production.Document
+    (
+     rowguid ASC
+    )
+;
+
+CREATE INDEX IX_Document_FileName_Revision ON Production.Document
+    (
+     FileName ASC ,
+     Revision ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Product maintenance documents.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Document'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key for Document records.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Document',
+    @level2type = N'COLUMN', @level2name = N'DocumentNode'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Depth in the document hierarchy.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Document',
+    @level2type = N'COLUMN', @level2name = N'DocumentLevel'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Title of the document.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Document',
+    @level2type = N'COLUMN', @level2name = N'Title'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Employee who controls the document.  Foreign key to Employee.BusinessEntityID',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Document',
+    @level2type = N'COLUMN', @level2name = N'Owner'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'0 = This is a folder, 1 = This is a document.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Document',
+    @level2type = N'COLUMN', @level2name = N'FolderFlag'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'File name of the document',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Document',
+    @level2type = N'COLUMN', @level2name = N'FileName'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'File extension indicating the document type. For example, .doc or .txt.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Document',
+    @level2type = N'COLUMN', @level2name = N'FileExtension'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Revision number of the document. ',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Document',
+    @level2type = N'COLUMN', @level2name = N'Revision'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Engineering change approval number.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Document',
+    @level2type = N'COLUMN', @level2name = N'ChangeNumber'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'1 = Pending approval, 2 = Approved, 3 = Obsolete',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Document',
+    @level2type = N'COLUMN', @level2name = N'Status'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Document abstract.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Document',
+    @level2type = N'COLUMN', @level2name = N'DocumentSummary'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Complete document.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Document',
+    @level2type = N'COLUMN', @level2name = N'Document'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'ROWGUIDCOL number uniquely identifying the record. Required for FileStream.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Document',
+    @level2type = N'COLUMN', @level2name = N'rowguid'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Document',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Production.Illustration (Table)
+CREATE TABLE Production.Illustration
+    (
+     IllustrationID int IDENTITY(1,1) NOT NULL ,
+     Diagram        xml ,
+     ModifiedDate   datetime NOT NULL CONSTRAINT DF_Illustration_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_Illustration_IllustrationID PRIMARY KEY CLUSTERED (IllustrationID)
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Bicycle assembly diagrams.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Illustration'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key for Illustration records.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Illustration',
+    @level2type = N'COLUMN', @level2name = N'IllustrationID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Illustrations used in manufacturing instructions. Stored as XML.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Illustration',
+    @level2type = N'COLUMN', @level2name = N'Diagram'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Illustration',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Production.Location (Table)
+CREATE TABLE Production.Location
+    (
+     LocationID   smallint IDENTITY(1,1) NOT NULL ,
+     Name         dbo.Name NOT NULL ,
+     CostRate     smallmoney NOT NULL CONSTRAINT DF_Location_CostRate DEFAULT ((0.00)) ,
+     Availability decimal(8,2) NOT NULL CONSTRAINT DF_Location_Availability DEFAULT ((0.00)) ,
+     ModifiedDate datetime NOT NULL CONSTRAINT DF_Location_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_Location_LocationID PRIMARY KEY CLUSTERED (LocationID)
+    )
+;
+
+ALTER TABLE Production.Location
+    ADD CONSTRAINT CK_Location_Availability CHECK ([Availability]>=(0.00))
+;
+
+ALTER TABLE Production.Location
+    ADD CONSTRAINT CK_Location_CostRate CHECK ([CostRate]>=(0.00))
+;
+
+CREATE UNIQUE INDEX AK_Location_Name ON Production.Location
+    (
+     Name ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Product inventory and manufacturing locations.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Location'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key for Location records.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Location',
+    @level2type = N'COLUMN', @level2name = N'LocationID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Location description.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Location',
+    @level2type = N'COLUMN', @level2name = N'Name'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Standard hourly cost of the manufacturing location.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Location',
+    @level2type = N'COLUMN', @level2name = N'CostRate'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Work capacity (in hours) of the manufacturing location.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Location',
+    @level2type = N'COLUMN', @level2name = N'Availability'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Location',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Production.Product (Table)
+CREATE TABLE Production.Product
+    (
+     ProductID             int IDENTITY(1,1) NOT NULL ,
+     Name                  dbo.Name NOT NULL ,
+     ProductNumber         nvarchar(25) NOT NULL ,
+     MakeFlag              dbo.Flag NOT NULL CONSTRAINT DF_Product_MakeFlag DEFAULT ((1)) ,
+     FinishedGoodsFlag     dbo.Flag NOT NULL CONSTRAINT DF_Product_FinishedGoodsFlag DEFAULT ((1)) ,
+     Color                 nvarchar(15) ,
+     SafetyStockLevel      smallint NOT NULL ,
+     ReorderPoint          smallint NOT NULL ,
+     StandardCost          money NOT NULL ,
+     ListPrice             money NOT NULL ,
+     Size                  nvarchar(5) ,
+     SizeUnitMeasureCode   nchar(3) ,
+     WeightUnitMeasureCode nchar(3) ,
+     Weight                decimal(8,2) ,
+     DaysToManufacture     int NOT NULL ,
+     ProductLine           nchar(2) ,
+     Class                 nchar(2) ,
+     Style                 nchar(2) ,
+     ProductSubcategoryID  int ,
+     ProductModelID        int ,
+     SellStartDate         datetime NOT NULL ,
+     SellEndDate           datetime ,
+     DiscontinuedDate      datetime ,
+     rowguid               uniqueidentifier NOT NULL CONSTRAINT DF_Product_rowguid DEFAULT (newid()) ,
+     ModifiedDate          datetime NOT NULL CONSTRAINT DF_Product_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_Product_ProductID PRIMARY KEY CLUSTERED (ProductID)
+    )
+;
+
+ALTER TABLE Production.Product
+    ADD CONSTRAINT CK_Product_Class CHECK (
+        upper([Class])='H'
+        OR upper([Class])='M'
+        OR upper([Class])='L'
+        OR [Class] IS NULL
+    )
+;
+
+ALTER TABLE Production.Product
+    ADD CONSTRAINT CK_Product_DaysToManufacture CHECK ([DaysToManufacture]>=(0))
+;
+
+ALTER TABLE Production.Product
+    ADD CONSTRAINT CK_Product_ListPrice CHECK ([ListPrice]>=(0.00))
+;
+
+ALTER TABLE Production.Product
+    ADD CONSTRAINT CK_Product_ProductLine CHECK (
+        upper([ProductLine])='R'
+        OR upper([ProductLine])='M'
+        OR upper([ProductLine])='T'
+        OR upper([ProductLine])='S'
+        OR [ProductLine] IS NULL
+    )
+;
+
+ALTER TABLE Production.Product
+    ADD CONSTRAINT CK_Product_ReorderPoint CHECK ([ReorderPoint]>(0))
+;
+
+ALTER TABLE Production.Product
+    ADD CONSTRAINT CK_Product_SafetyStockLevel CHECK ([SafetyStockLevel]>(0))
+;
+
+ALTER TABLE Production.Product
+    ADD CONSTRAINT CK_Product_SellEndDate CHECK ([SellEndDate]>=[SellStartDate] OR [SellEndDate] IS NULL)
+;
+
+ALTER TABLE Production.Product
+    ADD CONSTRAINT CK_Product_StandardCost CHECK ([StandardCost]>=(0.00))
+;
+
+ALTER TABLE Production.Product
+    ADD CONSTRAINT CK_Product_Style CHECK (
+        upper([Style])='U'
+        OR upper([Style])='M'
+        OR upper([Style])='W'
+        OR [Style] IS NULL
+    )
+;
+
+ALTER TABLE Production.Product
+    ADD CONSTRAINT CK_Product_Weight CHECK ([Weight]>(0.00))
+;
+
+CREATE UNIQUE INDEX AK_Product_ProductNumber ON Production.Product
+    (
+     ProductNumber ASC
+    )
+;
+
+CREATE UNIQUE INDEX AK_Product_Name ON Production.Product
+    (
+     Name ASC
+    )
+;
+
+CREATE UNIQUE INDEX AK_Product_rowguid ON Production.Product
+    (
+     rowguid ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Products sold or used in the manfacturing of sold products.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Product'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key for Product records.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Product',
+    @level2type = N'COLUMN', @level2name = N'ProductID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Name of the product.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Product',
+    @level2type = N'COLUMN', @level2name = N'Name'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Unique product identification number.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Product',
+    @level2type = N'COLUMN', @level2name = N'ProductNumber'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'0 = Product is purchased, 1 = Product is manufactured in-house.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Product',
+    @level2type = N'COLUMN', @level2name = N'MakeFlag'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'0 = Product is not a salable item. 1 = Product is salable.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Product',
+    @level2type = N'COLUMN', @level2name = N'FinishedGoodsFlag'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Product color.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Product',
+    @level2type = N'COLUMN', @level2name = N'Color'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Minimum inventory quantity. ',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Product',
+    @level2type = N'COLUMN', @level2name = N'SafetyStockLevel'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Inventory level that triggers a purchase order or work order. ',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Product',
+    @level2type = N'COLUMN', @level2name = N'ReorderPoint'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Standard cost of the product.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Product',
+    @level2type = N'COLUMN', @level2name = N'StandardCost'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Selling price.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Product',
+    @level2type = N'COLUMN', @level2name = N'ListPrice'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Product size.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Product',
+    @level2type = N'COLUMN', @level2name = N'Size'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Unit of measure for Size column.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Product',
+    @level2type = N'COLUMN', @level2name = N'SizeUnitMeasureCode'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Unit of measure for Weight column.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Product',
+    @level2type = N'COLUMN', @level2name = N'WeightUnitMeasureCode'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Product weight.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Product',
+    @level2type = N'COLUMN', @level2name = N'Weight'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Number of days required to manufacture the product.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Product',
+    @level2type = N'COLUMN', @level2name = N'DaysToManufacture'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'R = Road, M = Mountain, T = Touring, S = Standard',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Product',
+    @level2type = N'COLUMN', @level2name = N'ProductLine'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'H = High, M = Medium, L = Low',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Product',
+    @level2type = N'COLUMN', @level2name = N'Class'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'W = Womens, M = Mens, U = Universal',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Product',
+    @level2type = N'COLUMN', @level2name = N'Style'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Product is a member of this product subcategory. Foreign key to ProductSubCategory.ProductSubCategoryID. ',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Product',
+    @level2type = N'COLUMN', @level2name = N'ProductSubcategoryID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Product is a member of this product model. Foreign key to ProductModel.ProductModelID.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Product',
+    @level2type = N'COLUMN', @level2name = N'ProductModelID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date the product was available for sale.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Product',
+    @level2type = N'COLUMN', @level2name = N'SellStartDate'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date the product was no longer available for sale.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Product',
+    @level2type = N'COLUMN', @level2name = N'SellEndDate'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date the product was discontinued.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Product',
+    @level2type = N'COLUMN', @level2name = N'DiscontinuedDate'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Product',
+    @level2type = N'COLUMN', @level2name = N'rowguid'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'Product',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Production.ProductCategory (Table)
+CREATE TABLE Production.ProductCategory
+    (
+     ProductCategoryID int IDENTITY(1,1) NOT NULL ,
+     Name              dbo.Name NOT NULL ,
+     rowguid           uniqueidentifier NOT NULL CONSTRAINT DF_ProductCategory_rowguid DEFAULT (newid()) ,
+     ModifiedDate      datetime NOT NULL CONSTRAINT DF_ProductCategory_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_ProductCategory_ProductCategoryID PRIMARY KEY CLUSTERED (ProductCategoryID)
+    )
+;
+
+CREATE UNIQUE INDEX AK_ProductCategory_Name ON Production.ProductCategory
+    (
+     Name ASC
+    )
+;
+
+CREATE UNIQUE INDEX AK_ProductCategory_rowguid ON Production.ProductCategory
+    (
+     rowguid ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'High-level product categorization.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductCategory'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key for ProductCategory records.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductCategory',
+    @level2type = N'COLUMN', @level2name = N'ProductCategoryID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Category description.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductCategory',
+    @level2type = N'COLUMN', @level2name = N'Name'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductCategory',
+    @level2type = N'COLUMN', @level2name = N'rowguid'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductCategory',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Production.ProductCostHistory (Table)
+CREATE TABLE Production.ProductCostHistory
+    (
+     ProductID    int NOT NULL ,
+     StartDate    datetime NOT NULL ,
+     EndDate      datetime ,
+     StandardCost money NOT NULL ,
+     ModifiedDate datetime NOT NULL CONSTRAINT DF_ProductCostHistory_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_ProductCostHistory_ProductID_StartDate PRIMARY KEY CLUSTERED (ProductID, StartDate)
+    )
+;
+
+ALTER TABLE Production.ProductCostHistory
+    ADD CONSTRAINT CK_ProductCostHistory_EndDate CHECK ([EndDate]>=[StartDate] OR [EndDate] IS NULL)
+;
+
+ALTER TABLE Production.ProductCostHistory
+    ADD CONSTRAINT CK_ProductCostHistory_StandardCost CHECK ([StandardCost]>=(0.00))
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Changes in the cost of a product over time.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductCostHistory'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Product identification number. Foreign key to Product.ProductID',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductCostHistory',
+    @level2type = N'COLUMN', @level2name = N'ProductID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Product cost start date.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductCostHistory',
+    @level2type = N'COLUMN', @level2name = N'StartDate'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Product cost end date.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductCostHistory',
+    @level2type = N'COLUMN', @level2name = N'EndDate'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Standard cost of the product.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductCostHistory',
+    @level2type = N'COLUMN', @level2name = N'StandardCost'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductCostHistory',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Production.ProductDescription (Table)
+CREATE TABLE Production.ProductDescription
+    (
+     ProductDescriptionID int IDENTITY(1,1) NOT NULL ,
+     Description          nvarchar(400) NOT NULL ,
+     rowguid              uniqueidentifier NOT NULL CONSTRAINT DF_ProductDescription_rowguid DEFAULT (newid()) ,
+     ModifiedDate         datetime NOT NULL CONSTRAINT DF_ProductDescription_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_ProductDescription_ProductDescriptionID PRIMARY KEY CLUSTERED (ProductDescriptionID)
+    )
+;
+
+CREATE UNIQUE INDEX AK_ProductDescription_rowguid ON Production.ProductDescription
+    (
+     rowguid ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Product descriptions in several languages.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductDescription'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key for ProductDescription records.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductDescription',
+    @level2type = N'COLUMN', @level2name = N'ProductDescriptionID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Description of the product.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductDescription',
+    @level2type = N'COLUMN', @level2name = N'Description'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductDescription',
+    @level2type = N'COLUMN', @level2name = N'rowguid'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductDescription',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Production.ProductDocument (Table)
+CREATE TABLE Production.ProductDocument
+    (
+     ProductID    int NOT NULL ,
+     DocumentNode hierarchyid NOT NULL ,
+     ModifiedDate datetime NOT NULL CONSTRAINT DF_ProductDocument_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_ProductDocument_ProductID_DocumentNode PRIMARY KEY CLUSTERED (ProductID, DocumentNode)
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Cross-reference table mapping products to related product documents.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductDocument'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Product identification number. Foreign key to Product.ProductID.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductDocument',
+    @level2type = N'COLUMN', @level2name = N'ProductID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Document identification number. Foreign key to Document.DocumentNode.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductDocument',
+    @level2type = N'COLUMN', @level2name = N'DocumentNode'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductDocument',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Production.ProductInventory (Table)
+CREATE TABLE Production.ProductInventory
+    (
+     ProductID    int NOT NULL ,
+     LocationID   smallint NOT NULL ,
+     Shelf        nvarchar(10) NOT NULL ,
+     Bin          tinyint NOT NULL ,
+     Quantity     smallint NOT NULL CONSTRAINT DF_ProductInventory_Quantity DEFAULT ((0)) ,
+     rowguid      uniqueidentifier NOT NULL CONSTRAINT DF_ProductInventory_rowguid DEFAULT (newid()) ,
+     ModifiedDate datetime NOT NULL CONSTRAINT DF_ProductInventory_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_ProductInventory_ProductID_LocationID PRIMARY KEY CLUSTERED (ProductID, LocationID)
+    )
+;
+
+ALTER TABLE Production.ProductInventory
+    ADD CONSTRAINT CK_ProductInventory_Bin CHECK ([Bin]>=(0) AND [Bin]<=(100))
+;
+
+ALTER TABLE Production.ProductInventory
+    ADD CONSTRAINT CK_ProductInventory_Shelf CHECK ([Shelf] like '[A-Za-z]' OR [Shelf]='N/A')
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Product inventory information.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductInventory'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Product identification number. Foreign key to Product.ProductID.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductInventory',
+    @level2type = N'COLUMN', @level2name = N'ProductID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Inventory location identification number. Foreign key to Location.LocationID. ',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductInventory',
+    @level2type = N'COLUMN', @level2name = N'LocationID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Storage compartment within an inventory location.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductInventory',
+    @level2type = N'COLUMN', @level2name = N'Shelf'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Storage container on a shelf in an inventory location.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductInventory',
+    @level2type = N'COLUMN', @level2name = N'Bin'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Quantity of products in the inventory location.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductInventory',
+    @level2type = N'COLUMN', @level2name = N'Quantity'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductInventory',
+    @level2type = N'COLUMN', @level2name = N'rowguid'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductInventory',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Production.ProductListPriceHistory (Table)
+CREATE TABLE Production.ProductListPriceHistory
+    (
+     ProductID    int NOT NULL ,
+     StartDate    datetime NOT NULL ,
+     EndDate      datetime ,
+     ListPrice    money NOT NULL ,
+     ModifiedDate datetime NOT NULL CONSTRAINT DF_ProductListPriceHistory_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_ProductListPriceHistory_ProductID_StartDate PRIMARY KEY CLUSTERED (ProductID, StartDate)
+    )
+;
+
+ALTER TABLE Production.ProductListPriceHistory
+    ADD CONSTRAINT CK_ProductListPriceHistory_EndDate CHECK ([EndDate]>=[StartDate] OR [EndDate] IS NULL)
+;
+
+ALTER TABLE Production.ProductListPriceHistory
+    ADD CONSTRAINT CK_ProductListPriceHistory_ListPrice CHECK ([ListPrice]>(0.00))
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Changes in the list price of a product over time.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductListPriceHistory'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Product identification number. Foreign key to Product.ProductID',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductListPriceHistory',
+    @level2type = N'COLUMN', @level2name = N'ProductID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'List price start date.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductListPriceHistory',
+    @level2type = N'COLUMN', @level2name = N'StartDate'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'List price end date',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductListPriceHistory',
+    @level2type = N'COLUMN', @level2name = N'EndDate'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Product list price.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductListPriceHistory',
+    @level2type = N'COLUMN', @level2name = N'ListPrice'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductListPriceHistory',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Production.ProductModel (Table)
+CREATE TABLE Production.ProductModel
+    (
+     ProductModelID     int IDENTITY(1,1) NOT NULL ,
+     Name               dbo.Name NOT NULL ,
+     CatalogDescription xml ,
+     Instructions       xml ,
+     rowguid            uniqueidentifier NOT NULL CONSTRAINT DF_ProductModel_rowguid DEFAULT (newid()) ,
+     ModifiedDate       datetime NOT NULL CONSTRAINT DF_ProductModel_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_ProductModel_ProductModelID PRIMARY KEY CLUSTERED (ProductModelID)
+    )
+;
+
+CREATE UNIQUE INDEX AK_ProductModel_Name ON Production.ProductModel
+    (
+     Name ASC
+    )
+;
+
+CREATE UNIQUE INDEX AK_ProductModel_rowguid ON Production.ProductModel
+    (
+     rowguid ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Product model classification.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductModel'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key for ProductModel records.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductModel',
+    @level2type = N'COLUMN', @level2name = N'ProductModelID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Product model description.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductModel',
+    @level2type = N'COLUMN', @level2name = N'Name'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Detailed product catalog information in xml format.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductModel',
+    @level2type = N'COLUMN', @level2name = N'CatalogDescription'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Manufacturing instructions in xml format.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductModel',
+    @level2type = N'COLUMN', @level2name = N'Instructions'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductModel',
+    @level2type = N'COLUMN', @level2name = N'rowguid'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductModel',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Production.ProductModelIllustration (Table)
+CREATE TABLE Production.ProductModelIllustration
+    (
+     ProductModelID int NOT NULL ,
+     IllustrationID int NOT NULL ,
+     ModifiedDate   datetime NOT NULL CONSTRAINT DF_ProductModelIllustration_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_ProductModelIllustration_ProductModelID_IllustrationID PRIMARY KEY CLUSTERED (ProductModelID, IllustrationID)
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Cross-reference table mapping product models and illustrations.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductModelIllustration'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key. Foreign key to ProductModel.ProductModelID.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductModelIllustration',
+    @level2type = N'COLUMN', @level2name = N'ProductModelID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key. Foreign key to Illustration.IllustrationID.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductModelIllustration',
+    @level2type = N'COLUMN', @level2name = N'IllustrationID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductModelIllustration',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Production.ProductModelProductDescriptionCulture (Table)
+CREATE TABLE Production.ProductModelProductDescriptionCulture
+    (
+     ProductModelID       int NOT NULL ,
+     ProductDescriptionID int NOT NULL ,
+     CultureID            nchar(6) NOT NULL ,
+     ModifiedDate         datetime NOT NULL CONSTRAINT DF_ProductModelProductDescriptionCulture_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_ProductModelProductDescriptionCulture_ProductModelID_ProductDescriptionID_CultureID PRIMARY KEY CLUSTERED (ProductModelID, ProductDescriptionID, CultureID)
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Cross-reference table mapping product descriptions and the language the description is written in.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductModelProductDescriptionCulture'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key. Foreign key to ProductModel.ProductModelID.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductModelProductDescriptionCulture',
+    @level2type = N'COLUMN', @level2name = N'ProductModelID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key. Foreign key to ProductDescription.ProductDescriptionID.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductModelProductDescriptionCulture',
+    @level2type = N'COLUMN', @level2name = N'ProductDescriptionID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Culture identification number. Foreign key to Culture.CultureID.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductModelProductDescriptionCulture',
+    @level2type = N'COLUMN', @level2name = N'CultureID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductModelProductDescriptionCulture',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Production.ProductPhoto (Table)
+CREATE TABLE Production.ProductPhoto
+    (
+     ProductPhotoID         int IDENTITY(1,1) NOT NULL ,
+     ThumbNailPhoto         varbinary(max) ,
+     ThumbnailPhotoFileName nvarchar(50) ,
+     LargePhoto             varbinary(max) ,
+     LargePhotoFileName     nvarchar(50) ,
+     ModifiedDate           datetime NOT NULL CONSTRAINT DF_ProductPhoto_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_ProductPhoto_ProductPhotoID PRIMARY KEY CLUSTERED (ProductPhotoID)
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Product images.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductPhoto'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key for ProductPhoto records.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductPhoto',
+    @level2type = N'COLUMN', @level2name = N'ProductPhotoID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Small image of the product.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductPhoto',
+    @level2type = N'COLUMN', @level2name = N'ThumbNailPhoto'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Small image file name.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductPhoto',
+    @level2type = N'COLUMN', @level2name = N'ThumbnailPhotoFileName'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Large image of the product.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductPhoto',
+    @level2type = N'COLUMN', @level2name = N'LargePhoto'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Large image file name.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductPhoto',
+    @level2type = N'COLUMN', @level2name = N'LargePhotoFileName'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductPhoto',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Production.ProductProductPhoto (Table)
+CREATE TABLE Production.ProductProductPhoto
+    (
+     ProductID      int NOT NULL ,
+     ProductPhotoID int NOT NULL ,
+     [Primary]      dbo.Flag NOT NULL CONSTRAINT DF_ProductProductPhoto_Primary DEFAULT ((0)) ,
+     ModifiedDate   datetime NOT NULL CONSTRAINT DF_ProductProductPhoto_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_ProductProductPhoto_ProductID_ProductPhotoID PRIMARY KEY NONCLUSTERED (ProductID, ProductPhotoID)
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Cross-reference table mapping products and product photos.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductProductPhoto'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Product identification number. Foreign key to Product.ProductID.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductProductPhoto',
+    @level2type = N'COLUMN', @level2name = N'ProductID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Product photo identification number. Foreign key to ProductPhoto.ProductPhotoID.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductProductPhoto',
+    @level2type = N'COLUMN', @level2name = N'ProductPhotoID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'0 = Photo is not the principal image. 1 = Photo is the principal image.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductProductPhoto',
+    @level2type = N'COLUMN', @level2name = N'Primary'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductProductPhoto',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Production.ProductReview (Table)
+CREATE TABLE Production.ProductReview
+    (
+     ProductReviewID int IDENTITY(1,1) NOT NULL ,
+     ProductID       int NOT NULL ,
+     ReviewerName    dbo.Name NOT NULL ,
+     ReviewDate      datetime NOT NULL CONSTRAINT DF_ProductReview_ReviewDate DEFAULT (getdate()) ,
+     EmailAddress    nvarchar(50) NOT NULL ,
+     Rating          int NOT NULL ,
+     Comments        nvarchar(3850) ,
+     ModifiedDate    datetime NOT NULL CONSTRAINT DF_ProductReview_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_ProductReview_ProductReviewID PRIMARY KEY CLUSTERED (ProductReviewID)
+    )
+;
+
+ALTER TABLE Production.ProductReview
+    ADD CONSTRAINT CK_ProductReview_Rating CHECK ([Rating]>=(1) AND [Rating]<=(5))
+;
+
+CREATE INDEX IX_ProductReview_ProductID_Name ON Production.ProductReview
+    (
+     ProductID ASC ,
+     ReviewerName ASC
+    )
+    INCLUDE
+    (
+     Comments
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Customer reviews of products they have purchased.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductReview'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key for ProductReview records.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductReview',
+    @level2type = N'COLUMN', @level2name = N'ProductReviewID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Product identification number. Foreign key to Product.ProductID.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductReview',
+    @level2type = N'COLUMN', @level2name = N'ProductID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Name of the reviewer.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductReview',
+    @level2type = N'COLUMN', @level2name = N'ReviewerName'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date review was submitted.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductReview',
+    @level2type = N'COLUMN', @level2name = N'ReviewDate'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Reviewer''s e-mail address.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductReview',
+    @level2type = N'COLUMN', @level2name = N'EmailAddress'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Product rating given by the reviewer. Scale is 1 to 5 with 5 as the highest rating.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductReview',
+    @level2type = N'COLUMN', @level2name = N'Rating'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Reviewer''s comments',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductReview',
+    @level2type = N'COLUMN', @level2name = N'Comments'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductReview',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Production.ProductSubcategory (Table)
+CREATE TABLE Production.ProductSubcategory
+    (
+     ProductSubcategoryID int IDENTITY(1,1) NOT NULL ,
+     ProductCategoryID    int NOT NULL ,
+     Name                 dbo.Name NOT NULL ,
+     rowguid              uniqueidentifier NOT NULL CONSTRAINT DF_ProductSubcategory_rowguid DEFAULT (newid()) ,
+     ModifiedDate         datetime NOT NULL CONSTRAINT DF_ProductSubcategory_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_ProductSubcategory_ProductSubcategoryID PRIMARY KEY CLUSTERED (ProductSubcategoryID)
+    )
+;
+
+CREATE UNIQUE INDEX AK_ProductSubcategory_Name ON Production.ProductSubcategory
+    (
+     Name ASC
+    )
+;
+
+CREATE UNIQUE INDEX AK_ProductSubcategory_rowguid ON Production.ProductSubcategory
+    (
+     rowguid ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Product subcategories. See ProductCategory table.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductSubcategory'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key for ProductSubcategory records.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductSubcategory',
+    @level2type = N'COLUMN', @level2name = N'ProductSubcategoryID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Product category identification number. Foreign key to ProductCategory.ProductCategoryID.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductSubcategory',
+    @level2type = N'COLUMN', @level2name = N'ProductCategoryID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Subcategory description.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductSubcategory',
+    @level2type = N'COLUMN', @level2name = N'Name'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductSubcategory',
+    @level2type = N'COLUMN', @level2name = N'rowguid'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ProductSubcategory',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Production.ScrapReason (Table)
+CREATE TABLE Production.ScrapReason
+    (
+     ScrapReasonID smallint IDENTITY(1,1) NOT NULL ,
+     Name          dbo.Name NOT NULL ,
+     ModifiedDate  datetime NOT NULL CONSTRAINT DF_ScrapReason_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_ScrapReason_ScrapReasonID PRIMARY KEY CLUSTERED (ScrapReasonID)
+    )
+;
+
+CREATE UNIQUE INDEX AK_ScrapReason_Name ON Production.ScrapReason
+    (
+     Name ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Manufacturing failure reasons lookup table.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ScrapReason'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key for ScrapReason records.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ScrapReason',
+    @level2type = N'COLUMN', @level2name = N'ScrapReasonID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Failure description.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ScrapReason',
+    @level2type = N'COLUMN', @level2name = N'Name'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'ScrapReason',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Production.TransactionHistory (Table)
+CREATE TABLE Production.TransactionHistory
+    (
+     TransactionID        int IDENTITY(100000,1) NOT NULL ,
+     ProductID            int NOT NULL ,
+     ReferenceOrderID     int NOT NULL ,
+     ReferenceOrderLineID int NOT NULL CONSTRAINT DF_TransactionHistory_ReferenceOrderLineID DEFAULT ((0)) ,
+     TransactionDate      datetime NOT NULL CONSTRAINT DF_TransactionHistory_TransactionDate DEFAULT (getdate()) ,
+     TransactionType      nchar(1) NOT NULL ,
+     Quantity             int NOT NULL ,
+     ActualCost           money NOT NULL ,
+     ModifiedDate         datetime NOT NULL CONSTRAINT DF_TransactionHistory_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_TransactionHistory_TransactionID PRIMARY KEY CLUSTERED (TransactionID)
+    )
+;
+
+ALTER TABLE Production.TransactionHistory
+    ADD CONSTRAINT CK_TransactionHistory_TransactionType CHECK (
+        upper([TransactionType])='P'
+        OR upper([TransactionType])='S'
+        OR upper([TransactionType])='W'
+    )
+;
+
+CREATE INDEX IX_TransactionHistory_ProductID ON Production.TransactionHistory
+    (
+     ProductID ASC
+    )
+;
+
+CREATE INDEX IX_TransactionHistory_ReferenceOrderID_ReferenceOrderLineID ON Production.TransactionHistory
+    (
+     ReferenceOrderID ASC ,
+     ReferenceOrderLineID ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Record of each purchase order, sales order, or work order transaction year to date.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'TransactionHistory'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key for TransactionHistory records.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'TransactionHistory',
+    @level2type = N'COLUMN', @level2name = N'TransactionID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Product identification number. Foreign key to Product.ProductID.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'TransactionHistory',
+    @level2type = N'COLUMN', @level2name = N'ProductID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Purchase order, sales order, or work order identification number.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'TransactionHistory',
+    @level2type = N'COLUMN', @level2name = N'ReferenceOrderID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Line number associated with the purchase order, sales order, or work order.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'TransactionHistory',
+    @level2type = N'COLUMN', @level2name = N'ReferenceOrderLineID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time of the transaction.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'TransactionHistory',
+    @level2type = N'COLUMN', @level2name = N'TransactionDate'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'W = WorkOrder, S = SalesOrder, P = PurchaseOrder',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'TransactionHistory',
+    @level2type = N'COLUMN', @level2name = N'TransactionType'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Product quantity.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'TransactionHistory',
+    @level2type = N'COLUMN', @level2name = N'Quantity'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Product cost.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'TransactionHistory',
+    @level2type = N'COLUMN', @level2name = N'ActualCost'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'TransactionHistory',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Production.TransactionHistoryArchive (Table)
+CREATE TABLE Production.TransactionHistoryArchive
+    (
+     TransactionID        int NOT NULL ,
+     ProductID            int NOT NULL ,
+     ReferenceOrderID     int NOT NULL ,
+     ReferenceOrderLineID int NOT NULL CONSTRAINT DF_TransactionHistoryArchive_ReferenceOrderLineID DEFAULT ((0)) ,
+     TransactionDate      datetime NOT NULL CONSTRAINT DF_TransactionHistoryArchive_TransactionDate DEFAULT (getdate()) ,
+     TransactionType      nchar(1) NOT NULL ,
+     Quantity             int NOT NULL ,
+     ActualCost           money NOT NULL ,
+     ModifiedDate         datetime NOT NULL CONSTRAINT DF_TransactionHistoryArchive_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_TransactionHistoryArchive_TransactionID PRIMARY KEY CLUSTERED (TransactionID)
+    )
+;
+
+ALTER TABLE Production.TransactionHistoryArchive
+    ADD CONSTRAINT CK_TransactionHistoryArchive_TransactionType CHECK (
+        upper([TransactionType])='P'
+        OR upper([TransactionType])='S'
+        OR upper([TransactionType])='W'
+    )
+;
+
+CREATE INDEX IX_TransactionHistoryArchive_ProductID ON Production.TransactionHistoryArchive
+    (
+     ProductID ASC
+    )
+;
+
+CREATE INDEX IX_TransactionHistoryArchive_ReferenceOrderID_ReferenceOrderLineID ON Production.TransactionHistoryArchive
+    (
+     ReferenceOrderID ASC ,
+     ReferenceOrderLineID ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Transactions for previous years.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'TransactionHistoryArchive'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key for TransactionHistoryArchive records.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'TransactionHistoryArchive',
+    @level2type = N'COLUMN', @level2name = N'TransactionID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Product identification number. Foreign key to Product.ProductID.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'TransactionHistoryArchive',
+    @level2type = N'COLUMN', @level2name = N'ProductID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Purchase order, sales order, or work order identification number.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'TransactionHistoryArchive',
+    @level2type = N'COLUMN', @level2name = N'ReferenceOrderID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Line number associated with the purchase order, sales order, or work order.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'TransactionHistoryArchive',
+    @level2type = N'COLUMN', @level2name = N'ReferenceOrderLineID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time of the transaction.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'TransactionHistoryArchive',
+    @level2type = N'COLUMN', @level2name = N'TransactionDate'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'W = Work Order, S = Sales Order, P = Purchase Order',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'TransactionHistoryArchive',
+    @level2type = N'COLUMN', @level2name = N'TransactionType'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Product quantity.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'TransactionHistoryArchive',
+    @level2type = N'COLUMN', @level2name = N'Quantity'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Product cost.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'TransactionHistoryArchive',
+    @level2type = N'COLUMN', @level2name = N'ActualCost'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'TransactionHistoryArchive',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Production.UnitMeasure (Table)
+CREATE TABLE Production.UnitMeasure
+    (
+     UnitMeasureCode nchar(3) NOT NULL ,
+     Name            dbo.Name NOT NULL ,
+     ModifiedDate    datetime NOT NULL CONSTRAINT DF_UnitMeasure_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_UnitMeasure_UnitMeasureCode PRIMARY KEY CLUSTERED (UnitMeasureCode)
+    )
+;
+
+CREATE UNIQUE INDEX AK_UnitMeasure_Name ON Production.UnitMeasure
+    (
+     Name ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Unit of measure lookup table.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'UnitMeasure'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'UnitMeasure',
+    @level2type = N'COLUMN', @level2name = N'UnitMeasureCode'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Unit of measure description.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'UnitMeasure',
+    @level2type = N'COLUMN', @level2name = N'Name'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Production',
+    @level1type = N'TABLE', @level1name = N'UnitMeasure',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Production.WorkOrder (Table)
+CREATE TABLE Production.WorkOrder
+    (
+     WorkOrderID   int IDENTITY(1,1) NOT NULL ,
+     ProductID     int NOT NULL ,
+     OrderQty      int NOT NULL ,
+     StockedQty    AS (isnull([OrderQty]-[ScrappedQty],(0))) ,
+     ScrappedQty   smallint NOT NULL ,
+     StartDate     datetime NOT NULL ,
+     EndDate       datetime ,
+     DueDate       datetime NOT NULL ,
+     ScrapReasonID smallint ,
+     ModifiedDate  datetime NOT NULL CONSTRAINT DF_WorkOrder_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_WorkOrder_WorkOrderID PRIMARY KEY CLUSTERED (WorkOrderID)
+    )
+;
+
+ALTER TABLE Production.WorkOrder
+    ADD CONSTRAINT CK_WorkOrder_EndDate CHECK ([EndDate]>=[StartDate] OR [EndDate] IS NULL)
+;
+
+ALTER TABLE Production.WorkOrder
+    ADD CONSTRAINT CK_WorkOrder_OrderQty CHECK ([OrderQty]>(0))
+;
+
+ALTER TABLE Production.WorkOrder
+    ADD CONSTRAINT CK_WorkOrder_ScrappedQty CHECK ([ScrappedQty]>=(0))
+;
+
+CREATE INDEX IX_WorkOrder_ScrapReasonID ON Production.WorkOrder
+    (
+     ScrapReasonID ASC
+    )
+;
+
+CREATE INDEX IX_WorkOrder_ProductID ON Production.WorkOrder
+    (
+     ProductID ASC
+    )
+;
+
+-- Production.WorkOrderRouting (Table)
+CREATE TABLE Production.WorkOrderRouting
+    (
+     WorkOrderID        int NOT NULL ,
+     ProductID          int NOT NULL ,
+     OperationSequence  smallint NOT NULL ,
+     LocationID         smallint NOT NULL ,
+     ScheduledStartDate datetime NOT NULL ,
+     ScheduledEndDate   datetime NOT NULL ,
+     ActualStartDate    datetime ,
+     ActualEndDate      datetime ,
+     ActualResourceHrs  decimal(9,4) ,
+     PlannedCost        money NOT NULL ,
+     ActualCost         money ,
+     ModifiedDate       datetime NOT NULL CONSTRAINT DF_WorkOrderRouting_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_WorkOrderRouting_WorkOrderID_ProductID_OperationSequence PRIMARY KEY CLUSTERED (WorkOrderID, ProductID, OperationSequence)
+    )
+;
+
+ALTER TABLE Production.WorkOrderRouting
+    ADD CONSTRAINT CK_WorkOrderRouting_ActualCost CHECK ([ActualCost]>(0.00))
+;
+
+ALTER TABLE Production.WorkOrderRouting
+    ADD CONSTRAINT CK_WorkOrderRouting_ActualEndDate CHECK (
+        [ActualEndDate]>=[ActualStartDate]
+        OR [ActualEndDate] IS NULL
+        OR [ActualStartDate] IS NULL
+    )
+;
+
+ALTER TABLE Production.WorkOrderRouting
+    ADD CONSTRAINT CK_WorkOrderRouting_ActualResourceHrs CHECK ([ActualResourceHrs]>=(0.0000))
+;
+
+ALTER TABLE Production.WorkOrderRouting
+    ADD CONSTRAINT CK_WorkOrderRouting_PlannedCost CHECK ([PlannedCost]>(0.00))
+;
+
+ALTER TABLE Production.WorkOrderRouting
+    ADD CONSTRAINT CK_WorkOrderRouting_ScheduledEndDate CHECK ([ScheduledEndDate]>=[ScheduledStartDate])
+;
+
+CREATE INDEX IX_WorkOrderRouting_ProductID ON Production.WorkOrderRouting
+    (
+     ProductID ASC
+    )
+;
+
+-- Purchasing.ProductVendor (Table)
+CREATE TABLE Purchasing.ProductVendor
+    (
+     ProductID        int NOT NULL ,
+     BusinessEntityID int NOT NULL ,
+     AverageLeadTime  int NOT NULL ,
+     StandardPrice    money NOT NULL ,
+     LastReceiptCost  money ,
+     LastReceiptDate  datetime ,
+     MinOrderQty      int NOT NULL ,
+     MaxOrderQty      int NOT NULL ,
+     OnOrderQty       int ,
+     UnitMeasureCode  nchar(3) NOT NULL ,
+     ModifiedDate     datetime NOT NULL CONSTRAINT DF_ProductVendor_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_ProductVendor_ProductID_BusinessEntityID PRIMARY KEY CLUSTERED (ProductID, BusinessEntityID)
+    )
+;
+
+ALTER TABLE Purchasing.ProductVendor
+    ADD CONSTRAINT CK_ProductVendor_AverageLeadTime CHECK ([AverageLeadTime]>=(1))
+;
+
+ALTER TABLE Purchasing.ProductVendor
+    ADD CONSTRAINT CK_ProductVendor_LastReceiptCost CHECK ([LastReceiptCost]>(0.00))
+;
+
+ALTER TABLE Purchasing.ProductVendor
+    ADD CONSTRAINT CK_ProductVendor_MaxOrderQty CHECK ([MaxOrderQty]>=(1))
+;
+
+ALTER TABLE Purchasing.ProductVendor
+    ADD CONSTRAINT CK_ProductVendor_MinOrderQty CHECK ([MinOrderQty]>=(1))
+;
+
+ALTER TABLE Purchasing.ProductVendor
+    ADD CONSTRAINT CK_ProductVendor_OnOrderQty CHECK ([OnOrderQty]>=(0))
+;
+
+ALTER TABLE Purchasing.ProductVendor
+    ADD CONSTRAINT CK_ProductVendor_StandardPrice CHECK ([StandardPrice]>(0.00))
+;
+
+CREATE INDEX IX_ProductVendor_UnitMeasureCode ON Purchasing.ProductVendor
+    (
+     UnitMeasureCode ASC
+    )
+;
+
+CREATE INDEX IX_ProductVendor_BusinessEntityID ON Purchasing.ProductVendor
+    (
+     BusinessEntityID ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Cross-reference table mapping vendors with the products they supply.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'ProductVendor'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key. Foreign key to Product.ProductID.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'ProductVendor',
+    @level2type = N'COLUMN', @level2name = N'ProductID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key. Foreign key to Vendor.BusinessEntityID.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'ProductVendor',
+    @level2type = N'COLUMN', @level2name = N'BusinessEntityID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'The average span of time (in days) between placing an order with the vendor and receiving the purchased product.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'ProductVendor',
+    @level2type = N'COLUMN', @level2name = N'AverageLeadTime'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'The vendor''s usual selling price.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'ProductVendor',
+    @level2type = N'COLUMN', @level2name = N'StandardPrice'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'The selling price when last purchased.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'ProductVendor',
+    @level2type = N'COLUMN', @level2name = N'LastReceiptCost'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date the product was last received by the vendor.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'ProductVendor',
+    @level2type = N'COLUMN', @level2name = N'LastReceiptDate'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'The maximum quantity that should be ordered.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'ProductVendor',
+    @level2type = N'COLUMN', @level2name = N'MinOrderQty'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'The minimum quantity that should be ordered.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'ProductVendor',
+    @level2type = N'COLUMN', @level2name = N'MaxOrderQty'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'The quantity currently on order.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'ProductVendor',
+    @level2type = N'COLUMN', @level2name = N'OnOrderQty'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'The product''s unit of measure.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'ProductVendor',
+    @level2type = N'COLUMN', @level2name = N'UnitMeasureCode'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'ProductVendor',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Purchasing.PurchaseOrderDetail (Table)
+CREATE TABLE Purchasing.PurchaseOrderDetail
+    (
+     PurchaseOrderID       int NOT NULL ,
+     PurchaseOrderDetailID int IDENTITY(1,1) NOT NULL ,
+     DueDate               datetime NOT NULL ,
+     OrderQty              smallint NOT NULL ,
+     ProductID             int NOT NULL ,
+     UnitPrice             money NOT NULL ,
+     LineTotal             AS (isnull([OrderQty]*[UnitPrice],(0.00))) ,
+     ReceivedQty           decimal(8,2) NOT NULL ,
+     RejectedQty           decimal(8,2) NOT NULL ,
+     StockedQty            AS (isnull([ReceivedQty]-[RejectedQty],(0.00))) ,
+     ModifiedDate          datetime NOT NULL CONSTRAINT DF_PurchaseOrderDetail_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_PurchaseOrderDetail_PurchaseOrderID_PurchaseOrderDetailID PRIMARY KEY CLUSTERED (PurchaseOrderID, PurchaseOrderDetailID)
+    )
+;
+
+ALTER TABLE Purchasing.PurchaseOrderDetail
+    ADD CONSTRAINT CK_PurchaseOrderDetail_OrderQty CHECK ([OrderQty]>(0))
+;
+
+ALTER TABLE Purchasing.PurchaseOrderDetail
+    ADD CONSTRAINT CK_PurchaseOrderDetail_ReceivedQty CHECK ([ReceivedQty]>=(0.00))
+;
+
+ALTER TABLE Purchasing.PurchaseOrderDetail
+    ADD CONSTRAINT CK_PurchaseOrderDetail_RejectedQty CHECK ([RejectedQty]>=(0.00))
+;
+
+ALTER TABLE Purchasing.PurchaseOrderDetail
+    ADD CONSTRAINT CK_PurchaseOrderDetail_UnitPrice CHECK ([UnitPrice]>=(0.00))
+;
+
+CREATE INDEX IX_PurchaseOrderDetail_ProductID ON Purchasing.PurchaseOrderDetail
+    (
+     ProductID ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Individual products associated with a specific purchase order. See PurchaseOrderHeader.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'PurchaseOrderDetail'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key. Foreign key to PurchaseOrderHeader.PurchaseOrderID.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'PurchaseOrderDetail',
+    @level2type = N'COLUMN', @level2name = N'PurchaseOrderID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key. One line number per purchased product.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'PurchaseOrderDetail',
+    @level2type = N'COLUMN', @level2name = N'PurchaseOrderDetailID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date the product is expected to be received.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'PurchaseOrderDetail',
+    @level2type = N'COLUMN', @level2name = N'DueDate'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Quantity ordered.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'PurchaseOrderDetail',
+    @level2type = N'COLUMN', @level2name = N'OrderQty'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Product identification number. Foreign key to Product.ProductID.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'PurchaseOrderDetail',
+    @level2type = N'COLUMN', @level2name = N'ProductID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Vendor''s selling price of a single product.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'PurchaseOrderDetail',
+    @level2type = N'COLUMN', @level2name = N'UnitPrice'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Per product subtotal. Computed as OrderQty * UnitPrice.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'PurchaseOrderDetail',
+    @level2type = N'COLUMN', @level2name = N'LineTotal'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Quantity actually received from the vendor.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'PurchaseOrderDetail',
+    @level2type = N'COLUMN', @level2name = N'ReceivedQty'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Quantity rejected during inspection.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'PurchaseOrderDetail',
+    @level2type = N'COLUMN', @level2name = N'RejectedQty'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Quantity accepted into inventory. Computed as ReceivedQty - RejectedQty.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'PurchaseOrderDetail',
+    @level2type = N'COLUMN', @level2name = N'StockedQty'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'PurchaseOrderDetail',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Purchasing.PurchaseOrderHeader (Table)
+CREATE TABLE Purchasing.PurchaseOrderHeader
+    (
+     PurchaseOrderID int IDENTITY(1,1) NOT NULL ,
+     RevisionNumber  tinyint NOT NULL CONSTRAINT DF_PurchaseOrderHeader_RevisionNumber DEFAULT ((0)) ,
+     Status          tinyint NOT NULL CONSTRAINT DF_PurchaseOrderHeader_Status DEFAULT ((1)) ,
+     EmployeeID      int NOT NULL ,
+     VendorID        int NOT NULL ,
+     ShipMethodID    int NOT NULL ,
+     OrderDate       datetime NOT NULL CONSTRAINT DF_PurchaseOrderHeader_OrderDate DEFAULT (getdate()) ,
+     ShipDate        datetime ,
+     SubTotal        money NOT NULL CONSTRAINT DF_PurchaseOrderHeader_SubTotal DEFAULT ((0.00)) ,
+     TaxAmt          money NOT NULL CONSTRAINT DF_PurchaseOrderHeader_TaxAmt DEFAULT ((0.00)) ,
+     Freight         money NOT NULL CONSTRAINT DF_PurchaseOrderHeader_Freight DEFAULT ((0.00)) ,
+     TotalDue        AS (isnull(([SubTotal]+[TaxAmt])+[Freight],(0))) PERSISTED NOT NULL ,
+     ModifiedDate    datetime NOT NULL CONSTRAINT DF_PurchaseOrderHeader_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_PurchaseOrderHeader_PurchaseOrderID PRIMARY KEY CLUSTERED (PurchaseOrderID)
+    )
+;
+
+ALTER TABLE Purchasing.PurchaseOrderHeader
+    ADD CONSTRAINT CK_PurchaseOrderHeader_Freight CHECK ([Freight]>=(0.00))
+;
+
+ALTER TABLE Purchasing.PurchaseOrderHeader
+    ADD CONSTRAINT CK_PurchaseOrderHeader_ShipDate CHECK ([ShipDate]>=[OrderDate] OR [ShipDate] IS NULL)
+;
+
+ALTER TABLE Purchasing.PurchaseOrderHeader
+    ADD CONSTRAINT CK_PurchaseOrderHeader_Status CHECK ([Status]>=(1) AND [Status]<=(4))
+;
+
+ALTER TABLE Purchasing.PurchaseOrderHeader
+    ADD CONSTRAINT CK_PurchaseOrderHeader_SubTotal CHECK ([SubTotal]>=(0.00))
+;
+
+ALTER TABLE Purchasing.PurchaseOrderHeader
+    ADD CONSTRAINT CK_PurchaseOrderHeader_TaxAmt CHECK ([TaxAmt]>=(0.00))
+;
+
+CREATE INDEX IX_PurchaseOrderHeader_VendorID ON Purchasing.PurchaseOrderHeader
+    (
+     VendorID ASC
+    )
+;
+
+CREATE INDEX IX_PurchaseOrderHeader_EmployeeID ON Purchasing.PurchaseOrderHeader
+    (
+     EmployeeID ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'General purchase order information. See PurchaseOrderDetail.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'PurchaseOrderHeader'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'PurchaseOrderHeader',
+    @level2type = N'COLUMN', @level2name = N'PurchaseOrderID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Incremental number to track changes to the purchase order over time.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'PurchaseOrderHeader',
+    @level2type = N'COLUMN', @level2name = N'RevisionNumber'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Order current status. 1 = Pending; 2 = Approved; 3 = Rejected; 4 = Complete',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'PurchaseOrderHeader',
+    @level2type = N'COLUMN', @level2name = N'Status'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Employee who created the purchase order. Foreign key to Employee.BusinessEntityID.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'PurchaseOrderHeader',
+    @level2type = N'COLUMN', @level2name = N'EmployeeID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Vendor with whom the purchase order is placed. Foreign key to Vendor.BusinessEntityID.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'PurchaseOrderHeader',
+    @level2type = N'COLUMN', @level2name = N'VendorID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Shipping method. Foreign key to ShipMethod.ShipMethodID.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'PurchaseOrderHeader',
+    @level2type = N'COLUMN', @level2name = N'ShipMethodID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Purchase order creation date.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'PurchaseOrderHeader',
+    @level2type = N'COLUMN', @level2name = N'OrderDate'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Estimated shipment date from the vendor.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'PurchaseOrderHeader',
+    @level2type = N'COLUMN', @level2name = N'ShipDate'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Purchase order subtotal. Computed as SUM(PurchaseOrderDetail.LineTotal)for the appropriate PurchaseOrderID.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'PurchaseOrderHeader',
+    @level2type = N'COLUMN', @level2name = N'SubTotal'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Tax amount.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'PurchaseOrderHeader',
+    @level2type = N'COLUMN', @level2name = N'TaxAmt'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Shipping cost.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'PurchaseOrderHeader',
+    @level2type = N'COLUMN', @level2name = N'Freight'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Total due to vendor. Computed as Subtotal + TaxAmt + Freight.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'PurchaseOrderHeader',
+    @level2type = N'COLUMN', @level2name = N'TotalDue'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'PurchaseOrderHeader',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Purchasing.ShipMethod (Table)
+CREATE TABLE Purchasing.ShipMethod
+    (
+     ShipMethodID int IDENTITY(1,1) NOT NULL ,
+     Name         dbo.Name NOT NULL ,
+     ShipBase     money NOT NULL CONSTRAINT DF_ShipMethod_ShipBase DEFAULT ((0.00)) ,
+     ShipRate     money NOT NULL CONSTRAINT DF_ShipMethod_ShipRate DEFAULT ((0.00)) ,
+     rowguid      uniqueidentifier NOT NULL CONSTRAINT DF_ShipMethod_rowguid DEFAULT (newid()) ,
+     ModifiedDate datetime NOT NULL CONSTRAINT DF_ShipMethod_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_ShipMethod_ShipMethodID PRIMARY KEY CLUSTERED (ShipMethodID)
+    )
+;
+
+ALTER TABLE Purchasing.ShipMethod
+    ADD CONSTRAINT CK_ShipMethod_ShipBase CHECK ([ShipBase]>(0.00))
+;
+
+ALTER TABLE Purchasing.ShipMethod
+    ADD CONSTRAINT CK_ShipMethod_ShipRate CHECK ([ShipRate]>(0.00))
+;
+
+CREATE UNIQUE INDEX AK_ShipMethod_Name ON Purchasing.ShipMethod
+    (
+     Name ASC
+    )
+;
+
+CREATE UNIQUE INDEX AK_ShipMethod_rowguid ON Purchasing.ShipMethod
+    (
+     rowguid ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Shipping company lookup table.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'ShipMethod'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key for ShipMethod records.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'ShipMethod',
+    @level2type = N'COLUMN', @level2name = N'ShipMethodID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Shipping company name.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'ShipMethod',
+    @level2type = N'COLUMN', @level2name = N'Name'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Minimum shipping charge.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'ShipMethod',
+    @level2type = N'COLUMN', @level2name = N'ShipBase'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Shipping charge per pound.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'ShipMethod',
+    @level2type = N'COLUMN', @level2name = N'ShipRate'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'ShipMethod',
+    @level2type = N'COLUMN', @level2name = N'rowguid'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'ShipMethod',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Purchasing.Vendor (Table)
+CREATE TABLE Purchasing.Vendor
+    (
+     BusinessEntityID        int NOT NULL ,
+     AccountNumber           dbo.AccountNumber NOT NULL ,
+     Name                    dbo.Name NOT NULL ,
+     CreditRating            tinyint NOT NULL ,
+     PreferredVendorStatus   dbo.Flag NOT NULL CONSTRAINT DF_Vendor_PreferredVendorStatus DEFAULT ((1)) ,
+     ActiveFlag              dbo.Flag NOT NULL CONSTRAINT DF_Vendor_ActiveFlag DEFAULT ((1)) ,
+     PurchasingWebServiceURL nvarchar(1024) ,
+     ModifiedDate            datetime NOT NULL CONSTRAINT DF_Vendor_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_Vendor_BusinessEntityID PRIMARY KEY CLUSTERED (BusinessEntityID)
+    )
+;
+
+ALTER TABLE Purchasing.Vendor
+    ADD CONSTRAINT CK_Vendor_CreditRating CHECK ([CreditRating]>=(1) AND [CreditRating]<=(5))
+;
+
+CREATE UNIQUE INDEX AK_Vendor_AccountNumber ON Purchasing.Vendor
+    (
+     AccountNumber ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Companies from whom Adventure Works Cycles purchases parts or other goods.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'Vendor'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key for Vendor records.  Foreign key to BusinessEntity.BusinessEntityID',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'Vendor',
+    @level2type = N'COLUMN', @level2name = N'BusinessEntityID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Vendor account (identification) number.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'Vendor',
+    @level2type = N'COLUMN', @level2name = N'AccountNumber'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Company name.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'Vendor',
+    @level2type = N'COLUMN', @level2name = N'Name'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'1 = Superior, 2 = Excellent, 3 = Above average, 4 = Average, 5 = Below average',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'Vendor',
+    @level2type = N'COLUMN', @level2name = N'CreditRating'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'0 = Do not use if another vendor is available. 1 = Preferred over other vendors supplying the same product.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'Vendor',
+    @level2type = N'COLUMN', @level2name = N'PreferredVendorStatus'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'0 = Vendor no longer used. 1 = Vendor is actively used.',
+    @level0type = N'SCHEMA', @level0name = N'Purchasing',
+    @level1type = N'TABLE', @level1name = N'Vendor',
+    @level2type = N'COLUMN', @level2name = N'ActiveFlag'
+;
+
+-- Sales.CountryRegionCurrency (Table)
+CREATE TABLE Sales.CountryRegionCurrency
+    (
+     CountryRegionCode nvarchar(3) NOT NULL ,
+     CurrencyCode      nchar(3) NOT NULL ,
+     ModifiedDate      datetime NOT NULL CONSTRAINT DF_CountryRegionCurrency_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_CountryRegionCurrency_CountryRegionCode_CurrencyCode PRIMARY KEY CLUSTERED (CountryRegionCode, CurrencyCode)
+    )
+;
+
+CREATE INDEX IX_CountryRegionCurrency_CurrencyCode ON Sales.CountryRegionCurrency
+    (
+     CurrencyCode ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Cross-reference table mapping ISO currency codes to a country or region.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'CountryRegionCurrency'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'ISO code for countries and regions. Foreign key to CountryRegion.CountryRegionCode.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'CountryRegionCurrency',
+    @level2type = N'COLUMN', @level2name = N'CountryRegionCode'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'ISO standard currency code. Foreign key to Currency.CurrencyCode.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'CountryRegionCurrency',
+    @level2type = N'COLUMN', @level2name = N'CurrencyCode'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'CountryRegionCurrency',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Sales.CreditCard (Table)
+CREATE TABLE Sales.CreditCard
+    (
+     CreditCardID int IDENTITY(1,1) NOT NULL ,
+     CardType     nvarchar(50) NOT NULL ,
+     CardNumber   nvarchar(25) NOT NULL ,
+     ExpMonth     tinyint NOT NULL ,
+     ExpYear      smallint NOT NULL ,
+     ModifiedDate datetime NOT NULL CONSTRAINT DF_CreditCard_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_CreditCard_CreditCardID PRIMARY KEY CLUSTERED (CreditCardID)
+    )
+;
+
+CREATE UNIQUE INDEX AK_CreditCard_CardNumber ON Sales.CreditCard
+    (
+     CardNumber ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Customer credit card information.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'CreditCard'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key for CreditCard records.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'CreditCard',
+    @level2type = N'COLUMN', @level2name = N'CreditCardID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Credit card name.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'CreditCard',
+    @level2type = N'COLUMN', @level2name = N'CardType'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Credit card number.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'CreditCard',
+    @level2type = N'COLUMN', @level2name = N'CardNumber'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Credit card expiration month.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'CreditCard',
+    @level2type = N'COLUMN', @level2name = N'ExpMonth'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Credit card expiration year.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'CreditCard',
+    @level2type = N'COLUMN', @level2name = N'ExpYear'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'CreditCard',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Sales.Currency (Table)
+CREATE TABLE Sales.Currency
+    (
+     CurrencyCode nchar(3) NOT NULL ,
+     Name         dbo.Name NOT NULL ,
+     ModifiedDate datetime NOT NULL CONSTRAINT DF_Currency_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_Currency_CurrencyCode PRIMARY KEY CLUSTERED (CurrencyCode)
+    )
+;
+
+CREATE UNIQUE INDEX AK_Currency_Name ON Sales.Currency
+    (
+     Name ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Lookup table containing standard ISO currencies.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'Currency'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'The ISO code for the Currency.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'Currency',
+    @level2type = N'COLUMN', @level2name = N'CurrencyCode'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Currency name.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'Currency',
+    @level2type = N'COLUMN', @level2name = N'Name'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'Currency',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Sales.CurrencyRate (Table)
+CREATE TABLE Sales.CurrencyRate
+    (
+     CurrencyRateID   int IDENTITY(1,1) NOT NULL ,
+     CurrencyRateDate datetime NOT NULL ,
+     FromCurrencyCode nchar(3) NOT NULL ,
+     ToCurrencyCode   nchar(3) NOT NULL ,
+     AverageRate      money NOT NULL ,
+     EndOfDayRate     money NOT NULL ,
+     ModifiedDate     datetime NOT NULL CONSTRAINT DF_CurrencyRate_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_CurrencyRate_CurrencyRateID PRIMARY KEY CLUSTERED (CurrencyRateID)
+    )
+;
+
+CREATE UNIQUE INDEX AK_CurrencyRate_CurrencyRateDate_FromCurrencyCode_ToCurrencyCode ON Sales.CurrencyRate
+    (
+     CurrencyRateDate ASC ,
+     FromCurrencyCode ASC ,
+     ToCurrencyCode ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Currency exchange rates.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'CurrencyRate'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key for CurrencyRate records.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'CurrencyRate',
+    @level2type = N'COLUMN', @level2name = N'CurrencyRateID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the exchange rate was obtained.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'CurrencyRate',
+    @level2type = N'COLUMN', @level2name = N'CurrencyRateDate'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Exchange rate was converted from this currency code.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'CurrencyRate',
+    @level2type = N'COLUMN', @level2name = N'FromCurrencyCode'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Exchange rate was converted to this currency code.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'CurrencyRate',
+    @level2type = N'COLUMN', @level2name = N'ToCurrencyCode'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Average exchange rate for the day.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'CurrencyRate',
+    @level2type = N'COLUMN', @level2name = N'AverageRate'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Final exchange rate for the day.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'CurrencyRate',
+    @level2type = N'COLUMN', @level2name = N'EndOfDayRate'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'CurrencyRate',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Sales.Customer (Table)
+CREATE TABLE Sales.Customer
+    (
+     CustomerID    int IDENTITY(1,1) NOT NULL ,
+     PersonID      int ,
+     StoreID       int ,
+     TerritoryID   int ,
+     AccountNumber AS (isnull('AW'+[dbo].[ufnLeadingZeros]([CustomerID]),'')) ,
+     rowguid       uniqueidentifier NOT NULL CONSTRAINT DF_Customer_rowguid DEFAULT (newid()) ,
+     ModifiedDate  datetime NOT NULL CONSTRAINT DF_Customer_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_Customer_CustomerID PRIMARY KEY CLUSTERED (CustomerID)
+    )
+;
+
+CREATE UNIQUE INDEX AK_Customer_rowguid ON Sales.Customer
+    (
+     rowguid ASC
+    )
+;
+
+CREATE UNIQUE INDEX AK_Customer_AccountNumber ON Sales.Customer
+    (
+     AccountNumber ASC
+    )
+;
+
+CREATE INDEX IX_Customer_TerritoryID ON Sales.Customer
+    (
+     TerritoryID ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Current customer information. Also see the Person and Store tables.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'Customer'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'Customer',
+    @level2type = N'COLUMN', @level2name = N'CustomerID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Foreign key to Person.BusinessEntityID',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'Customer',
+    @level2type = N'COLUMN', @level2name = N'PersonID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Foreign key to Store.BusinessEntityID',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'Customer',
+    @level2type = N'COLUMN', @level2name = N'StoreID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'ID of the territory in which the customer is located. Foreign key to SalesTerritory.SalesTerritoryID.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'Customer',
+    @level2type = N'COLUMN', @level2name = N'TerritoryID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Unique number identifying the customer assigned by the accounting system.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'Customer',
+    @level2type = N'COLUMN', @level2name = N'AccountNumber'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'Customer',
+    @level2type = N'COLUMN', @level2name = N'rowguid'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'Customer',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Sales.PersonCreditCard (Table)
+CREATE TABLE Sales.PersonCreditCard
+    (
+     BusinessEntityID int NOT NULL ,
+     CreditCardID     int NOT NULL ,
+     ModifiedDate     datetime NOT NULL CONSTRAINT DF_PersonCreditCard_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_PersonCreditCard_BusinessEntityID_CreditCardID PRIMARY KEY CLUSTERED (BusinessEntityID, CreditCardID)
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Cross-reference table mapping people to their credit card information in the CreditCard table. ',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'PersonCreditCard'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Business entity identification number. Foreign key to Person.BusinessEntityID.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'PersonCreditCard',
+    @level2type = N'COLUMN', @level2name = N'BusinessEntityID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Credit card identification number. Foreign key to CreditCard.CreditCardID.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'PersonCreditCard',
+    @level2type = N'COLUMN', @level2name = N'CreditCardID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'PersonCreditCard',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Sales.SalesOrderDetail (Table)
+CREATE TABLE Sales.SalesOrderDetail
+    (
+     SalesOrderID          int NOT NULL ,
+     SalesOrderDetailID    int IDENTITY(1,1) NOT NULL ,
+     CarrierTrackingNumber nvarchar(25) ,
+     OrderQty              smallint NOT NULL ,
+     ProductID             int NOT NULL ,
+     SpecialOfferID        int NOT NULL ,
+     UnitPrice             money NOT NULL ,
+     UnitPriceDiscount     money NOT NULL CONSTRAINT DF_SalesOrderDetail_UnitPriceDiscount DEFAULT ((0.0)) ,
+     LineTotal             AS (
+         isnull(([UnitPrice]*((1.0)-[UnitPriceDiscount]))*[OrderQty],(0.0))
+     ) ,
+     rowguid               uniqueidentifier NOT NULL CONSTRAINT DF_SalesOrderDetail_rowguid DEFAULT (newid()) ,
+     ModifiedDate          datetime NOT NULL CONSTRAINT DF_SalesOrderDetail_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_SalesOrderDetail_SalesOrderID_SalesOrderDetailID PRIMARY KEY CLUSTERED (SalesOrderID, SalesOrderDetailID)
+    )
+;
+
+ALTER TABLE Sales.SalesOrderDetail
+    ADD CONSTRAINT CK_SalesOrderDetail_OrderQty CHECK ([OrderQty]>(0))
+;
+
+ALTER TABLE Sales.SalesOrderDetail
+    ADD CONSTRAINT CK_SalesOrderDetail_UnitPrice CHECK ([UnitPrice]>=(0.00))
+;
+
+ALTER TABLE Sales.SalesOrderDetail
+    ADD CONSTRAINT CK_SalesOrderDetail_UnitPriceDiscount CHECK ([UnitPriceDiscount]>=(0.00))
+;
+
+CREATE UNIQUE INDEX AK_SalesOrderDetail_rowguid ON Sales.SalesOrderDetail
+    (
+     rowguid ASC
+    )
+;
+
+CREATE INDEX IX_SalesOrderDetail_ProductID ON Sales.SalesOrderDetail
+    (
+     ProductID ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Individual products associated with a specific sales order. See SalesOrderHeader.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesOrderDetail'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key. Foreign key to SalesOrderHeader.SalesOrderID.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesOrderDetail',
+    @level2type = N'COLUMN', @level2name = N'SalesOrderID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key. One incremental unique number per product sold.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesOrderDetail',
+    @level2type = N'COLUMN', @level2name = N'SalesOrderDetailID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Shipment tracking number supplied by the shipper.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesOrderDetail',
+    @level2type = N'COLUMN', @level2name = N'CarrierTrackingNumber'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Quantity ordered per product.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesOrderDetail',
+    @level2type = N'COLUMN', @level2name = N'OrderQty'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Product sold to customer. Foreign key to Product.ProductID.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesOrderDetail',
+    @level2type = N'COLUMN', @level2name = N'ProductID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Promotional code. Foreign key to SpecialOffer.SpecialOfferID.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesOrderDetail',
+    @level2type = N'COLUMN', @level2name = N'SpecialOfferID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Selling price of a single product.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesOrderDetail',
+    @level2type = N'COLUMN', @level2name = N'UnitPrice'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Discount amount.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesOrderDetail',
+    @level2type = N'COLUMN', @level2name = N'UnitPriceDiscount'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Per product subtotal. Computed as UnitPrice * (1 - UnitPriceDiscount) * OrderQty.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesOrderDetail',
+    @level2type = N'COLUMN', @level2name = N'LineTotal'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesOrderDetail',
+    @level2type = N'COLUMN', @level2name = N'rowguid'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesOrderDetail',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Sales.SalesOrderHeader (Table)
+CREATE TABLE Sales.SalesOrderHeader
+    (
+     SalesOrderID           int IDENTITY(1,1) NOT NULL ,
+     RevisionNumber         tinyint NOT NULL CONSTRAINT DF_SalesOrderHeader_RevisionNumber DEFAULT ((0)) ,
+     OrderDate              datetime NOT NULL CONSTRAINT DF_SalesOrderHeader_OrderDate DEFAULT (getdate()) ,
+     DueDate                datetime NOT NULL ,
+     ShipDate               datetime ,
+     Status                 tinyint NOT NULL CONSTRAINT DF_SalesOrderHeader_Status DEFAULT ((1)) ,
+     OnlineOrderFlag        dbo.Flag NOT NULL CONSTRAINT DF_SalesOrderHeader_OnlineOrderFlag DEFAULT ((1)) ,
+     SalesOrderNumber       AS (
+         isnull(N'SO'+CONVERT([nvarchar](23),[SalesOrderID]),N'*** ERROR ***')
+     ) ,
+     PurchaseOrderNumber    dbo.OrderNumber ,
+     AccountNumber          dbo.AccountNumber ,
+     CustomerID             int NOT NULL ,
+     SalesPersonID          int ,
+     TerritoryID            int ,
+     BillToAddressID        int NOT NULL ,
+     ShipToAddressID        int NOT NULL ,
+     ShipMethodID           int NOT NULL ,
+     CreditCardID           int ,
+     CreditCardApprovalCode varchar(15) ,
+     CurrencyRateID         int ,
+     SubTotal               money NOT NULL CONSTRAINT DF_SalesOrderHeader_SubTotal DEFAULT ((0.00)) ,
+     TaxAmt                 money NOT NULL CONSTRAINT DF_SalesOrderHeader_TaxAmt DEFAULT ((0.00)) ,
+     Freight                money NOT NULL CONSTRAINT DF_SalesOrderHeader_Freight DEFAULT ((0.00)) ,
+     TotalDue               AS (isnull(([SubTotal]+[TaxAmt])+[Freight],(0))) ,
+     Comment                nvarchar(128) ,
+     rowguid                uniqueidentifier NOT NULL CONSTRAINT DF_SalesOrderHeader_rowguid DEFAULT (newid()) ,
+     ModifiedDate           datetime NOT NULL CONSTRAINT DF_SalesOrderHeader_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_SalesOrderHeader_SalesOrderID PRIMARY KEY CLUSTERED (SalesOrderID)
+    )
+;
+
+ALTER TABLE Sales.SalesOrderHeader
+    ADD CONSTRAINT CK_SalesOrderHeader_DueDate CHECK ([DueDate]>=[OrderDate])
+;
+
+ALTER TABLE Sales.SalesOrderHeader
+    ADD CONSTRAINT CK_SalesOrderHeader_Freight CHECK ([Freight]>=(0.00))
+;
+
+ALTER TABLE Sales.SalesOrderHeader
+    ADD CONSTRAINT CK_SalesOrderHeader_ShipDate CHECK ([ShipDate]>=[OrderDate] OR [ShipDate] IS NULL)
+;
+
+ALTER TABLE Sales.SalesOrderHeader
+    ADD CONSTRAINT CK_SalesOrderHeader_Status CHECK ([Status]>=(0) AND [Status]<=(8))
+;
+
+ALTER TABLE Sales.SalesOrderHeader
+    ADD CONSTRAINT CK_SalesOrderHeader_SubTotal CHECK ([SubTotal]>=(0.00))
+;
+
+ALTER TABLE Sales.SalesOrderHeader
+    ADD CONSTRAINT CK_SalesOrderHeader_TaxAmt CHECK ([TaxAmt]>=(0.00))
+;
+
+CREATE UNIQUE INDEX AK_SalesOrderHeader_rowguid ON Sales.SalesOrderHeader
+    (
+     rowguid ASC
+    )
+;
+
+CREATE UNIQUE INDEX AK_SalesOrderHeader_SalesOrderNumber ON Sales.SalesOrderHeader
+    (
+     SalesOrderNumber ASC
+    )
+;
+
+CREATE INDEX IX_SalesOrderHeader_CustomerID ON Sales.SalesOrderHeader
+    (
+     CustomerID ASC
+    )
+;
+
+CREATE INDEX IX_SalesOrderHeader_SalesPersonID ON Sales.SalesOrderHeader
+    (
+     SalesPersonID ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'General sales order information.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesOrderHeader'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesOrderHeader',
+    @level2type = N'COLUMN', @level2name = N'SalesOrderID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Incremental number to track changes to the sales order over time.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesOrderHeader',
+    @level2type = N'COLUMN', @level2name = N'RevisionNumber'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Dates the sales order was created.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesOrderHeader',
+    @level2type = N'COLUMN', @level2name = N'OrderDate'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date the order is due to the customer.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesOrderHeader',
+    @level2type = N'COLUMN', @level2name = N'DueDate'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date the order was shipped to the customer.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesOrderHeader',
+    @level2type = N'COLUMN', @level2name = N'ShipDate'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Order current status. 1 = In process; 2 = Approved; 3 = Backordered; 4 = Rejected; 5 = Shipped; 6 = Cancelled',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesOrderHeader',
+    @level2type = N'COLUMN', @level2name = N'Status'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'0 = Order placed by sales person. 1 = Order placed online by customer.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesOrderHeader',
+    @level2type = N'COLUMN', @level2name = N'OnlineOrderFlag'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Unique sales order identification number.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesOrderHeader',
+    @level2type = N'COLUMN', @level2name = N'SalesOrderNumber'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Customer purchase order number reference. ',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesOrderHeader',
+    @level2type = N'COLUMN', @level2name = N'PurchaseOrderNumber'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Financial accounting number reference.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesOrderHeader',
+    @level2type = N'COLUMN', @level2name = N'AccountNumber'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Customer identification number. Foreign key to Customer.BusinessEntityID.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesOrderHeader',
+    @level2type = N'COLUMN', @level2name = N'CustomerID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Sales person who created the sales order. Foreign key to SalesPerson.BusinessEntityID.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesOrderHeader',
+    @level2type = N'COLUMN', @level2name = N'SalesPersonID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Territory in which the sale was made. Foreign key to SalesTerritory.SalesTerritoryID.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesOrderHeader',
+    @level2type = N'COLUMN', @level2name = N'TerritoryID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Customer billing address. Foreign key to Address.AddressID.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesOrderHeader',
+    @level2type = N'COLUMN', @level2name = N'BillToAddressID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Customer shipping address. Foreign key to Address.AddressID.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesOrderHeader',
+    @level2type = N'COLUMN', @level2name = N'ShipToAddressID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Shipping method. Foreign key to ShipMethod.ShipMethodID.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesOrderHeader',
+    @level2type = N'COLUMN', @level2name = N'ShipMethodID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Credit card identification number. Foreign key to CreditCard.CreditCardID.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesOrderHeader',
+    @level2type = N'COLUMN', @level2name = N'CreditCardID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Approval code provided by the credit card company.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesOrderHeader',
+    @level2type = N'COLUMN', @level2name = N'CreditCardApprovalCode'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Currency exchange rate used. Foreign key to CurrencyRate.CurrencyRateID.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesOrderHeader',
+    @level2type = N'COLUMN', @level2name = N'CurrencyRateID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Sales subtotal. Computed as SUM(SalesOrderDetail.LineTotal)for the appropriate SalesOrderID.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesOrderHeader',
+    @level2type = N'COLUMN', @level2name = N'SubTotal'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Tax amount.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesOrderHeader',
+    @level2type = N'COLUMN', @level2name = N'TaxAmt'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Shipping cost.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesOrderHeader',
+    @level2type = N'COLUMN', @level2name = N'Freight'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Total due from customer. Computed as Subtotal + TaxAmt + Freight.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesOrderHeader',
+    @level2type = N'COLUMN', @level2name = N'TotalDue'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Sales representative comments.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesOrderHeader',
+    @level2type = N'COLUMN', @level2name = N'Comment'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesOrderHeader',
+    @level2type = N'COLUMN', @level2name = N'rowguid'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesOrderHeader',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Sales.SalesOrderHeaderSalesReason (Table)
+CREATE TABLE Sales.SalesOrderHeaderSalesReason
+    (
+     SalesOrderID  int NOT NULL ,
+     SalesReasonID int NOT NULL ,
+     ModifiedDate  datetime NOT NULL CONSTRAINT DF_SalesOrderHeaderSalesReason_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_SalesOrderHeaderSalesReason_SalesOrderID_SalesReasonID PRIMARY KEY CLUSTERED (SalesOrderID, SalesReasonID)
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Cross-reference table mapping sales orders to sales reason codes.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesOrderHeaderSalesReason'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key. Foreign key to SalesOrderHeader.SalesOrderID.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesOrderHeaderSalesReason',
+    @level2type = N'COLUMN', @level2name = N'SalesOrderID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key. Foreign key to SalesReason.SalesReasonID.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesOrderHeaderSalesReason',
+    @level2type = N'COLUMN', @level2name = N'SalesReasonID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesOrderHeaderSalesReason',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Sales.SalesPerson (Table)
+CREATE TABLE Sales.SalesPerson
+    (
+     BusinessEntityID int NOT NULL ,
+     TerritoryID      int ,
+     SalesQuota       money ,
+     Bonus            money NOT NULL CONSTRAINT DF_SalesPerson_Bonus DEFAULT ((0.00)) ,
+     CommissionPct    smallmoney NOT NULL CONSTRAINT DF_SalesPerson_CommissionPct DEFAULT ((0.00)) ,
+     SalesYTD         money NOT NULL CONSTRAINT DF_SalesPerson_SalesYTD DEFAULT ((0.00)) ,
+     SalesLastYear    money NOT NULL CONSTRAINT DF_SalesPerson_SalesLastYear DEFAULT ((0.00)) ,
+     rowguid          uniqueidentifier NOT NULL CONSTRAINT DF_SalesPerson_rowguid DEFAULT (newid()) ,
+     ModifiedDate     datetime NOT NULL CONSTRAINT DF_SalesPerson_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_SalesPerson_BusinessEntityID PRIMARY KEY CLUSTERED (BusinessEntityID)
+    )
+;
+
+ALTER TABLE Sales.SalesPerson
+    ADD CONSTRAINT CK_SalesPerson_Bonus CHECK ([Bonus]>=(0.00))
+;
+
+ALTER TABLE Sales.SalesPerson
+    ADD CONSTRAINT CK_SalesPerson_CommissionPct CHECK ([CommissionPct]>=(0.00))
+;
+
+ALTER TABLE Sales.SalesPerson
+    ADD CONSTRAINT CK_SalesPerson_SalesLastYear CHECK ([SalesLastYear]>=(0.00))
+;
+
+ALTER TABLE Sales.SalesPerson
+    ADD CONSTRAINT CK_SalesPerson_SalesQuota CHECK ([SalesQuota]>(0.00))
+;
+
+ALTER TABLE Sales.SalesPerson
+    ADD CONSTRAINT CK_SalesPerson_SalesYTD CHECK ([SalesYTD]>=(0.00))
+;
+
+CREATE UNIQUE INDEX AK_SalesPerson_rowguid ON Sales.SalesPerson
+    (
+     rowguid ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Sales representative current information.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesPerson'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key for SalesPerson records. Foreign key to Employee.BusinessEntityID',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesPerson',
+    @level2type = N'COLUMN', @level2name = N'BusinessEntityID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Territory currently assigned to. Foreign key to SalesTerritory.SalesTerritoryID.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesPerson',
+    @level2type = N'COLUMN', @level2name = N'TerritoryID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Projected yearly sales.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesPerson',
+    @level2type = N'COLUMN', @level2name = N'SalesQuota'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Bonus due if quota is met.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesPerson',
+    @level2type = N'COLUMN', @level2name = N'Bonus'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Commision percent received per sale.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesPerson',
+    @level2type = N'COLUMN', @level2name = N'CommissionPct'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Sales total year to date.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesPerson',
+    @level2type = N'COLUMN', @level2name = N'SalesYTD'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Sales total of previous year.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesPerson',
+    @level2type = N'COLUMN', @level2name = N'SalesLastYear'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesPerson',
+    @level2type = N'COLUMN', @level2name = N'rowguid'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesPerson',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Sales.SalesPersonQuotaHistory (Table)
+CREATE TABLE Sales.SalesPersonQuotaHistory
+    (
+     BusinessEntityID int NOT NULL ,
+     QuotaDate        datetime NOT NULL ,
+     SalesQuota       money NOT NULL ,
+     rowguid          uniqueidentifier NOT NULL CONSTRAINT DF_SalesPersonQuotaHistory_rowguid DEFAULT (newid()) ,
+     ModifiedDate     datetime NOT NULL CONSTRAINT DF_SalesPersonQuotaHistory_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_SalesPersonQuotaHistory_BusinessEntityID_QuotaDate PRIMARY KEY CLUSTERED (BusinessEntityID, QuotaDate)
+    )
+;
+
+ALTER TABLE Sales.SalesPersonQuotaHistory
+    ADD CONSTRAINT CK_SalesPersonQuotaHistory_SalesQuota CHECK ([SalesQuota]>(0.00))
+;
+
+CREATE UNIQUE INDEX AK_SalesPersonQuotaHistory_rowguid ON Sales.SalesPersonQuotaHistory
+    (
+     rowguid ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Sales performance tracking.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesPersonQuotaHistory'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Sales person identification number. Foreign key to SalesPerson.BusinessEntityID.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesPersonQuotaHistory',
+    @level2type = N'COLUMN', @level2name = N'BusinessEntityID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Sales quota date.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesPersonQuotaHistory',
+    @level2type = N'COLUMN', @level2name = N'QuotaDate'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Sales quota amount.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesPersonQuotaHistory',
+    @level2type = N'COLUMN', @level2name = N'SalesQuota'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesPersonQuotaHistory',
+    @level2type = N'COLUMN', @level2name = N'rowguid'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesPersonQuotaHistory',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Sales.SalesReason (Table)
+CREATE TABLE Sales.SalesReason
+    (
+     SalesReasonID int IDENTITY(1,1) NOT NULL ,
+     Name          dbo.Name NOT NULL ,
+     ReasonType    dbo.Name NOT NULL ,
+     ModifiedDate  datetime NOT NULL CONSTRAINT DF_SalesReason_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_SalesReason_SalesReasonID PRIMARY KEY CLUSTERED (SalesReasonID)
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Lookup table of customer purchase reasons.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesReason'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key for SalesReason records.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesReason',
+    @level2type = N'COLUMN', @level2name = N'SalesReasonID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Sales reason description.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesReason',
+    @level2type = N'COLUMN', @level2name = N'Name'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Category the sales reason belongs to.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesReason',
+    @level2type = N'COLUMN', @level2name = N'ReasonType'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesReason',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Sales.SalesTaxRate (Table)
+CREATE TABLE Sales.SalesTaxRate
+    (
+     SalesTaxRateID  int IDENTITY(1,1) NOT NULL ,
+     StateProvinceID int NOT NULL ,
+     TaxType         tinyint NOT NULL ,
+     TaxRate         smallmoney NOT NULL CONSTRAINT DF_SalesTaxRate_TaxRate DEFAULT ((0.00)) ,
+     Name            dbo.Name NOT NULL ,
+     rowguid         uniqueidentifier NOT NULL CONSTRAINT DF_SalesTaxRate_rowguid DEFAULT (newid()) ,
+     ModifiedDate    datetime NOT NULL CONSTRAINT DF_SalesTaxRate_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_SalesTaxRate_SalesTaxRateID PRIMARY KEY CLUSTERED (SalesTaxRateID)
+    )
+;
+
+ALTER TABLE Sales.SalesTaxRate
+    ADD CONSTRAINT CK_SalesTaxRate_TaxType CHECK ([TaxType]>=(1) AND [TaxType]<=(3))
+;
+
+CREATE UNIQUE INDEX AK_SalesTaxRate_StateProvinceID_TaxType ON Sales.SalesTaxRate
+    (
+     StateProvinceID ASC ,
+     TaxType ASC
+    )
+;
+
+CREATE UNIQUE INDEX AK_SalesTaxRate_rowguid ON Sales.SalesTaxRate
+    (
+     rowguid ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Tax rate lookup table.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesTaxRate'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key for SalesTaxRate records.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesTaxRate',
+    @level2type = N'COLUMN', @level2name = N'SalesTaxRateID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'State, province, or country/region the sales tax applies to.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesTaxRate',
+    @level2type = N'COLUMN', @level2name = N'StateProvinceID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'1 = Tax applied to retail transactions, 2 = Tax applied to wholesale transactions, 3 = Tax applied to all sales (retail and wholesale) transactions.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesTaxRate',
+    @level2type = N'COLUMN', @level2name = N'TaxType'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Tax rate amount.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesTaxRate',
+    @level2type = N'COLUMN', @level2name = N'TaxRate'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Tax rate description.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesTaxRate',
+    @level2type = N'COLUMN', @level2name = N'Name'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesTaxRate',
+    @level2type = N'COLUMN', @level2name = N'rowguid'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesTaxRate',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Sales.SalesTerritory (Table)
+CREATE TABLE Sales.SalesTerritory
+    (
+     TerritoryID       int IDENTITY(1,1) NOT NULL ,
+     Name              dbo.Name NOT NULL ,
+     CountryRegionCode nvarchar(3) NOT NULL ,
+     [Group]           nvarchar(50) NOT NULL ,
+     SalesYTD          money NOT NULL CONSTRAINT DF_SalesTerritory_SalesYTD DEFAULT ((0.00)) ,
+     SalesLastYear     money NOT NULL CONSTRAINT DF_SalesTerritory_SalesLastYear DEFAULT ((0.00)) ,
+     CostYTD           money NOT NULL CONSTRAINT DF_SalesTerritory_CostYTD DEFAULT ((0.00)) ,
+     CostLastYear      money NOT NULL CONSTRAINT DF_SalesTerritory_CostLastYear DEFAULT ((0.00)) ,
+     rowguid           uniqueidentifier NOT NULL CONSTRAINT DF_SalesTerritory_rowguid DEFAULT (newid()) ,
+     ModifiedDate      datetime NOT NULL CONSTRAINT DF_SalesTerritory_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_SalesTerritory_TerritoryID PRIMARY KEY CLUSTERED (TerritoryID)
+    )
+;
+
+ALTER TABLE Sales.SalesTerritory
+    ADD CONSTRAINT CK_SalesTerritory_CostLastYear CHECK ([CostLastYear]>=(0.00))
+;
+
+ALTER TABLE Sales.SalesTerritory
+    ADD CONSTRAINT CK_SalesTerritory_CostYTD CHECK ([CostYTD]>=(0.00))
+;
+
+ALTER TABLE Sales.SalesTerritory
+    ADD CONSTRAINT CK_SalesTerritory_SalesLastYear CHECK ([SalesLastYear]>=(0.00))
+;
+
+ALTER TABLE Sales.SalesTerritory
+    ADD CONSTRAINT CK_SalesTerritory_SalesYTD CHECK ([SalesYTD]>=(0.00))
+;
+
+CREATE UNIQUE INDEX AK_SalesTerritory_Name ON Sales.SalesTerritory
+    (
+     Name ASC
+    )
+;
+
+CREATE UNIQUE INDEX AK_SalesTerritory_rowguid ON Sales.SalesTerritory
+    (
+     rowguid ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Sales territory lookup table.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesTerritory'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key for SalesTerritory records.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesTerritory',
+    @level2type = N'COLUMN', @level2name = N'TerritoryID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Sales territory description',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesTerritory',
+    @level2type = N'COLUMN', @level2name = N'Name'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'ISO standard country or region code. Foreign key to CountryRegion.CountryRegionCode. ',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesTerritory',
+    @level2type = N'COLUMN', @level2name = N'CountryRegionCode'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Geographic area to which the sales territory belong.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesTerritory',
+    @level2type = N'COLUMN', @level2name = N'Group'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Sales in the territory year to date.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesTerritory',
+    @level2type = N'COLUMN', @level2name = N'SalesYTD'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Sales in the territory the previous year.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesTerritory',
+    @level2type = N'COLUMN', @level2name = N'SalesLastYear'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Business costs in the territory year to date.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesTerritory',
+    @level2type = N'COLUMN', @level2name = N'CostYTD'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Business costs in the territory the previous year.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesTerritory',
+    @level2type = N'COLUMN', @level2name = N'CostLastYear'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesTerritory',
+    @level2type = N'COLUMN', @level2name = N'rowguid'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesTerritory',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Sales.SalesTerritoryHistory (Table)
+CREATE TABLE Sales.SalesTerritoryHistory
+    (
+     BusinessEntityID int NOT NULL ,
+     TerritoryID      int NOT NULL ,
+     StartDate        datetime NOT NULL ,
+     EndDate          datetime ,
+     rowguid          uniqueidentifier NOT NULL CONSTRAINT DF_SalesTerritoryHistory_rowguid DEFAULT (newid()) ,
+     ModifiedDate     datetime NOT NULL CONSTRAINT DF_SalesTerritoryHistory_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_SalesTerritoryHistory_BusinessEntityID_StartDate_TerritoryID PRIMARY KEY CLUSTERED (BusinessEntityID, StartDate, TerritoryID)
+    )
+;
+
+ALTER TABLE Sales.SalesTerritoryHistory
+    ADD CONSTRAINT CK_SalesTerritoryHistory_EndDate CHECK ([EndDate]>=[StartDate] OR [EndDate] IS NULL)
+;
+
+CREATE UNIQUE INDEX AK_SalesTerritoryHistory_rowguid ON Sales.SalesTerritoryHistory
+    (
+     rowguid ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Sales representative transfers to other sales territories.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesTerritoryHistory'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key. The sales rep.  Foreign key to SalesPerson.BusinessEntityID.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesTerritoryHistory',
+    @level2type = N'COLUMN', @level2name = N'BusinessEntityID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key. Territory identification number. Foreign key to SalesTerritory.SalesTerritoryID.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesTerritoryHistory',
+    @level2type = N'COLUMN', @level2name = N'TerritoryID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key. Date the sales representive started work in the territory.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesTerritoryHistory',
+    @level2type = N'COLUMN', @level2name = N'StartDate'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date the sales representative left work in the territory.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesTerritoryHistory',
+    @level2type = N'COLUMN', @level2name = N'EndDate'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesTerritoryHistory',
+    @level2type = N'COLUMN', @level2name = N'rowguid'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SalesTerritoryHistory',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Sales.ShoppingCartItem (Table)
+CREATE TABLE Sales.ShoppingCartItem
+    (
+     ShoppingCartItemID int IDENTITY(1,1) NOT NULL ,
+     ShoppingCartID     nvarchar(50) NOT NULL ,
+     Quantity           int NOT NULL CONSTRAINT DF_ShoppingCartItem_Quantity DEFAULT ((1)) ,
+     ProductID          int NOT NULL ,
+     DateCreated        datetime NOT NULL CONSTRAINT DF_ShoppingCartItem_DateCreated DEFAULT (getdate()) ,
+     ModifiedDate       datetime NOT NULL CONSTRAINT DF_ShoppingCartItem_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_ShoppingCartItem_ShoppingCartItemID PRIMARY KEY CLUSTERED (ShoppingCartItemID)
+    )
+;
+
+ALTER TABLE Sales.ShoppingCartItem
+    ADD CONSTRAINT CK_ShoppingCartItem_Quantity CHECK ([Quantity]>=(1))
+;
+
+CREATE INDEX IX_ShoppingCartItem_ShoppingCartID_ProductID ON Sales.ShoppingCartItem
+    (
+     ShoppingCartID ASC ,
+     ProductID ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Contains online customer orders until the order is submitted or cancelled.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'ShoppingCartItem'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key for ShoppingCartItem records.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'ShoppingCartItem',
+    @level2type = N'COLUMN', @level2name = N'ShoppingCartItemID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Shopping cart identification number.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'ShoppingCartItem',
+    @level2type = N'COLUMN', @level2name = N'ShoppingCartID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Product quantity ordered.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'ShoppingCartItem',
+    @level2type = N'COLUMN', @level2name = N'Quantity'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Product ordered. Foreign key to Product.ProductID.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'ShoppingCartItem',
+    @level2type = N'COLUMN', @level2name = N'ProductID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date the time the record was created.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'ShoppingCartItem',
+    @level2type = N'COLUMN', @level2name = N'DateCreated'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'ShoppingCartItem',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Sales.SpecialOffer (Table)
+CREATE TABLE Sales.SpecialOffer
+    (
+     SpecialOfferID int IDENTITY(1,1) NOT NULL ,
+     Description    nvarchar(255) NOT NULL ,
+     DiscountPct    smallmoney NOT NULL CONSTRAINT DF_SpecialOffer_DiscountPct DEFAULT ((0.00)) ,
+     Type           nvarchar(50) NOT NULL ,
+     Category       nvarchar(50) NOT NULL ,
+     StartDate      datetime NOT NULL ,
+     EndDate        datetime NOT NULL ,
+     MinQty         int NOT NULL CONSTRAINT DF_SpecialOffer_MinQty DEFAULT ((0)) ,
+     MaxQty         int ,
+     rowguid        uniqueidentifier NOT NULL CONSTRAINT DF_SpecialOffer_rowguid DEFAULT (newid()) ,
+     ModifiedDate   datetime NOT NULL CONSTRAINT DF_SpecialOffer_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_SpecialOffer_SpecialOfferID PRIMARY KEY CLUSTERED (SpecialOfferID)
+    )
+;
+
+ALTER TABLE Sales.SpecialOffer
+    ADD CONSTRAINT CK_SpecialOffer_DiscountPct CHECK ([DiscountPct]>=(0.00))
+;
+
+ALTER TABLE Sales.SpecialOffer
+    ADD CONSTRAINT CK_SpecialOffer_EndDate CHECK ([EndDate]>=[StartDate])
+;
+
+ALTER TABLE Sales.SpecialOffer
+    ADD CONSTRAINT CK_SpecialOffer_MaxQty CHECK ([MaxQty]>=(0))
+;
+
+ALTER TABLE Sales.SpecialOffer
+    ADD CONSTRAINT CK_SpecialOffer_MinQty CHECK ([MinQty]>=(0))
+;
+
+CREATE UNIQUE INDEX AK_SpecialOffer_rowguid ON Sales.SpecialOffer
+    (
+     rowguid ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Sale discounts lookup table.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SpecialOffer'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key for SpecialOffer records.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SpecialOffer',
+    @level2type = N'COLUMN', @level2name = N'SpecialOfferID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Discount description.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SpecialOffer',
+    @level2type = N'COLUMN', @level2name = N'Description'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Discount precentage.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SpecialOffer',
+    @level2type = N'COLUMN', @level2name = N'DiscountPct'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Discount type category.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SpecialOffer',
+    @level2type = N'COLUMN', @level2name = N'Type'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Group the discount applies to such as Reseller or Customer.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SpecialOffer',
+    @level2type = N'COLUMN', @level2name = N'Category'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Discount start date.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SpecialOffer',
+    @level2type = N'COLUMN', @level2name = N'StartDate'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Discount end date.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SpecialOffer',
+    @level2type = N'COLUMN', @level2name = N'EndDate'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Minimum discount percent allowed.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SpecialOffer',
+    @level2type = N'COLUMN', @level2name = N'MinQty'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Maximum discount percent allowed.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SpecialOffer',
+    @level2type = N'COLUMN', @level2name = N'MaxQty'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SpecialOffer',
+    @level2type = N'COLUMN', @level2name = N'rowguid'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SpecialOffer',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Sales.SpecialOfferProduct (Table)
+CREATE TABLE Sales.SpecialOfferProduct
+    (
+     SpecialOfferID int NOT NULL ,
+     ProductID      int NOT NULL ,
+     rowguid        uniqueidentifier NOT NULL CONSTRAINT DF_SpecialOfferProduct_rowguid DEFAULT (newid()) ,
+     ModifiedDate   datetime NOT NULL CONSTRAINT DF_SpecialOfferProduct_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_SpecialOfferProduct_SpecialOfferID_ProductID PRIMARY KEY CLUSTERED (SpecialOfferID, ProductID)
+    )
+;
+
+CREATE UNIQUE INDEX AK_SpecialOfferProduct_rowguid ON Sales.SpecialOfferProduct
+    (
+     rowguid ASC
+    )
+;
+
+CREATE INDEX IX_SpecialOfferProduct_ProductID ON Sales.SpecialOfferProduct
+    (
+     ProductID ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Cross-reference table mapping products to special offer discounts.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SpecialOfferProduct'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key for SpecialOfferProduct records.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SpecialOfferProduct',
+    @level2type = N'COLUMN', @level2name = N'SpecialOfferID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Product identification number. Foreign key to Product.ProductID.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SpecialOfferProduct',
+    @level2type = N'COLUMN', @level2name = N'ProductID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SpecialOfferProduct',
+    @level2type = N'COLUMN', @level2name = N'rowguid'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'SpecialOfferProduct',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- Sales.Store (Table)
+CREATE TABLE Sales.Store
+    (
+     BusinessEntityID int NOT NULL ,
+     Name             dbo.Name NOT NULL ,
+     SalesPersonID    int ,
+     Demographics     xml ,
+     rowguid          uniqueidentifier NOT NULL CONSTRAINT DF_Store_rowguid DEFAULT (newid()) ,
+     ModifiedDate     datetime NOT NULL CONSTRAINT DF_Store_ModifiedDate DEFAULT (getdate()) ,
+     CONSTRAINT PK_Store_BusinessEntityID PRIMARY KEY CLUSTERED (BusinessEntityID)
+    )
+;
+
+CREATE UNIQUE INDEX AK_Store_rowguid ON Sales.Store
+    (
+     rowguid ASC
+    )
+;
+
+CREATE INDEX IX_Store_SalesPersonID ON Sales.Store
+    (
+     SalesPersonID ASC
+    )
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Customers (resellers) of Adventure Works products.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'Store'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Primary key. Foreign key to Customer.BusinessEntityID.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'Store',
+    @level2type = N'COLUMN', @level2name = N'BusinessEntityID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Name of the store.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'Store',
+    @level2type = N'COLUMN', @level2name = N'Name'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'ID of the sales person assigned to the customer. Foreign key to SalesPerson.BusinessEntityID.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'Store',
+    @level2type = N'COLUMN', @level2name = N'SalesPersonID'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Demographic informationg about the store such as the number of employees, annual sales and store type.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'Store',
+    @level2type = N'COLUMN', @level2name = N'Demographics'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'Store',
+    @level2type = N'COLUMN', @level2name = N'rowguid'
+;
+
+EXEC sys.sp_addextendedproperty
+    @name = N'MS_Description',
+    @value = N'Date and time the record was last updated.',
+    @level0type = N'SCHEMA', @level0name = N'Sales',
+    @level1type = N'TABLE', @level1name = N'Store',
+    @level2type = N'COLUMN', @level2name = N'ModifiedDate'
+;
+
+-- graph.Products (Node table)
+CREATE TABLE graph.Products
+    (
+     ProductID    int NOT NULL ,
+     ProductName  nvarchar(50) NOT NULL ,
+     StandardCost money NOT NULL ,
+     PRIMARY KEY CLUSTERED (ProductID)
+    ) AS NODE
+;
+
+-- graph.SalesReps (Node table)
+CREATE TABLE graph.SalesReps
+    (
+     SalesRepID int NOT NULL ,
+     FirstName  nvarchar(50) NOT NULL ,
+     LastName   nvarchar(50) NOT NULL ,
+     PRIMARY KEY CLUSTERED (SalesRepID)
+    ) AS NODE
+;
+
+-- graph.Stores (Node table)
+CREATE TABLE graph.Stores
+    (
+     StoreID   int NOT NULL ,
+     StoreName nvarchar(50) NOT NULL ,
+     PRIMARY KEY CLUSTERED (StoreID)
+    ) AS NODE
+;
+
+-- graph.Vendors (Node table)
+CREATE TABLE graph.Vendors
+    (
+     VendorID      int NOT NULL ,
+     AccountNumber nvarchar(15) NOT NULL ,
+     VendorName    nvarchar(50) NOT NULL ,
+     PRIMARY KEY CLUSTERED (VendorID)
+    ) AS NODE
+;
+
+-- graph.Orders (Edge table)
+CREATE TABLE graph.Orders
+    (
+     OrderDate datetime NOT NULL ,
+     OrderQty  smallint NOT NULL ,
+     LineTotal money NOT NULL ,
+     CONNECTION (graph.Stores TO graph.Products)
+    ) AS EDGE
+;
+
+-- graph.Sells (Edge table)
+CREATE TABLE graph.Sells
+    (
+     OrderDate datetime NOT NULL ,
+     OrderQty  smallint NOT NULL ,
+     LineTotal money NOT NULL ,
+     CONNECTION (graph.SalesReps TO graph.Products)
+    ) AS EDGE
+;
+
+-- graph.Supplies (Edge table)
+CREATE TABLE graph.Supplies
+    (
+     StandardPrice money NOT NULL ,
+     CONNECTION (graph.Vendors TO graph.Products)
+    ) AS EDGE
+;
+GO
+-- HumanResources.vEmployee (View)
+
+CREATE VIEW [HumanResources].[vEmployee]
+AS
+SELECT
+    e.[BusinessEntityID]
+    ,p.[Title]
+    ,p.[FirstName]
+    ,p.[MiddleName]
+    ,p.[LastName]
+    ,p.[Suffix]
+    ,e.[JobTitle] 
+    ,pp.[PhoneNumber]
+    ,pnt.[Name] AS [PhoneNumberType]
+    ,ea.[EmailAddress]
+    ,p.[EmailPromotion]
+    ,a.[AddressLine1]
+    ,a.[AddressLine2]
+    ,a.[City]
+    ,sp.[Name] AS [StateProvinceName]
+    ,a.[PostalCode]
+    ,cr.[Name] AS [CountryRegionName]
+    ,p.[AdditionalContactInfo]
+FROM [HumanResources].[Employee] e
+	INNER JOIN [Person].[Person] p
+	ON p.[BusinessEntityID] = e.[BusinessEntityID]
+    INNER JOIN [Person].[BusinessEntityAddress] bea
+    ON bea.[BusinessEntityID] = e.[BusinessEntityID]
+    INNER JOIN [Person].[Address] a
+    ON a.[AddressID] = bea.[AddressID]
+    INNER JOIN [Person].[StateProvince] sp
+    ON sp.[StateProvinceID] = a.[StateProvinceID]
+    INNER JOIN [Person].[CountryRegion] cr
+    ON cr.[CountryRegionCode] = sp.[CountryRegionCode]
+    LEFT OUTER JOIN [Person].[PersonPhone] pp
+    ON pp.BusinessEntityID = p.[BusinessEntityID]
+    LEFT OUTER JOIN [Person].[PhoneNumberType] pnt
+    ON pp.[PhoneNumberTypeID] = pnt.[PhoneNumberTypeID]
+    LEFT OUTER JOIN [Person].[EmailAddress] ea
+    ON p.[BusinessEntityID] = ea.[BusinessEntityID];
+GO
+-- HumanResources.vEmployeeDepartment (View)
+
+CREATE VIEW [HumanResources].[vEmployeeDepartment]
+AS
+SELECT
+    e.[BusinessEntityID]
+    ,p.[Title]
+    ,p.[FirstName]
+    ,p.[MiddleName]
+    ,p.[LastName]
+    ,p.[Suffix]
+    ,e.[JobTitle]
+    ,d.[Name] AS [Department]
+    ,d.[GroupName]
+    ,edh.[StartDate]
+FROM [HumanResources].[Employee] e
+	INNER JOIN [Person].[Person] p
+	ON p.[BusinessEntityID] = e.[BusinessEntityID]
+    INNER JOIN [HumanResources].[EmployeeDepartmentHistory] edh
+    ON e.[BusinessEntityID] = edh.[BusinessEntityID]
+    INNER JOIN [HumanResources].[Department] d
+    ON edh.[DepartmentID] = d.[DepartmentID]
+WHERE edh.EndDate IS NULL
+GO
+-- HumanResources.vEmployeeDepartmentHistory (View)
+
+CREATE VIEW [HumanResources].[vEmployeeDepartmentHistory]
+AS
+SELECT
+    e.[BusinessEntityID]
+    ,p.[Title]
+    ,p.[FirstName]
+    ,p.[MiddleName]
+    ,p.[LastName]
+    ,p.[Suffix]
+    ,s.[Name] AS [Shift]
+    ,d.[Name] AS [Department]
+    ,d.[GroupName]
+    ,edh.[StartDate]
+    ,edh.[EndDate]
+FROM [HumanResources].[Employee] e
+	INNER JOIN [Person].[Person] p
+	ON p.[BusinessEntityID] = e.[BusinessEntityID]
+    INNER JOIN [HumanResources].[EmployeeDepartmentHistory] edh
+    ON e.[BusinessEntityID] = edh.[BusinessEntityID]
+    INNER JOIN [HumanResources].[Department] d
+    ON edh.[DepartmentID] = d.[DepartmentID]
+    INNER JOIN [HumanResources].[Shift] s
+    ON s.[ShiftID] = edh.[ShiftID];
+GO
+-- HumanResources.vJobCandidate (View)
+
+CREATE VIEW [HumanResources].[vJobCandidate]
+AS
+SELECT
+    jc.[JobCandidateID]
+    ,jc.[BusinessEntityID]
+    ,[Resume].ref.value(N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/Resume";
+        (/Resume/Name/Name.Prefix)[1]', 'nvarchar(30)') AS [Name.Prefix]
+    ,[Resume].ref.value(N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/Resume";
+        (/Resume/Name/Name.First)[1]', 'nvarchar(30)') AS [Name.First]
+    ,[Resume].ref.value(N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/Resume";
+        (/Resume/Name/Name.Middle)[1]', 'nvarchar(30)') AS [Name.Middle]
+    ,[Resume].ref.value(N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/Resume";
+        (/Resume/Name/Name.Last)[1]', 'nvarchar(30)') AS [Name.Last]
+    ,[Resume].ref.value(N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/Resume";
+        (/Resume/Name/Name.Suffix)[1]', 'nvarchar(30)') AS [Name.Suffix]
+    ,[Resume].ref.value(N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/Resume";
+        (/Resume/Skills)[1]', 'nvarchar(max)') AS [Skills]
+    ,[Resume].ref.value(N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/Resume";
+        (Address/Addr.Type)[1]', 'nvarchar(30)') AS [Addr.Type]
+    ,[Resume].ref.value(N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/Resume";
+        (Address/Addr.Location/Location/Loc.CountryRegion)[1]', 'nvarchar(100)') AS [Addr.Loc.CountryRegion]
+    ,[Resume].ref.value(N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/Resume";
+        (Address/Addr.Location/Location/Loc.State)[1]', 'nvarchar(100)') AS [Addr.Loc.State]
+    ,[Resume].ref.value(N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/Resume";
+        (Address/Addr.Location/Location/Loc.City)[1]', 'nvarchar(100)') AS [Addr.Loc.City]
+    ,[Resume].ref.value(N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/Resume";
+        (Address/Addr.PostalCode)[1]', 'nvarchar(20)') AS [Addr.PostalCode]
+    ,[Resume].ref.value(N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/Resume";
+        (/Resume/EMail)[1]', 'nvarchar(max)') AS [EMail]
+    ,[Resume].ref.value(N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/Resume";
+        (/Resume/WebSite)[1]', 'nvarchar(max)') AS [WebSite]
+    ,jc.[ModifiedDate]
+FROM [HumanResources].[JobCandidate] jc
+CROSS APPLY jc.[Resume].nodes(N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/Resume";
+    /Resume') AS Resume(ref);
+GO
+-- HumanResources.vJobCandidateEducation (View)
+
+CREATE VIEW [HumanResources].[vJobCandidateEducation]
+AS
+SELECT
+    jc.[JobCandidateID]
+    ,[Education].ref.value(N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/Resume";
+        (Edu.Level)[1]', 'nvarchar(max)') AS [Edu.Level]
+    ,CONVERT(datetime, REPLACE([Education].ref.value(N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/Resume";
+        (Edu.StartDate)[1]', 'nvarchar(20)') ,'Z', ''), 101) AS [Edu.StartDate]
+    ,CONVERT(datetime, REPLACE([Education].ref.value(N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/Resume";
+        (Edu.EndDate)[1]', 'nvarchar(20)') ,'Z', ''), 101) AS [Edu.EndDate]
+    ,[Education].ref.value(N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/Resume";
+        (Edu.Degree)[1]', 'nvarchar(50)') AS [Edu.Degree]
+    ,[Education].ref.value(N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/Resume";
+        (Edu.Major)[1]', 'nvarchar(50)') AS [Edu.Major]
+    ,[Education].ref.value(N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/Resume";
+        (Edu.Minor)[1]', 'nvarchar(50)') AS [Edu.Minor]
+    ,[Education].ref.value(N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/Resume";
+        (Edu.GPA)[1]', 'nvarchar(5)') AS [Edu.GPA]
+    ,[Education].ref.value(N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/Resume";
+        (Edu.GPAScale)[1]', 'nvarchar(5)') AS [Edu.GPAScale]
+    ,[Education].ref.value(N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/Resume";
+        (Edu.School)[1]', 'nvarchar(100)') AS [Edu.School]
+    ,[Education].ref.value(N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/Resume";
+        (Edu.Location/Location/Loc.CountryRegion)[1]', 'nvarchar(100)') AS [Edu.Loc.CountryRegion]
+    ,[Education].ref.value(N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/Resume";
+        (Edu.Location/Location/Loc.State)[1]', 'nvarchar(100)') AS [Edu.Loc.State]
+    ,[Education].ref.value(N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/Resume";
+        (Edu.Location/Location/Loc.City)[1]', 'nvarchar(100)') AS [Edu.Loc.City]
+FROM [HumanResources].[JobCandidate] jc
+CROSS APPLY jc.[Resume].nodes(N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/Resume";
+    /Resume/Education') AS [Education](ref);
+GO
+-- HumanResources.vJobCandidateEmployment (View)
+
+CREATE VIEW [HumanResources].[vJobCandidateEmployment]
+AS
+SELECT
+    jc.[JobCandidateID]
+    ,CONVERT(datetime, REPLACE([Employment].ref.value(N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/Resume";
+        (Emp.StartDate)[1]', 'nvarchar(20)') ,'Z', ''), 101) AS [Emp.StartDate]
+    ,CONVERT(datetime, REPLACE([Employment].ref.value(N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/Resume";
+        (Emp.EndDate)[1]', 'nvarchar(20)') ,'Z', ''), 101) AS [Emp.EndDate]
+    ,[Employment].ref.value(N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/Resume";
+        (Emp.OrgName)[1]', 'nvarchar(100)') AS [Emp.OrgName]
+    ,[Employment].ref.value(N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/Resume";
+        (Emp.JobTitle)[1]', 'nvarchar(100)') AS [Emp.JobTitle]
+    ,[Employment].ref.value(N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/Resume";
+        (Emp.Responsibility)[1]', 'nvarchar(max)') AS [Emp.Responsibility]
+    ,[Employment].ref.value(N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/Resume";
+        (Emp.FunctionCategory)[1]', 'nvarchar(max)') AS [Emp.FunctionCategory]
+    ,[Employment].ref.value(N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/Resume";
+        (Emp.IndustryCategory)[1]', 'nvarchar(max)') AS [Emp.IndustryCategory]
+    ,[Employment].ref.value(N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/Resume";
+        (Emp.Location/Location/Loc.CountryRegion)[1]', 'nvarchar(max)') AS [Emp.Loc.CountryRegion]
+    ,[Employment].ref.value(N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/Resume";
+        (Emp.Location/Location/Loc.State)[1]', 'nvarchar(max)') AS [Emp.Loc.State]
+    ,[Employment].ref.value(N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/Resume";
+        (Emp.Location/Location/Loc.City)[1]', 'nvarchar(max)') AS [Emp.Loc.City]
+FROM [HumanResources].[JobCandidate] jc
+CROSS APPLY jc.[Resume].nodes(N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/Resume";
+    /Resume/Employment') AS Employment(ref);
+GO
+-- Person.vAdditionalContactInfo (View)
+
+CREATE VIEW [Person].[vAdditionalContactInfo]
+AS
+SELECT
+    [BusinessEntityID]
+    ,[FirstName]
+    ,[MiddleName]
+    ,[LastName]
+    ,[ContactInfo].ref.value(N'declare namespace ci="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactInfo";
+        declare namespace act="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactTypes";
+        (act:telephoneNumber)[1]/act:number', 'nvarchar(50)') AS [TelephoneNumber]
+    ,LTRIM(RTRIM([ContactInfo].ref.value(N'declare namespace ci="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactInfo";
+        declare namespace act="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactTypes";
+        (act:telephoneNumber/act:SpecialInstructions/text())[1]', 'nvarchar(max)'))) AS [TelephoneSpecialInstructions]
+    ,[ContactInfo].ref.value(N'declare namespace ci="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactInfo";
+        declare namespace act="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactTypes";
+        (act:homePostalAddress/act:Street)[1]', 'nvarchar(50)') AS [Street]
+    ,[ContactInfo].ref.value(N'declare namespace ci="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactInfo";
+        declare namespace act="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactTypes";
+        (act:homePostalAddress/act:City)[1]', 'nvarchar(50)') AS [City]
+    ,[ContactInfo].ref.value(N'declare namespace ci="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactInfo";
+        declare namespace act="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactTypes";
+        (act:homePostalAddress/act:StateProvince)[1]', 'nvarchar(50)') AS [StateProvince]
+    ,[ContactInfo].ref.value(N'declare namespace ci="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactInfo";
+        declare namespace act="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactTypes";
+        (act:homePostalAddress/act:PostalCode)[1]', 'nvarchar(50)') AS [PostalCode]
+    ,[ContactInfo].ref.value(N'declare namespace ci="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactInfo";
+        declare namespace act="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactTypes";
+        (act:homePostalAddress/act:CountryRegion)[1]', 'nvarchar(50)') AS [CountryRegion]
+    ,[ContactInfo].ref.value(N'declare namespace ci="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactInfo";
+        declare namespace act="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactTypes";
+        (act:homePostalAddress/act:SpecialInstructions/text())[1]', 'nvarchar(max)') AS [HomeAddressSpecialInstructions]
+    ,[ContactInfo].ref.value(N'declare namespace ci="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactInfo";
+        declare namespace act="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactTypes";
+        (act:eMail/act:eMailAddress)[1]', 'nvarchar(128)') AS [EMailAddress]
+    ,LTRIM(RTRIM([ContactInfo].ref.value(N'declare namespace ci="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactInfo";
+        declare namespace act="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactTypes";
+        (act:eMail/act:SpecialInstructions/text())[1]', 'nvarchar(max)'))) AS [EMailSpecialInstructions]
+    ,[ContactInfo].ref.value(N'declare namespace ci="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactInfo";
+        declare namespace act="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactTypes";
+        (act:eMail/act:SpecialInstructions/act:telephoneNumber/act:number)[1]', 'nvarchar(50)') AS [EMailTelephoneNumber]
+    ,[rowguid]
+    ,[ModifiedDate]
+FROM [Person].[Person]
+OUTER APPLY [AdditionalContactInfo].nodes(
+    'declare namespace ci="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ContactInfo";
+    /ci:AdditionalContactInfo') AS ContactInfo(ref)
+WHERE [AdditionalContactInfo] IS NOT NULL;
+GO
+-- Person.vStateProvinceCountryRegion (View)
+
+CREATE VIEW [Person].[vStateProvinceCountryRegion]
+WITH SCHEMABINDING
+AS
+SELECT
+    sp.[StateProvinceID]
+    ,sp.[StateProvinceCode]
+    ,sp.[IsOnlyStateProvinceFlag]
+    ,sp.[Name] AS [StateProvinceName]
+    ,sp.[TerritoryID]
+    ,cr.[CountryRegionCode]
+    ,cr.[Name] AS [CountryRegionName]
+FROM [Person].[StateProvince] sp
+    INNER JOIN [Person].[CountryRegion] cr
+    ON sp.[CountryRegionCode] = cr.[CountryRegionCode];
+GO
+CREATE UNIQUE CLUSTERED INDEX IX_vStateProvinceCountryRegion ON Person.vStateProvinceCountryRegion
+    (
+     StateProvinceID ASC ,
+     CountryRegionCode ASC
+    )
+;
+GO
+-- Production.vProductAndDescription (View)
+
+CREATE VIEW [Production].[vProductAndDescription]
+WITH SCHEMABINDING
+AS
+-- View (indexed or standard) to display products and product descriptions by language.
+SELECT
+    p.[ProductID]
+    ,p.[Name]
+    ,pm.[Name] AS [ProductModel]
+    ,pmx.[CultureID]
+    ,pd.[Description]
+FROM [Production].[Product] p
+    INNER JOIN [Production].[ProductModel] pm
+    ON p.[ProductModelID] = pm.[ProductModelID]
+    INNER JOIN [Production].[ProductModelProductDescriptionCulture] pmx
+    ON pm.[ProductModelID] = pmx.[ProductModelID]
+    INNER JOIN [Production].[ProductDescription] pd
+    ON pmx.[ProductDescriptionID] = pd.[ProductDescriptionID];
+GO
+CREATE UNIQUE CLUSTERED INDEX IX_vProductAndDescription ON Production.vProductAndDescription
+    (
+     CultureID ASC ,
+     ProductID ASC
+    )
+;
+GO
+-- Production.vProductModelCatalogDescription (View)
+
+CREATE VIEW [Production].[vProductModelCatalogDescription]
+AS
+SELECT
+    [ProductModelID]
+    ,[Name]
+    ,[CatalogDescription].value(N'declare namespace p1="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ProductModelDescription";
+        declare namespace html="http://www.w3.org/1999/xhtml";
+        (/p1:ProductDescription/p1:Summary/html:p)[1]', 'nvarchar(max)') AS [Summary]
+    ,[CatalogDescription].value(N'declare namespace p1="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ProductModelDescription";
+        (/p1:ProductDescription/p1:Manufacturer/p1:Name)[1]', 'nvarchar(max)') AS [Manufacturer]
+    ,[CatalogDescription].value(N'declare namespace p1="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ProductModelDescription";
+        (/p1:ProductDescription/p1:Manufacturer/p1:Copyright)[1]', 'nvarchar(30)') AS [Copyright]
+    ,[CatalogDescription].value(N'declare namespace p1="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ProductModelDescription";
+        (/p1:ProductDescription/p1:Manufacturer/p1:ProductURL)[1]', 'nvarchar(256)') AS [ProductURL]
+    ,[CatalogDescription].value(N'declare namespace p1="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ProductModelDescription";
+        declare namespace wm="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ProductModelWarrAndMain";
+        (/p1:ProductDescription/p1:Features/wm:Warranty/wm:WarrantyPeriod)[1]', 'nvarchar(256)') AS [WarrantyPeriod]
+    ,[CatalogDescription].value(N'declare namespace p1="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ProductModelDescription";
+        declare namespace wm="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ProductModelWarrAndMain";
+        (/p1:ProductDescription/p1:Features/wm:Warranty/wm:Description)[1]', 'nvarchar(256)') AS [WarrantyDescription]
+    ,[CatalogDescription].value(N'declare namespace p1="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ProductModelDescription";
+        declare namespace wm="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ProductModelWarrAndMain";
+        (/p1:ProductDescription/p1:Features/wm:Maintenance/wm:NoOfYears)[1]', 'nvarchar(256)') AS [NoOfYears]
+    ,[CatalogDescription].value(N'declare namespace p1="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ProductModelDescription";
+        declare namespace wm="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ProductModelWarrAndMain";
+        (/p1:ProductDescription/p1:Features/wm:Maintenance/wm:Description)[1]', 'nvarchar(256)') AS [MaintenanceDescription]
+    ,[CatalogDescription].value(N'declare namespace p1="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ProductModelDescription";
+        declare namespace wf="http://www.adventure-works.com/schemas/OtherFeatures";
+        (/p1:ProductDescription/p1:Features/wf:wheel)[1]', 'nvarchar(256)') AS [Wheel]
+    ,[CatalogDescription].value(N'declare namespace p1="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ProductModelDescription";
+        declare namespace wf="http://www.adventure-works.com/schemas/OtherFeatures";
+        (/p1:ProductDescription/p1:Features/wf:saddle)[1]', 'nvarchar(256)') AS [Saddle]
+    ,[CatalogDescription].value(N'declare namespace p1="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ProductModelDescription";
+        declare namespace wf="http://www.adventure-works.com/schemas/OtherFeatures";
+        (/p1:ProductDescription/p1:Features/wf:pedal)[1]', 'nvarchar(256)') AS [Pedal]
+    ,[CatalogDescription].value(N'declare namespace p1="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ProductModelDescription";
+        declare namespace wf="http://www.adventure-works.com/schemas/OtherFeatures";
+        (/p1:ProductDescription/p1:Features/wf:BikeFrame)[1]', 'nvarchar(max)') AS [BikeFrame]
+    ,[CatalogDescription].value(N'declare namespace p1="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ProductModelDescription";
+        declare namespace wf="http://www.adventure-works.com/schemas/OtherFeatures";
+        (/p1:ProductDescription/p1:Features/wf:crankset)[1]', 'nvarchar(256)') AS [Crankset]
+    ,[CatalogDescription].value(N'declare namespace p1="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ProductModelDescription";
+        (/p1:ProductDescription/p1:Picture/p1:Angle)[1]', 'nvarchar(256)') AS [PictureAngle]
+    ,[CatalogDescription].value(N'declare namespace p1="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ProductModelDescription";
+        (/p1:ProductDescription/p1:Picture/p1:Size)[1]', 'nvarchar(256)') AS [PictureSize]
+    ,[CatalogDescription].value(N'declare namespace p1="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ProductModelDescription";
+        (/p1:ProductDescription/p1:Picture/p1:ProductPhotoID)[1]', 'nvarchar(256)') AS [ProductPhotoID]
+    ,[CatalogDescription].value(N'declare namespace p1="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ProductModelDescription";
+        (/p1:ProductDescription/p1:Specifications/Material)[1]', 'nvarchar(256)') AS [Material]
+    ,[CatalogDescription].value(N'declare namespace p1="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ProductModelDescription";
+        (/p1:ProductDescription/p1:Specifications/Color)[1]', 'nvarchar(256)') AS [Color]
+    ,[CatalogDescription].value(N'declare namespace p1="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ProductModelDescription";
+        (/p1:ProductDescription/p1:Specifications/ProductLine)[1]', 'nvarchar(256)') AS [ProductLine]
+    ,[CatalogDescription].value(N'declare namespace p1="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ProductModelDescription";
+        (/p1:ProductDescription/p1:Specifications/Style)[1]', 'nvarchar(256)') AS [Style]
+    ,[CatalogDescription].value(N'declare namespace p1="http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ProductModelDescription";
+        (/p1:ProductDescription/p1:Specifications/RiderExperience)[1]', 'nvarchar(1024)') AS [RiderExperience]
+    ,[rowguid]
+    ,[ModifiedDate]
+FROM [Production].[ProductModel]
+WHERE [CatalogDescription] IS NOT NULL;
+GO
+-- Production.vProductModelInstructions (View)
+
+CREATE VIEW [Production].[vProductModelInstructions]
+AS
+SELECT
+    [ProductModelID]
+    ,[Name]
+    ,[Instructions].value(N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ProductModelManuInstructions";
+        (/root/text())[1]', 'nvarchar(max)') AS [Instructions]
+    ,[MfgInstructions].ref.value('@LocationID[1]', 'int') AS [LocationID]
+    ,[MfgInstructions].ref.value('@SetupHours[1]', 'decimal(9, 4)') AS [SetupHours]
+    ,[MfgInstructions].ref.value('@MachineHours[1]', 'decimal(9, 4)') AS [MachineHours]
+    ,[MfgInstructions].ref.value('@LaborHours[1]', 'decimal(9, 4)') AS [LaborHours]
+    ,[MfgInstructions].ref.value('@LotSize[1]', 'int') AS [LotSize]
+    ,[Steps].ref.value('string(.)[1]', 'nvarchar(1024)') AS [Step]
+    ,[rowguid]
+    ,[ModifiedDate]
+FROM [Production].[ProductModel]
+CROSS APPLY [Instructions].nodes(N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ProductModelManuInstructions";
+    /root/Location') MfgInstructions(ref)
+CROSS APPLY [MfgInstructions].ref.nodes('declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ProductModelManuInstructions";
+    step') Steps(ref);
+GO
+-- Purchasing.vVendorWithAddresses (View)
+
+CREATE VIEW [Purchasing].[vVendorWithAddresses] AS
+SELECT
+    v.[BusinessEntityID]
+    ,v.[Name]
+    ,at.[Name] AS [AddressType]
+    ,a.[AddressLine1]
+    ,a.[AddressLine2]
+    ,a.[City]
+    ,sp.[Name] AS [StateProvinceName]
+    ,a.[PostalCode]
+    ,cr.[Name] AS [CountryRegionName]
+FROM [Purchasing].[Vendor] v
+    INNER JOIN [Person].[BusinessEntityAddress] bea
+    ON bea.[BusinessEntityID] = v.[BusinessEntityID]
+    INNER JOIN [Person].[Address] a
+    ON a.[AddressID] = bea.[AddressID]
+    INNER JOIN [Person].[StateProvince] sp
+    ON sp.[StateProvinceID] = a.[StateProvinceID]
+    INNER JOIN [Person].[CountryRegion] cr
+    ON cr.[CountryRegionCode] = sp.[CountryRegionCode]
+    INNER JOIN [Person].[AddressType] at
+    ON at.[AddressTypeID] = bea.[AddressTypeID];
+GO
+-- Purchasing.vVendorWithContacts (View)
+
+CREATE VIEW [Purchasing].[vVendorWithContacts] AS
+SELECT
+    v.[BusinessEntityID]
+    ,v.[Name]
+    ,ct.[Name] AS [ContactType]
+    ,p.[Title]
+    ,p.[FirstName]
+    ,p.[MiddleName]
+    ,p.[LastName]
+    ,p.[Suffix]
+    ,pp.[PhoneNumber]
+	,pnt.[Name] AS [PhoneNumberType]
+    ,ea.[EmailAddress]
+    ,p.[EmailPromotion]
+FROM [Purchasing].[Vendor] v
+    INNER JOIN [Person].[BusinessEntityContact] bec
+    ON bec.[BusinessEntityID] = v.[BusinessEntityID]
+	INNER JOIN [Person].ContactType ct
+	ON ct.[ContactTypeID] = bec.[ContactTypeID]
+	INNER JOIN [Person].[Person] p
+	ON p.[BusinessEntityID] = bec.[PersonID]
+	LEFT OUTER JOIN [Person].[EmailAddress] ea
+	ON ea.[BusinessEntityID] = p.[BusinessEntityID]
+	LEFT OUTER JOIN [Person].[PersonPhone] pp
+	ON pp.[BusinessEntityID] = p.[BusinessEntityID]
+	LEFT OUTER JOIN [Person].[PhoneNumberType] pnt
+	ON pnt.[PhoneNumberTypeID] = pp.[PhoneNumberTypeID];
+GO
+-- Sales.vIndividualCustomer (View)
+
+CREATE VIEW [Sales].[vIndividualCustomer]
+AS
+SELECT
+    p.[BusinessEntityID]
+    ,p.[Title]
+    ,p.[FirstName]
+    ,p.[MiddleName]
+    ,p.[LastName]
+    ,p.[Suffix]
+    ,pp.[PhoneNumber]
+	,pnt.[Name] AS [PhoneNumberType]
+    ,ea.[EmailAddress]
+    ,p.[EmailPromotion]
+    ,at.[Name] AS [AddressType]
+    ,a.[AddressLine1]
+    ,a.[AddressLine2]
+    ,a.[City]
+    ,[StateProvinceName] = sp.[Name]
+    ,a.[PostalCode]
+    ,[CountryRegionName] = cr.[Name]
+    ,p.[Demographics]
+FROM [Person].[Person] p
+    INNER JOIN [Person].[BusinessEntityAddress] bea
+    ON bea.[BusinessEntityID] = p.[BusinessEntityID]
+    INNER JOIN [Person].[Address] a
+    ON a.[AddressID] = bea.[AddressID]
+    INNER JOIN [Person].[StateProvince] sp
+    ON sp.[StateProvinceID] = a.[StateProvinceID]
+    INNER JOIN [Person].[CountryRegion] cr
+    ON cr.[CountryRegionCode] = sp.[CountryRegionCode]
+    INNER JOIN [Person].[AddressType] at
+    ON at.[AddressTypeID] = bea.[AddressTypeID]
+	INNER JOIN [Sales].[Customer] c
+	ON c.[PersonID] = p.[BusinessEntityID]
+	LEFT OUTER JOIN [Person].[EmailAddress] ea
+	ON ea.[BusinessEntityID] = p.[BusinessEntityID]
+	LEFT OUTER JOIN [Person].[PersonPhone] pp
+	ON pp.[BusinessEntityID] = p.[BusinessEntityID]
+	LEFT OUTER JOIN [Person].[PhoneNumberType] pnt
+	ON pnt.[PhoneNumberTypeID] = pp.[PhoneNumberTypeID]
+WHERE c.StoreID IS NULL;
+GO
+-- Sales.vPersonDemographics (View)
+
+CREATE VIEW [Sales].[vPersonDemographics]
+AS
+SELECT
+    p.[BusinessEntityID]
+    ,[IndividualSurvey].[ref].[value](N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/IndividualSurvey";
+        TotalPurchaseYTD[1]', 'money') AS [TotalPurchaseYTD]
+    ,CONVERT(datetime, REPLACE([IndividualSurvey].[ref].[value](N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/IndividualSurvey";
+        DateFirstPurchase[1]', 'nvarchar(20)') ,'Z', ''), 101) AS [DateFirstPurchase]
+    ,CONVERT(datetime, REPLACE([IndividualSurvey].[ref].[value](N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/IndividualSurvey";
+        BirthDate[1]', 'nvarchar(20)') ,'Z', ''), 101) AS [BirthDate]
+    ,[IndividualSurvey].[ref].[value](N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/IndividualSurvey";
+        MaritalStatus[1]', 'nvarchar(1)') AS [MaritalStatus]
+    ,[IndividualSurvey].[ref].[value](N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/IndividualSurvey";
+        YearlyIncome[1]', 'nvarchar(30)') AS [YearlyIncome]
+    ,[IndividualSurvey].[ref].[value](N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/IndividualSurvey";
+        Gender[1]', 'nvarchar(1)') AS [Gender]
+    ,[IndividualSurvey].[ref].[value](N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/IndividualSurvey";
+        TotalChildren[1]', 'integer') AS [TotalChildren]
+    ,[IndividualSurvey].[ref].[value](N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/IndividualSurvey";
+        NumberChildrenAtHome[1]', 'integer') AS [NumberChildrenAtHome]
+    ,[IndividualSurvey].[ref].[value](N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/IndividualSurvey";
+        Education[1]', 'nvarchar(30)') AS [Education]
+    ,[IndividualSurvey].[ref].[value](N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/IndividualSurvey";
+        Occupation[1]', 'nvarchar(30)') AS [Occupation]
+    ,[IndividualSurvey].[ref].[value](N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/IndividualSurvey";
+        HomeOwnerFlag[1]', 'bit') AS [HomeOwnerFlag]
+    ,[IndividualSurvey].[ref].[value](N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/IndividualSurvey";
+        NumberCarsOwned[1]', 'integer') AS [NumberCarsOwned]
+FROM [Person].[Person] p
+CROSS APPLY p.[Demographics].nodes(N'declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/IndividualSurvey";
+    /IndividualSurvey') AS [IndividualSurvey](ref)
+WHERE [Demographics] IS NOT NULL;
+GO
+-- Sales.vSalesPerson (View)
+
+CREATE VIEW [Sales].[vSalesPerson]
+AS
+SELECT
+    s.[BusinessEntityID]
+    ,p.[Title]
+    ,p.[FirstName]
+    ,p.[MiddleName]
+    ,p.[LastName]
+    ,p.[Suffix]
+    ,e.[JobTitle]
+    ,pp.[PhoneNumber]
+	,pnt.[Name] AS [PhoneNumberType]
+    ,ea.[EmailAddress]
+    ,p.[EmailPromotion]
+    ,a.[AddressLine1]
+    ,a.[AddressLine2]
+    ,a.[City]
+    ,[StateProvinceName] = sp.[Name]
+    ,a.[PostalCode]
+    ,[CountryRegionName] = cr.[Name]
+    ,[TerritoryName] = st.[Name]
+    ,[TerritoryGroup] = st.[Group]
+    ,s.[SalesQuota]
+    ,s.[SalesYTD]
+    ,s.[SalesLastYear]
+FROM [Sales].[SalesPerson] s
+    INNER JOIN [HumanResources].[Employee] e
+    ON e.[BusinessEntityID] = s.[BusinessEntityID]
+	INNER JOIN [Person].[Person] p
+	ON p.[BusinessEntityID] = s.[BusinessEntityID]
+    INNER JOIN [Person].[BusinessEntityAddress] bea
+    ON bea.[BusinessEntityID] = s.[BusinessEntityID]
+    INNER JOIN [Person].[Address] a
+    ON a.[AddressID] = bea.[AddressID]
+    INNER JOIN [Person].[StateProvince] sp
+    ON sp.[StateProvinceID] = a.[StateProvinceID]
+    INNER JOIN [Person].[CountryRegion] cr
+    ON cr.[CountryRegionCode] = sp.[CountryRegionCode]
+    LEFT OUTER JOIN [Sales].[SalesTerritory] st
+    ON st.[TerritoryID] = s.[TerritoryID]
+	LEFT OUTER JOIN [Person].[EmailAddress] ea
+	ON ea.[BusinessEntityID] = p.[BusinessEntityID]
+	LEFT OUTER JOIN [Person].[PersonPhone] pp
+	ON pp.[BusinessEntityID] = p.[BusinessEntityID]
+	LEFT OUTER JOIN [Person].[PhoneNumberType] pnt
+	ON pnt.[PhoneNumberTypeID] = pp.[PhoneNumberTypeID];
+GO
+-- Sales.vSalesPersonSalesByFiscalYears (View)
+
+CREATE VIEW [Sales].[vSalesPersonSalesByFiscalYears]
+AS
+SELECT
+    pvt.[SalesPersonID]
+    ,pvt.[FullName]
+    ,pvt.[JobTitle]
+    ,pvt.[SalesTerritory]
+    ,pvt.[2002]
+    ,pvt.[2003]
+    ,pvt.[2004]
+FROM (SELECT
+        soh.[SalesPersonID]
+        ,p.[FirstName] + ' ' + COALESCE(p.[MiddleName], '') + ' ' + p.[LastName] AS [FullName]
+        ,e.[JobTitle]
+        ,st.[Name] AS [SalesTerritory]
+        ,soh.[SubTotal]
+        ,YEAR(DATEADD(m, 6, soh.[OrderDate])) AS [FiscalYear]
+    FROM [Sales].[SalesPerson] sp
+        INNER JOIN [Sales].[SalesOrderHeader] soh
+        ON sp.[BusinessEntityID] = soh.[SalesPersonID]
+        INNER JOIN [Sales].[SalesTerritory] st
+        ON sp.[TerritoryID] = st.[TerritoryID]
+        INNER JOIN [HumanResources].[Employee] e
+        ON soh.[SalesPersonID] = e.[BusinessEntityID]
+		INNER JOIN [Person].[Person] p
+		ON p.[BusinessEntityID] = sp.[BusinessEntityID]
+	 ) AS soh
+PIVOT
+(
+    SUM([SubTotal])
+    FOR [FiscalYear]
+    IN ([2002], [2003], [2004])
+) AS pvt;
+GO
+-- Sales.vStoreWithAddresses (View)
+
+CREATE VIEW [Sales].[vStoreWithAddresses] AS
+SELECT
+    s.[BusinessEntityID]
+    ,s.[Name]
+    ,at.[Name] AS [AddressType]
+    ,a.[AddressLine1]
+    ,a.[AddressLine2]
+    ,a.[City]
+    ,sp.[Name] AS [StateProvinceName]
+    ,a.[PostalCode]
+    ,cr.[Name] AS [CountryRegionName]
+FROM [Sales].[Store] s
+    INNER JOIN [Person].[BusinessEntityAddress] bea
+    ON bea.[BusinessEntityID] = s.[BusinessEntityID]
+    INNER JOIN [Person].[Address] a
+    ON a.[AddressID] = bea.[AddressID]
+    INNER JOIN [Person].[StateProvince] sp
+    ON sp.[StateProvinceID] = a.[StateProvinceID]
+    INNER JOIN [Person].[CountryRegion] cr
+    ON cr.[CountryRegionCode] = sp.[CountryRegionCode]
+    INNER JOIN [Person].[AddressType] at
+    ON at.[AddressTypeID] = bea.[AddressTypeID];
+GO
+-- Sales.vStoreWithContacts (View)
+
+CREATE VIEW [Sales].[vStoreWithContacts] AS
+SELECT
+    s.[BusinessEntityID]
+    ,s.[Name]
+    ,ct.[Name] AS [ContactType]
+    ,p.[Title]
+    ,p.[FirstName]
+    ,p.[MiddleName]
+    ,p.[LastName]
+    ,p.[Suffix]
+    ,pp.[PhoneNumber]
+	,pnt.[Name] AS [PhoneNumberType]
+    ,ea.[EmailAddress]
+    ,p.[EmailPromotion]
+FROM [Sales].[Store] s
+    INNER JOIN [Person].[BusinessEntityContact] bec
+    ON bec.[BusinessEntityID] = s.[BusinessEntityID]
+	INNER JOIN [Person].[ContactType] ct
+	ON ct.[ContactTypeID] = bec.[ContactTypeID]
+	INNER JOIN [Person].[Person] p
+	ON p.[BusinessEntityID] = bec.[PersonID]
+	LEFT OUTER JOIN [Person].[EmailAddress] ea
+	ON ea.[BusinessEntityID] = p.[BusinessEntityID]
+	LEFT OUTER JOIN [Person].[PersonPhone] pp
+	ON pp.[BusinessEntityID] = p.[BusinessEntityID]
+	LEFT OUTER JOIN [Person].[PhoneNumberType] pnt
+	ON pnt.[PhoneNumberTypeID] = pp.[PhoneNumberTypeID];
+GO
+-- Sales.vStoreWithDemographics (View)
+
+CREATE VIEW [Sales].[vStoreWithDemographics] AS
+SELECT
+    s.[BusinessEntityID]
+    ,s.[Name]
+    ,s.[Demographics].value('declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/StoreSurvey";
+        (/StoreSurvey/AnnualSales)[1]', 'money') AS [AnnualSales]
+    ,s.[Demographics].value('declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/StoreSurvey";
+        (/StoreSurvey/AnnualRevenue)[1]', 'money') AS [AnnualRevenue]
+    ,s.[Demographics].value('declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/StoreSurvey";
+        (/StoreSurvey/BankName)[1]', 'nvarchar(50)') AS [BankName]
+    ,s.[Demographics].value('declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/StoreSurvey";
+        (/StoreSurvey/BusinessType)[1]', 'nvarchar(5)') AS [BusinessType]
+    ,s.[Demographics].value('declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/StoreSurvey";
+        (/StoreSurvey/YearOpened)[1]', 'integer') AS [YearOpened]
+    ,s.[Demographics].value('declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/StoreSurvey";
+        (/StoreSurvey/Specialty)[1]', 'nvarchar(50)') AS [Specialty]
+    ,s.[Demographics].value('declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/StoreSurvey";
+        (/StoreSurvey/SquareFeet)[1]', 'integer') AS [SquareFeet]
+    ,s.[Demographics].value('declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/StoreSurvey";
+        (/StoreSurvey/Brands)[1]', 'nvarchar(30)') AS [Brands]
+    ,s.[Demographics].value('declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/StoreSurvey";
+        (/StoreSurvey/Internet)[1]', 'nvarchar(30)') AS [Internet]
+    ,s.[Demographics].value('declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/StoreSurvey";
+        (/StoreSurvey/NumberEmployees)[1]', 'integer') AS [NumberEmployees]
+FROM [Sales].[Store] s;
+GO
+-- Foreign keys
+ALTER TABLE Production.WorkOrderRouting
+    ADD CONSTRAINT FK_WorkOrderRouting_Location_LocationID FOREIGN KEY
+    (
+     LocationID
+    )
+    REFERENCES Production.Location
+    (
+     LocationID
+    )
+;
+
+ALTER TABLE Production.WorkOrderRouting
+    ADD CONSTRAINT FK_WorkOrderRouting_WorkOrder_WorkOrderID FOREIGN KEY
+    (
+     WorkOrderID
+    )
+    REFERENCES Production.WorkOrder
+    (
+     WorkOrderID
+    )
+;
+
+ALTER TABLE Purchasing.PurchaseOrderHeader
+    ADD CONSTRAINT FK_PurchaseOrderHeader_Employee_EmployeeID FOREIGN KEY
+    (
+     EmployeeID
+    )
+    REFERENCES HumanResources.Employee
+    (
+     BusinessEntityID
+    )
+;
+
+ALTER TABLE Purchasing.PurchaseOrderHeader
+    ADD CONSTRAINT FK_PurchaseOrderHeader_ShipMethod_ShipMethodID FOREIGN KEY
+    (
+     ShipMethodID
+    )
+    REFERENCES Purchasing.ShipMethod
+    (
+     ShipMethodID
+    )
+;
+
+ALTER TABLE Purchasing.PurchaseOrderHeader
+    ADD CONSTRAINT FK_PurchaseOrderHeader_Vendor_VendorID FOREIGN KEY
+    (
+     VendorID
+    )
+    REFERENCES Purchasing.Vendor
+    (
+     BusinessEntityID
+    )
+;
+
+ALTER TABLE Sales.CurrencyRate
+    ADD CONSTRAINT FK_CurrencyRate_Currency_FromCurrencyCode FOREIGN KEY
+    (
+     FromCurrencyCode
+    )
+    REFERENCES Sales.Currency
+    (
+     CurrencyCode
+    )
+;
+
+ALTER TABLE Sales.CurrencyRate
+    ADD CONSTRAINT FK_CurrencyRate_Currency_ToCurrencyCode FOREIGN KEY
+    (
+     ToCurrencyCode
+    )
+    REFERENCES Sales.Currency
+    (
+     CurrencyCode
+    )
+;
+
+ALTER TABLE Sales.Customer
+    ADD CONSTRAINT FK_Customer_Person_PersonID FOREIGN KEY
+    (
+     PersonID
+    )
+    REFERENCES Person.Person
+    (
+     BusinessEntityID
+    )
+;
+
+ALTER TABLE Sales.Customer
+    ADD CONSTRAINT FK_Customer_SalesTerritory_TerritoryID FOREIGN KEY
+    (
+     TerritoryID
+    )
+    REFERENCES Sales.SalesTerritory
+    (
+     TerritoryID
+    )
+;
+
+ALTER TABLE Sales.Customer
+    ADD CONSTRAINT FK_Customer_Store_StoreID FOREIGN KEY
+    (
+     StoreID
+    )
+    REFERENCES Sales.Store
+    (
+     BusinessEntityID
+    )
+;
+
+ALTER TABLE Production.Document
+    ADD CONSTRAINT FK_Document_Employee_Owner FOREIGN KEY
+    (
+     Owner
+    )
+    REFERENCES HumanResources.Employee
+    (
+     BusinessEntityID
+    )
+;
+
+ALTER TABLE Sales.SalesOrderDetail
+    ADD CONSTRAINT FK_SalesOrderDetail_SalesOrderHeader_SalesOrderID FOREIGN KEY
+    (
+     SalesOrderID
+    )
+    REFERENCES Sales.SalesOrderHeader
+    (
+     SalesOrderID
+    )
+    ON DELETE CASCADE
+;
+
+ALTER TABLE Sales.SalesOrderDetail
+    ADD CONSTRAINT FK_SalesOrderDetail_SpecialOfferProduct_SpecialOfferIDProductID FOREIGN KEY
+    (
+     SpecialOfferID ,
+     ProductID
+    )
+    REFERENCES Sales.SpecialOfferProduct
+    (
+     SpecialOfferID ,
+     ProductID
+    )
+;
+
+ALTER TABLE Person.EmailAddress
+    ADD CONSTRAINT FK_EmailAddress_Person_BusinessEntityID FOREIGN KEY
+    (
+     BusinessEntityID
+    )
+    REFERENCES Person.Person
+    (
+     BusinessEntityID
+    )
+;
+
+ALTER TABLE HumanResources.Employee
+    ADD CONSTRAINT FK_Employee_Person_BusinessEntityID FOREIGN KEY
+    (
+     BusinessEntityID
+    )
+    REFERENCES Person.Person
+    (
+     BusinessEntityID
+    )
+;
+
+ALTER TABLE Sales.SalesOrderHeader
+    ADD CONSTRAINT FK_SalesOrderHeader_Address_BillToAddressID FOREIGN KEY
+    (
+     BillToAddressID
+    )
+    REFERENCES Person.Address
+    (
+     AddressID
+    )
+;
+
+ALTER TABLE Sales.SalesOrderHeader
+    ADD CONSTRAINT FK_SalesOrderHeader_Address_ShipToAddressID FOREIGN KEY
+    (
+     ShipToAddressID
+    )
+    REFERENCES Person.Address
+    (
+     AddressID
+    )
+;
+
+ALTER TABLE Sales.SalesOrderHeader
+    ADD CONSTRAINT FK_SalesOrderHeader_CreditCard_CreditCardID FOREIGN KEY
+    (
+     CreditCardID
+    )
+    REFERENCES Sales.CreditCard
+    (
+     CreditCardID
+    )
+;
+
+ALTER TABLE Sales.SalesOrderHeader
+    ADD CONSTRAINT FK_SalesOrderHeader_CurrencyRate_CurrencyRateID FOREIGN KEY
+    (
+     CurrencyRateID
+    )
+    REFERENCES Sales.CurrencyRate
+    (
+     CurrencyRateID
+    )
+;
+
+ALTER TABLE Sales.SalesOrderHeader
+    ADD CONSTRAINT FK_SalesOrderHeader_Customer_CustomerID FOREIGN KEY
+    (
+     CustomerID
+    )
+    REFERENCES Sales.Customer
+    (
+     CustomerID
+    )
+;
+
+ALTER TABLE Sales.SalesOrderHeader
+    ADD CONSTRAINT FK_SalesOrderHeader_SalesPerson_SalesPersonID FOREIGN KEY
+    (
+     SalesPersonID
+    )
+    REFERENCES Sales.SalesPerson
+    (
+     BusinessEntityID
+    )
+;
+
+ALTER TABLE Sales.SalesOrderHeader
+    ADD CONSTRAINT FK_SalesOrderHeader_SalesTerritory_TerritoryID FOREIGN KEY
+    (
+     TerritoryID
+    )
+    REFERENCES Sales.SalesTerritory
+    (
+     TerritoryID
+    )
+;
+
+ALTER TABLE Sales.SalesOrderHeader
+    ADD CONSTRAINT FK_SalesOrderHeader_ShipMethod_ShipMethodID FOREIGN KEY
+    (
+     ShipMethodID
+    )
+    REFERENCES Purchasing.ShipMethod
+    (
+     ShipMethodID
+    )
+;
+
+ALTER TABLE HumanResources.EmployeeDepartmentHistory
+    ADD CONSTRAINT FK_EmployeeDepartmentHistory_Department_DepartmentID FOREIGN KEY
+    (
+     DepartmentID
+    )
+    REFERENCES HumanResources.Department
+    (
+     DepartmentID
+    )
+;
+
+ALTER TABLE HumanResources.EmployeeDepartmentHistory
+    ADD CONSTRAINT FK_EmployeeDepartmentHistory_Employee_BusinessEntityID FOREIGN KEY
+    (
+     BusinessEntityID
+    )
+    REFERENCES HumanResources.Employee
+    (
+     BusinessEntityID
+    )
+;
+
+ALTER TABLE HumanResources.EmployeeDepartmentHistory
+    ADD CONSTRAINT FK_EmployeeDepartmentHistory_Shift_ShiftID FOREIGN KEY
+    (
+     ShiftID
+    )
+    REFERENCES HumanResources.Shift
+    (
+     ShiftID
+    )
+;
+
+ALTER TABLE HumanResources.EmployeePayHistory
+    ADD CONSTRAINT FK_EmployeePayHistory_Employee_BusinessEntityID FOREIGN KEY
+    (
+     BusinessEntityID
+    )
+    REFERENCES HumanResources.Employee
+    (
+     BusinessEntityID
+    )
+;
+
+ALTER TABLE Sales.SalesOrderHeaderSalesReason
+    ADD CONSTRAINT FK_SalesOrderHeaderSalesReason_SalesOrderHeader_SalesOrderID FOREIGN KEY
+    (
+     SalesOrderID
+    )
+    REFERENCES Sales.SalesOrderHeader
+    (
+     SalesOrderID
+    )
+    ON DELETE CASCADE
+;
+
+ALTER TABLE Sales.SalesOrderHeaderSalesReason
+    ADD CONSTRAINT FK_SalesOrderHeaderSalesReason_SalesReason_SalesReasonID FOREIGN KEY
+    (
+     SalesReasonID
+    )
+    REFERENCES Sales.SalesReason
+    (
+     SalesReasonID
+    )
+;
+
+ALTER TABLE Sales.SalesPerson
+    ADD CONSTRAINT FK_SalesPerson_Employee_BusinessEntityID FOREIGN KEY
+    (
+     BusinessEntityID
+    )
+    REFERENCES HumanResources.Employee
+    (
+     BusinessEntityID
+    )
+;
+
+ALTER TABLE Sales.SalesPerson
+    ADD CONSTRAINT FK_SalesPerson_SalesTerritory_TerritoryID FOREIGN KEY
+    (
+     TerritoryID
+    )
+    REFERENCES Sales.SalesTerritory
+    (
+     TerritoryID
+    )
+;
+
+ALTER TABLE HumanResources.JobCandidate
+    ADD CONSTRAINT FK_JobCandidate_Employee_BusinessEntityID FOREIGN KEY
+    (
+     BusinessEntityID
+    )
+    REFERENCES HumanResources.Employee
+    (
+     BusinessEntityID
+    )
+;
+
+ALTER TABLE Person.Password
+    ADD CONSTRAINT FK_Password_Person_BusinessEntityID FOREIGN KEY
+    (
+     BusinessEntityID
+    )
+    REFERENCES Person.Person
+    (
+     BusinessEntityID
+    )
+;
+
+ALTER TABLE Sales.SalesPersonQuotaHistory
+    ADD CONSTRAINT FK_SalesPersonQuotaHistory_SalesPerson_BusinessEntityID FOREIGN KEY
+    (
+     BusinessEntityID
+    )
+    REFERENCES Sales.SalesPerson
+    (
+     BusinessEntityID
+    )
+;
+
+ALTER TABLE Person.Person
+    ADD CONSTRAINT FK_Person_BusinessEntity_BusinessEntityID FOREIGN KEY
+    (
+     BusinessEntityID
+    )
+    REFERENCES Person.BusinessEntity
+    (
+     BusinessEntityID
+    )
+;
+
+ALTER TABLE Sales.SalesTaxRate
+    ADD CONSTRAINT FK_SalesTaxRate_StateProvince_StateProvinceID FOREIGN KEY
+    (
+     StateProvinceID
+    )
+    REFERENCES Person.StateProvince
+    (
+     StateProvinceID
+    )
+;
+
+ALTER TABLE Sales.PersonCreditCard
+    ADD CONSTRAINT FK_PersonCreditCard_CreditCard_CreditCardID FOREIGN KEY
+    (
+     CreditCardID
+    )
+    REFERENCES Sales.CreditCard
+    (
+     CreditCardID
+    )
+;
+
+ALTER TABLE Sales.PersonCreditCard
+    ADD CONSTRAINT FK_PersonCreditCard_Person_BusinessEntityID FOREIGN KEY
+    (
+     BusinessEntityID
+    )
+    REFERENCES Person.Person
+    (
+     BusinessEntityID
+    )
+;
+
+ALTER TABLE Person.PersonPhone
+    ADD CONSTRAINT FK_PersonPhone_Person_BusinessEntityID FOREIGN KEY
+    (
+     BusinessEntityID
+    )
+    REFERENCES Person.Person
+    (
+     BusinessEntityID
+    )
+;
+
+ALTER TABLE Person.PersonPhone
+    ADD CONSTRAINT FK_PersonPhone_PhoneNumberType_PhoneNumberTypeID FOREIGN KEY
+    (
+     PhoneNumberTypeID
+    )
+    REFERENCES Person.PhoneNumberType
+    (
+     PhoneNumberTypeID
+    )
+;
+
+ALTER TABLE Sales.SalesTerritory
+    ADD CONSTRAINT FK_SalesTerritory_CountryRegion_CountryRegionCode FOREIGN KEY
+    (
+     CountryRegionCode
+    )
+    REFERENCES Person.CountryRegion
+    (
+     CountryRegionCode
+    )
+;
+
+ALTER TABLE Production.Product
+    ADD CONSTRAINT FK_Product_ProductModel_ProductModelID FOREIGN KEY
+    (
+     ProductModelID
+    )
+    REFERENCES Production.ProductModel
+    (
+     ProductModelID
+    )
+;
+
+ALTER TABLE Production.Product
+    ADD CONSTRAINT FK_Product_ProductSubcategory_ProductSubcategoryID FOREIGN KEY
+    (
+     ProductSubcategoryID
+    )
+    REFERENCES Production.ProductSubcategory
+    (
+     ProductSubcategoryID
+    )
+;
+
+ALTER TABLE Production.Product
+    ADD CONSTRAINT FK_Product_UnitMeasure_SizeUnitMeasureCode FOREIGN KEY
+    (
+     SizeUnitMeasureCode
+    )
+    REFERENCES Production.UnitMeasure
+    (
+     UnitMeasureCode
+    )
+;
+
+ALTER TABLE Production.Product
+    ADD CONSTRAINT FK_Product_UnitMeasure_WeightUnitMeasureCode FOREIGN KEY
+    (
+     WeightUnitMeasureCode
+    )
+    REFERENCES Production.UnitMeasure
+    (
+     UnitMeasureCode
+    )
+;
+
+ALTER TABLE Sales.SalesTerritoryHistory
+    ADD CONSTRAINT FK_SalesTerritoryHistory_SalesPerson_BusinessEntityID FOREIGN KEY
+    (
+     BusinessEntityID
+    )
+    REFERENCES Sales.SalesPerson
+    (
+     BusinessEntityID
+    )
+;
+
+ALTER TABLE Sales.SalesTerritoryHistory
+    ADD CONSTRAINT FK_SalesTerritoryHistory_SalesTerritory_TerritoryID FOREIGN KEY
+    (
+     TerritoryID
+    )
+    REFERENCES Sales.SalesTerritory
+    (
+     TerritoryID
+    )
+;
+
+ALTER TABLE Production.ProductCostHistory
+    ADD CONSTRAINT FK_ProductCostHistory_Product_ProductID FOREIGN KEY
+    (
+     ProductID
+    )
+    REFERENCES Production.Product
+    (
+     ProductID
+    )
+;
+
+ALTER TABLE Sales.ShoppingCartItem
+    ADD CONSTRAINT FK_ShoppingCartItem_Product_ProductID FOREIGN KEY
+    (
+     ProductID
+    )
+    REFERENCES Production.Product
+    (
+     ProductID
+    )
+;
+
+ALTER TABLE Production.ProductDocument
+    ADD CONSTRAINT FK_ProductDocument_Document_DocumentNode FOREIGN KEY
+    (
+     DocumentNode
+    )
+    REFERENCES Production.Document
+    (
+     DocumentNode
+    )
+;
+
+ALTER TABLE Production.ProductDocument
+    ADD CONSTRAINT FK_ProductDocument_Product_ProductID FOREIGN KEY
+    (
+     ProductID
+    )
+    REFERENCES Production.Product
+    (
+     ProductID
+    )
+;
+
+ALTER TABLE Production.ProductInventory
+    ADD CONSTRAINT FK_ProductInventory_Location_LocationID FOREIGN KEY
+    (
+     LocationID
+    )
+    REFERENCES Production.Location
+    (
+     LocationID
+    )
+;
+
+ALTER TABLE Production.ProductInventory
+    ADD CONSTRAINT FK_ProductInventory_Product_ProductID FOREIGN KEY
+    (
+     ProductID
+    )
+    REFERENCES Production.Product
+    (
+     ProductID
+    )
+;
+
+ALTER TABLE Production.ProductListPriceHistory
+    ADD CONSTRAINT FK_ProductListPriceHistory_Product_ProductID FOREIGN KEY
+    (
+     ProductID
+    )
+    REFERENCES Production.Product
+    (
+     ProductID
+    )
+;
+
+ALTER TABLE Person.Address
+    ADD CONSTRAINT FK_Address_StateProvince_StateProvinceID FOREIGN KEY
+    (
+     StateProvinceID
+    )
+    REFERENCES Person.StateProvince
+    (
+     StateProvinceID
+    )
+;
+
+ALTER TABLE Sales.SpecialOfferProduct
+    ADD CONSTRAINT FK_SpecialOfferProduct_Product_ProductID FOREIGN KEY
+    (
+     ProductID
+    )
+    REFERENCES Production.Product
+    (
+     ProductID
+    )
+;
+
+ALTER TABLE Sales.SpecialOfferProduct
+    ADD CONSTRAINT FK_SpecialOfferProduct_SpecialOffer_SpecialOfferID FOREIGN KEY
+    (
+     SpecialOfferID
+    )
+    REFERENCES Sales.SpecialOffer
+    (
+     SpecialOfferID
+    )
+;
+
+ALTER TABLE Person.StateProvince
+    ADD CONSTRAINT FK_StateProvince_CountryRegion_CountryRegionCode FOREIGN KEY
+    (
+     CountryRegionCode
+    )
+    REFERENCES Person.CountryRegion
+    (
+     CountryRegionCode
+    )
+;
+
+ALTER TABLE Person.StateProvince
+    ADD CONSTRAINT FK_StateProvince_SalesTerritory_TerritoryID FOREIGN KEY
+    (
+     TerritoryID
+    )
+    REFERENCES Sales.SalesTerritory
+    (
+     TerritoryID
+    )
+;
+
+ALTER TABLE Production.ProductModelIllustration
+    ADD CONSTRAINT FK_ProductModelIllustration_Illustration_IllustrationID FOREIGN KEY
+    (
+     IllustrationID
+    )
+    REFERENCES Production.Illustration
+    (
+     IllustrationID
+    )
+;
+
+ALTER TABLE Production.ProductModelIllustration
+    ADD CONSTRAINT FK_ProductModelIllustration_ProductModel_ProductModelID FOREIGN KEY
+    (
+     ProductModelID
+    )
+    REFERENCES Production.ProductModel
+    (
+     ProductModelID
+    )
+;
+
+ALTER TABLE Production.ProductModelProductDescriptionCulture
+    ADD CONSTRAINT FK_ProductModelProductDescriptionCulture_Culture_CultureID FOREIGN KEY
+    (
+     CultureID
+    )
+    REFERENCES Production.Culture
+    (
+     CultureID
+    )
+;
+
+ALTER TABLE Production.ProductModelProductDescriptionCulture
+    ADD CONSTRAINT FK_ProductModelProductDescriptionCulture_ProductDescription_ProductDescriptionID FOREIGN KEY
+    (
+     ProductDescriptionID
+    )
+    REFERENCES Production.ProductDescription
+    (
+     ProductDescriptionID
+    )
+;
+
+ALTER TABLE Production.ProductModelProductDescriptionCulture
+    ADD CONSTRAINT FK_ProductModelProductDescriptionCulture_ProductModel_ProductModelID FOREIGN KEY
+    (
+     ProductModelID
+    )
+    REFERENCES Production.ProductModel
+    (
+     ProductModelID
+    )
+;
+
+ALTER TABLE Production.BillOfMaterials
+    ADD CONSTRAINT FK_BillOfMaterials_Product_ComponentID FOREIGN KEY
+    (
+     ComponentID
+    )
+    REFERENCES Production.Product
+    (
+     ProductID
+    )
+;
+
+ALTER TABLE Production.BillOfMaterials
+    ADD CONSTRAINT FK_BillOfMaterials_Product_ProductAssemblyID FOREIGN KEY
+    (
+     ProductAssemblyID
+    )
+    REFERENCES Production.Product
+    (
+     ProductID
+    )
+;
+
+ALTER TABLE Production.BillOfMaterials
+    ADD CONSTRAINT FK_BillOfMaterials_UnitMeasure_UnitMeasureCode FOREIGN KEY
+    (
+     UnitMeasureCode
+    )
+    REFERENCES Production.UnitMeasure
+    (
+     UnitMeasureCode
+    )
+;
+
+ALTER TABLE Sales.Store
+    ADD CONSTRAINT FK_Store_BusinessEntity_BusinessEntityID FOREIGN KEY
+    (
+     BusinessEntityID
+    )
+    REFERENCES Person.BusinessEntity
+    (
+     BusinessEntityID
+    )
+;
+
+ALTER TABLE Sales.Store
+    ADD CONSTRAINT FK_Store_SalesPerson_SalesPersonID FOREIGN KEY
+    (
+     SalesPersonID
+    )
+    REFERENCES Sales.SalesPerson
+    (
+     BusinessEntityID
+    )
+;
+
+ALTER TABLE Production.ProductProductPhoto
+    ADD CONSTRAINT FK_ProductProductPhoto_Product_ProductID FOREIGN KEY
+    (
+     ProductID
+    )
+    REFERENCES Production.Product
+    (
+     ProductID
+    )
+;
+
+ALTER TABLE Production.ProductProductPhoto
+    ADD CONSTRAINT FK_ProductProductPhoto_ProductPhoto_ProductPhotoID FOREIGN KEY
+    (
+     ProductPhotoID
+    )
+    REFERENCES Production.ProductPhoto
+    (
+     ProductPhotoID
+    )
+;
+
+ALTER TABLE Production.TransactionHistory
+    ADD CONSTRAINT FK_TransactionHistory_Product_ProductID FOREIGN KEY
+    (
+     ProductID
+    )
+    REFERENCES Production.Product
+    (
+     ProductID
+    )
+;
+
+ALTER TABLE Production.ProductReview
+    ADD CONSTRAINT FK_ProductReview_Product_ProductID FOREIGN KEY
+    (
+     ProductID
+    )
+    REFERENCES Production.Product
+    (
+     ProductID
+    )
+;
+
+ALTER TABLE Production.ProductSubcategory
+    ADD CONSTRAINT FK_ProductSubcategory_ProductCategory_ProductCategoryID FOREIGN KEY
+    (
+     ProductCategoryID
+    )
+    REFERENCES Production.ProductCategory
+    (
+     ProductCategoryID
+    )
+;
+
+ALTER TABLE Person.BusinessEntityAddress
+    ADD CONSTRAINT FK_BusinessEntityAddress_Address_AddressID FOREIGN KEY
+    (
+     AddressID
+    )
+    REFERENCES Person.Address
+    (
+     AddressID
+    )
+;
+
+ALTER TABLE Person.BusinessEntityAddress
+    ADD CONSTRAINT FK_BusinessEntityAddress_AddressType_AddressTypeID FOREIGN KEY
+    (
+     AddressTypeID
+    )
+    REFERENCES Person.AddressType
+    (
+     AddressTypeID
+    )
+;
+
+ALTER TABLE Person.BusinessEntityAddress
+    ADD CONSTRAINT FK_BusinessEntityAddress_BusinessEntity_BusinessEntityID FOREIGN KEY
+    (
+     BusinessEntityID
+    )
+    REFERENCES Person.BusinessEntity
+    (
+     BusinessEntityID
+    )
+;
+
+ALTER TABLE Purchasing.ProductVendor
+    ADD CONSTRAINT FK_ProductVendor_Product_ProductID FOREIGN KEY
+    (
+     ProductID
+    )
+    REFERENCES Production.Product
+    (
+     ProductID
+    )
+;
+
+ALTER TABLE Purchasing.ProductVendor
+    ADD CONSTRAINT FK_ProductVendor_UnitMeasure_UnitMeasureCode FOREIGN KEY
+    (
+     UnitMeasureCode
+    )
+    REFERENCES Production.UnitMeasure
+    (
+     UnitMeasureCode
+    )
+;
+
+ALTER TABLE Purchasing.ProductVendor
+    ADD CONSTRAINT FK_ProductVendor_Vendor_BusinessEntityID FOREIGN KEY
+    (
+     BusinessEntityID
+    )
+    REFERENCES Purchasing.Vendor
+    (
+     BusinessEntityID
+    )
+;
+
+ALTER TABLE Person.BusinessEntityContact
+    ADD CONSTRAINT FK_BusinessEntityContact_BusinessEntity_BusinessEntityID FOREIGN KEY
+    (
+     BusinessEntityID
+    )
+    REFERENCES Person.BusinessEntity
+    (
+     BusinessEntityID
+    )
+;
+
+ALTER TABLE Person.BusinessEntityContact
+    ADD CONSTRAINT FK_BusinessEntityContact_ContactType_ContactTypeID FOREIGN KEY
+    (
+     ContactTypeID
+    )
+    REFERENCES Person.ContactType
+    (
+     ContactTypeID
+    )
+;
+
+ALTER TABLE Person.BusinessEntityContact
+    ADD CONSTRAINT FK_BusinessEntityContact_Person_PersonID FOREIGN KEY
+    (
+     PersonID
+    )
+    REFERENCES Person.Person
+    (
+     BusinessEntityID
+    )
+;
+
+ALTER TABLE Purchasing.Vendor
+    ADD CONSTRAINT FK_Vendor_BusinessEntity_BusinessEntityID FOREIGN KEY
+    (
+     BusinessEntityID
+    )
+    REFERENCES Person.BusinessEntity
+    (
+     BusinessEntityID
+    )
+;
+
+ALTER TABLE Sales.CountryRegionCurrency
+    ADD CONSTRAINT FK_CountryRegionCurrency_CountryRegion_CountryRegionCode FOREIGN KEY
+    (
+     CountryRegionCode
+    )
+    REFERENCES Person.CountryRegion
+    (
+     CountryRegionCode
+    )
+;
+
+ALTER TABLE Sales.CountryRegionCurrency
+    ADD CONSTRAINT FK_CountryRegionCurrency_Currency_CurrencyCode FOREIGN KEY
+    (
+     CurrencyCode
+    )
+    REFERENCES Sales.Currency
+    (
+     CurrencyCode
+    )
+;
+
+ALTER TABLE Production.WorkOrder
+    ADD CONSTRAINT FK_WorkOrder_Product_ProductID FOREIGN KEY
+    (
+     ProductID
+    )
+    REFERENCES Production.Product
+    (
+     ProductID
+    )
+;
+
+ALTER TABLE Production.WorkOrder
+    ADD CONSTRAINT FK_WorkOrder_ScrapReason_ScrapReasonID FOREIGN KEY
+    (
+     ScrapReasonID
+    )
+    REFERENCES Production.ScrapReason
+    (
+     ScrapReasonID
+    )
+;
+
+ALTER TABLE Purchasing.PurchaseOrderDetail
+    ADD CONSTRAINT FK_PurchaseOrderDetail_Product_ProductID FOREIGN KEY
+    (
+     ProductID
+    )
+    REFERENCES Production.Product
+    (
+     ProductID
+    )
+;
+
+ALTER TABLE Purchasing.PurchaseOrderDetail
+    ADD CONSTRAINT FK_PurchaseOrderDetail_PurchaseOrderHeader_PurchaseOrderID FOREIGN KEY
+    (
+     PurchaseOrderID
+    )
+    REFERENCES Purchasing.PurchaseOrderHeader
+    (
+     PurchaseOrderID
+    )
+;
