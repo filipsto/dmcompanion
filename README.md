@@ -25,6 +25,7 @@ Data Modeler Companion brings database diagramming, Oracle Database Projects, an
 - [Modeling and SDDM Designs](#modeling-and-sddm-designs)
 - [DB Projects Usage Log](#db-projects-usage-log)
 - [File formats](#file-formats)
+- [Logging](#logging)
 - [Documentation and support](#documentation-and-support)
 - [License](#license)
 
@@ -353,6 +354,10 @@ Entries can be filtered using text filter and/or filter by schema, object type a
 - `.dmcproj` is a portable Database Projects archive bundle used in export/import of project.
 - `.dgm` is an Oracle SQL Developer for VS Code diagram that can be opened by Data Modeler Companion.
 - `.mmd` and `.mermaid` files containing Mermaid `erDiagram` definitions can be visualized as editable diagrams.
+
+## Logging
+
+The **Data Modeler Companion** output channel uses `dmc.logging.level`. At `info`, database/schema and folder/selected-object diagram imports report their host-side duration and outcome, excluding waits for dependency confirmation dialogs. At `debug`, major import stages and existing per-query timings are also available. Switching it `off` disables all logging. Editor opening does not measure subsequent webview layout or rendering.
 
 ## Documentation and support
 

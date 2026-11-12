@@ -135,6 +135,8 @@ This searches rendered SVG diagram text only, not toolbar or drawer text, unrend
 
 Use the toolbar's search button to open **Find Object**. Filter the object list and select an object to select and center it on the diagram. This object-navigation action remains separate from **Ctrl+F** text search. Objects can be sorted by name, incoming or outgoing foreign key links. Clicking on object in dialog will scroll diagram to that object
 
+On first opening a diagram or display, the top-left viewport is kept when an object is visible. If it is empty, the diagram scrolls to the table with the most outgoing physical or implied FK links shown on that display. Ties use the topmost, then leftmost table; without tables, the topmost object is used. This preserves the opening zoom and selection and does not modify the diagram. Returning to a visited display restores its previous viewport, even if that area is empty.
+
 ### Mini Map
 
 Use the toolbar's **Minimap** button to show a compact overview of the current display. The outlined rectangle marks the area visible on the main canvas, helping you keep your bearings when a diagram is larger than the screen.
@@ -156,6 +158,8 @@ Select the objects you want to work with, then right-click an object to open the
 Use **Select Neighbors** to extend the selection through parent or child foreign-key relationships already on the display, choosing the direction and number of zones. For example, select a table, include its direct children, then choose **Create Display from Selected** to keep an overview and a focused view side by side.
 
 **Selected Object Colors** changes colors for the selected objects, and **Reset Selected Colors** removes their overrides. **Show Create Script** and **Show Definition** are available where supported. **Optimise with Children** and **Optimise with Parents** instead focus on the right-clicked table and can also declutter the source; see [on-object optimisation](#on-object-optimisation) for their different behavior.
+
+For logical relationship attributes, use the relationship's **Line Format** dialog to change its box color. This color stays the same when switching themes, while text contrast adapts automatically. **Selected Object Colors** and **Reset Selected Colors** do not change relationship attribute colors; diagram-wide defaults remain available in **Diagram Details**.
 
 ### Undo/Redo History
 
@@ -231,6 +235,10 @@ Project information, saves, and refreshes use the Oracle project storage connect
 ## Property graph diagrams
 
 Oracle Label Property Graphs and SQL Server graph tables have graph-oriented displays alongside their relational table views. Graph displays expose vertices or nodes, edges, properties, labels, comments, and their underlying physical objects.
+
+In SQL Server table displays, **Diagram Info** counts **Node Tables** and **Edge Tables** separately from **Tables**. Both categories appear when the active display contains either kind, including a zero for the absent kind. They are hidden when neither is present and are not added to Graph Compact or Graph Details displays.
+
+SQL Server diagrams omit **Materialized views** and **Duality views** from Diagram Info because those object types are not supported by SQL Server.
 
 On Oracle 23+, schema imports and Tables, Views, and Materialized Views folder imports can annotate directly referenced graph backing objects with vertex, edge, or combined roles. The **Check Oracle Property Graph Table Usage** setting controls this lookup. These ordinary imports do not resolve synonyms or add graph-derived implied foreign keys.
 

@@ -2,6 +2,8 @@
 
 Data Modeler Companion imports Oracle SQL Developer Data Modeler (SDDM) designs into the **Modeling** view. The import transfers the documented supported logical and relational artifact scope and preserves supported diagram positions, routes, arcs, colors, notes, and presentation.
 
+In a logical or relational diagram, **Ctrl+F** (**Cmd+F** on macOS) opens compact text search with a current/total match count and previous/next navigation. Reopening it immediately searches with the remembered query. The **Find Object** toolbar button remains available for object lookup and centering. See [Text search](diagramming.md#text-search) for search scope.
+
 ## Relational models
 
 Supported relational artifacts include schemas, tables, materialized views, views, columns, keys, indexes, foreign keys, domains, comments, remote-object metadata, and diagram layouts. Relationship and foreign-key arcs preserve how related connectors are organized in the source design.
@@ -102,3 +104,9 @@ Importing an SDDM design requires the source design folder and access to its com
 Right-click an imported design in **Modeling** and choose **Reimport Design from SDDM**. The command reads its recorded SDDM folder, or asks for a folder if that path has moved. A recorded source design ID must match before any changes are made. Reimport requires the configured System Data Types folder.
 
 Reimport replaces the imported logical and relational model definitions, including removing definitions no longer in the source. It does not overwrite or delete existing diagrams, including diagrams you have edited; newly discovered source diagrams are added. Model-linked diagrams use the refreshed definitions when opened, and already-open diagrams refresh after reimport. If a diagram refers to objects no longer in its model, a warning lists them. Available objects still open, and missing placements remain in the saved diagram for manual repair.
+
+## Deleting an imported design
+
+**Delete Design** first closes the design's open model diagrams across all editor groups, including unsaved diagrams. VS Code offers its normal unsaved-changes choices; cancelling a close aborts deletion before any files are removed or Git deletions are staged. Other designs, independent `.dmcd` diagrams, and the source SDDM design are not deleted.
+
+After the diagrams close, their live state and pending saves or missing-file recovery operations are retired before the imported design is removed. Importing the design again at the same location starts with fresh diagrams; previously open diagrams cannot reappear in reports or recreate their old files.

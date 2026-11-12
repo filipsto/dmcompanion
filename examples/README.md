@@ -15,3 +15,7 @@ To explore a diagram, download its `.dmcd` file and open it in VS Code with the 
 - [FishGraph](SQL%20Server/FishGraph/README.md): Explore node and edge tables for a discussion forum in table, detailed graph, and compact graph displays.
 
 >**Note:** Generating SQL Server create scripts or definitions for diagram objects requires a connection to the SQL Server database containing those objects.
+
+## Modeling
+
+Look at generated entities and tables reports
